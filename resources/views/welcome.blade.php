@@ -309,7 +309,7 @@
         <div class="product-container">
             <div class="product-card">
                 <div class="img-container">
-                    <a href="">
+                    <a href="{{ Route('ProductView') }}">
                         <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
                     </a>
                     <div class="icon-card">
@@ -328,7 +328,7 @@
                 </div>
                 <div class="titel-container">
                     <div class="titel-card">
-                        <a href="">all over printed</a>
+                        <a href="{{ Route('ProductView') }}">all over printed</a>
                     </div>
                     <div class="category-titel-card">
                         <span>all products,punjabi</span>

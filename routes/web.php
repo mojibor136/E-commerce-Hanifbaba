@@ -1,6 +1,4 @@
 <?php
-
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 /*
@@ -15,18 +13,12 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::controller(ProductController::class)->group(function () {
-    Route::get('/' , 'Index')->name('index');
+    Route::get('/' , 'Index')->name('home');
     Route::get('/product', 'ProductView')->name('ProductView');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth','web'])->group(function () {
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/Data' , 'data')->name('data');
+    });
 });
-
 require __DIR__.'/auth.php';

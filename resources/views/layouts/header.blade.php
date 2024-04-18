@@ -285,16 +285,16 @@
             <a href="">blood donation service</a>
         </div>
         <div class="account-service">
-            <a href="">registration</a>
+            <a href="{{Route('register')}}">registration</a>
             <span>/</span>
-            <a href="">login</a>
+            <a href="{{Route('login')}}">login</a>
         </div>
     </div>
     <header>
         <div class="header-container">
             <div class="header-card">
                 <div class="logo">
-                    <a href="">
+                    <a href="{{Route('home')}}">
                         <img src="logo/Hanif-Baba-2-2.png" alt="">
                         <span>HANIF BABA</span>
                     </a>

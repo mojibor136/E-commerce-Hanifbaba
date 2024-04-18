@@ -13,4 +13,8 @@ class ProductController extends Controller
     public function ProductView(){
         return view('product-view');
     }
+
+    public function data(){
+        return 'login success';
+    }
 }
