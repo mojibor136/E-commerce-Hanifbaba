@@ -20,6 +20,10 @@
         background: #fff;
     }
 
+    body::-webkit-scrollbar {
+        display: none;
+    }
+
     .top-header-container {
         width: 100%;
         padding: 3px 50px;
@@ -169,12 +173,7 @@
     }
 
     .search-container .search-card .categories-container .categories-card .categories .category::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .search-container .search-card .categories-container .categories-card .categories .category::-webkit-scrollbar-thumb {
-        background-color: #777;
-        border-radius: 10px;
+        display: none;
     }
 
     .search-container .search-card .categories-container .categories-card .categories .category span {
@@ -273,6 +272,76 @@
         color: #A60DE4;
         background-color: #f5f5f5;
     }
+
+    /* Default styles */
+    /* Your default CSS styles go here */
+
+    /* Media query for screens between 1280px and 1024px */
+    @media screen and (max-width: 1280px) {
+        /* Styles for screens between 1280px and 1024px */
+    }
+
+    /* Media query for screens between 1024px and 768px */
+    @media screen and (max-width: 1024px) {
+        /* Styles for screens between 1024px and 768px */
+    }
+
+    /* Media query for screens between 768px and 480px */
+    @media screen and (max-width: 768px) {
+        .top-header-container {
+            padding: 3px 20px;
+        }
+
+        .top-header-container .service a {
+            margin: 0 5px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .top-header-container {
+            padding: 3px 10px;
+        }
+
+        .top-header-container .service a {
+            margin: 0 3px;
+            font-size: 14px;
+        }
+
+        .top-header-container .account-service a {
+            font-size: 14px;
+        }
+
+        .header-container .header-card .search-container .search-card input {
+            padding: 0px 15px;
+        }
+
+        .search-container .search-card .categories-container .search-icons {
+            margin: 3px;
+        }
+
+        .search-container .search-card .categories-container .search-icons i {
+            color: white;
+            font-size: 15px;
+        }
+
+        .header-container .header-card .icons-container .icons-card .icons {
+            margin: 0 5px;
+        }
+
+        .header-container .header-card .icons-container .account-card .user-icons {
+            padding: 0 5px;
+        }
+    }
+
+    /* Media query for screens between 480px and 380px */
+    @media screen and (max-width: 475px) {
+        /* Styles for screens between 480px and 380px */
+    }
+
+    /* Media query for screens below 380px */
+    @media screen and (max-width: 375px) {
+        /* Styles for screens below 380px */
+    }
 </style>
 
 <body>
@@ -285,16 +354,16 @@
             <a href="">blood donation service</a>
         </div>
         <div class="account-service">
-            <a href="{{Route('register')}}">registration</a>
+            <a href="{{ Route('register') }}">registration</a>
             <span>/</span>
-            <a href="{{Route('login')}}">login</a>
+            <a href="{{ Route('login') }}">login</a>
         </div>
     </div>
     <header>
         <div class="header-container">
             <div class="header-card">
                 <div class="logo">
-                    <a href="{{Route('home')}}">
+                    <a href="{{ Route('home') }}">
                         <img src="logo/Hanif-Baba-2-2.png" alt="">
                         <span>HANIF BABA</span>
                     </a>

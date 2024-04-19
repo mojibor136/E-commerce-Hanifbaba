@@ -17,6 +17,7 @@
 
     .banner-container .banner-categories {
         display: flex;
+        height: 316px;
     }
 
     .banner-container .banner-categories .side-categories {
@@ -25,6 +26,11 @@
         width: 220px;
         margin-right: 5px;
         border-radius: 6px;
+        overflow: scroll;
+    }
+
+    .banner-container .banner-categories .side-categories::-webkit-scrollbar {
+        display: none;
     }
 
     .banner-container .banner-categories .side-categories .side-category {
@@ -109,8 +115,8 @@
     /* products container css*/
     .product-container {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        column-gap: 45px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 30px;
         row-gap: 40px;
         padding: 20px 0 50px 0;
     }
@@ -119,6 +125,7 @@
         overflow: hidden;
         border-radius: 10px;
         background: #fff;
+        border: 1px solid #dddddd;
     }
 
     .product-card .img-container {
@@ -134,7 +141,6 @@
         width: 100%;
         height: 200px;
         object-fit: cover;
-        border-radius: 10px;
     }
 
     .product-card .img-container .icon-card {
@@ -174,12 +180,12 @@
     }
 
     .product-card .size-container .size-card .size {
-        border: 1px solid #607D8B;
-        padding: 3px 5px;
+        border: 1px solid #777;
+        padding: 4px 6px;
         margin: 5px;
         cursor: pointer;
         border-radius: 3px;
-        color: black;
+        color: #333;
     }
 
     .product-card .titel-container {
@@ -218,11 +224,25 @@
         justify-content: center;
     }
 
+    .product-card .stock-container .stock-card {
+        display: flex;
+    }
+
     .product-card .stock-container .stock-card span {
         text-transform: capitalize;
         font-size: 14px;
         font-weight: 600;
         color: #2f2f2f;
+    }
+
+    .product-card .stock-container .stock-card .stock-arrow {
+        width: 14px;
+        height: 8px;
+        border-top: 2px solid;
+        border-right: 2px solid;
+        transform: rotate(124deg);
+        color: #84019b;
+        margin: 0 5px;
     }
 
     .product-card .star-container {
@@ -268,6 +288,50 @@
         font-weight: 900;
         font-size: 16px;
     }
+
+    /* Default styles */
+    /* Your default CSS styles go here */
+
+    /* Media query for screens between 1280px and 1024px */
+    @media screen and (max-width: 1280px) {
+        /* Styles for screens between 1280px and 1024px */
+    }
+
+    /* Media query for screens between 1024px and 768px */
+    @media screen and (max-width: 1024px) {
+        /* Styles for screens between 1024px and 768px */
+    }
+
+    /* Media query for screens between 768px and 480px */
+    @media screen and (max-width: 768px) {
+        .product-container {
+            column-gap: 20px;
+        }
+    }
+
+    @media screen and (max-width: 640px) {
+        .main-container {
+            padding: 0 10px;
+        }
+
+        .banner-container .banner-categories {
+            height: 250px;
+        }
+
+        .product-container {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    /* Media query for screens between 480px and 380px */
+    @media screen and (max-width: 475px) {
+        /* Styles for screens between 480px and 380px */
+    }
+
+    /* Media query for screens below 380px */
+    @media screen and (max-width: 375px) {
+        /* Styles for screens below 380px */
+    }
 </style>
 
 <body>
@@ -280,6 +344,11 @@
                         <a href="">punjabi</a>
                         <a href="">baby dress</a>
                         <a href="">t-shrit</a>
+                        <a href="">baby dress</a>
+                        <a href="">t-shrit</a>
+                        <a href="">health</a>
+                        <a href="">punjabi</a>
+                        <a href="">baby dress</a>
                         <a href="">health</a>
                         <a href="">punjabi</a>
                         <a href="">baby dress</a>
@@ -291,6 +360,8 @@
                     </div>
                 </div>
                 <div class="banner">
+                    <img class="slides-img" src="{{ asset('banner/HANIFBABA.png') }}" alt="">
+                    <img class="slides-img" src="{{ asset('banner/Untitled design.png') }}" alt="">
                     <img class="slides-img" src="{{ asset('banner/banner.jpg') }}" alt="">
                     <img class="slides-img" src="{{ asset('banner/1709354849-65e2af612ea37.jpg') }}" alt="">
                     <img class="slides-img" src="{{ asset('banner/1709349038-65e298ae24802.jpg') }}" alt="">
@@ -336,6 +407,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -349,7 +421,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
@@ -384,6 +456,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -397,7 +470,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
@@ -431,6 +504,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -444,7 +518,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
@@ -478,6 +552,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -491,7 +566,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547;1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
@@ -525,6 +600,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -538,7 +614,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
@@ -572,6 +648,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -585,7 +662,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
@@ -619,6 +696,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -632,7 +710,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
@@ -666,6 +744,7 @@
                 </div>
                 <div class="stock-container">
                     <div class="stock-card">
+                        <div class="stock-arrow"></div>
                         <span>in stock</span>
                     </div>
                 </div>
@@ -679,7 +758,7 @@
                     </div>
                 </div>
                 <div class="price-container">
-                    <div class="discount-card"><span>$1290.00</span></div>
+                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
                     <div class="price-card"><span>&#2547; 1190.00</span></div>
                 </div>
             </div>
