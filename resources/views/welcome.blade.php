@@ -8,11 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/png" href="{{ asset('logo/Hanif-Baba-2-2.png') }}">
     <title>Hanif-Baba</title>
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
 </head>
 <style>
     .main-container {
         height: 100%;
-        padding: 0 50px;
+        padding: 20px 50px;
     }
 
     .banner-container .banner-categories {
@@ -40,7 +41,7 @@
     }
 
     .banner-container .banner-categories .side-categories .side-category a {
-        padding: 5px 10px;
+        padding: 2px 10px;
         text-transform: capitalize;
         text-decoration: none;
         color: #636464;
@@ -112,200 +113,333 @@
     }
 
 
-    /* products container css*/
-    .product-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        column-gap: 30px;
-        row-gap: 40px;
-        padding: 20px 0 50px 0;
+    /* top products container css*/
+    .main-top-product-container {
+        margin: 25px 0
     }
 
-    .product-card {
-        overflow: hidden;
-        border-radius: 10px;
-        background: #fff;
-        border: 1px solid #dddddd;
-    }
-
-    .product-card .img-container {
-        position: relative;
+    .main-top-product-container .type {
+        border-radius: 3px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
+        padding: 5px 10px;
+        background: #96006d;
     }
 
-    .product-card .img-container a {
+    .main-top-product-container .type span {
+        font-size: 18px;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #ddd;
+    }
+
+    .main-top-product-container .type a {
         text-decoration: none;
+        text-transform: uppercase;
+        color: #ddd;
+        font-weight: 700;
+        font-size: 12px;
     }
 
-    .product-card .img-container img {
+    .top-product-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 5px;
+        row-gap: 10px;
+    }
+
+    .top-product-card {
         width: 100%;
-        height: 200px;
+        border: 1px solid #eeefff;
+        padding-bottom: 2px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .top-product-card .image {
+        height: 180px;
+        width: 100%;
+    }
+
+    .top-product-card .image img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 
-    .product-card .img-container .icon-card {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        position: absolute;
-        bottom: 20px;
-    }
-
-    .product-card .img-container .cart-icon {
-        background-color: #fff;
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-around;
-        padding: 6px 0;
-        width: 65px;
-    }
-
-    .product-card .img-container .cart-icon a {
-        text-decoration: none;
-        color: #607D8B;
-        font-size: 18px;
-    }
-
-    .product-card .img-container .cart-icon a:hover {
-        color: #A60DE4;
-    }
-
-    .product-card .size-container {
-        width: 100%;
-    }
-
-    .product-card .size-container .size-card {
-        display: flex;
-        align-items: center;
-    }
-
-    .product-card .size-container .size-card .size {
-        border: 1px solid #777;
-        padding: 4px 6px;
-        margin: 5px;
-        cursor: pointer;
-        border-radius: 3px;
-        color: #333;
-    }
-
-    .product-card .titel-container {
-        width: 100%;
-    }
-
-    .product-card .titel-container .titel-card {
-        display: flex;
-        justify-content: center;
-    }
-
-    .product-card .titel-container .titel-card a {
-        text-transform: capitalize;
-        font-size: 15px;
-        font-weight: 600;
-        color: #2f2f2f;
-        text-decoration: none;
-    }
-
-    .product-card .titel-container .category-titel-card {
-        display: flex;
-        justify-content: center;
-        padding: 5px 0;
-    }
-
-    .product-card .titel-container .category-titel-card span {
-        text-transform: capitalize;
-        font-size: 15px;
-        font-weight: 600;
-        color: #666565;
-    }
-
-    .product-card .stock-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .product-card .stock-container .stock-card {
-        display: flex;
-    }
-
-    .product-card .stock-container .stock-card span {
-        text-transform: capitalize;
+    .top-product-card .name {
+        line-height: 1;
         font-size: 14px;
         font-weight: 600;
-        color: #2f2f2f;
+        color: #333;
+        padding: 2px 5px;
+        text-transform: capitalize;
     }
 
-    .product-card .stock-container .stock-card .stock-arrow {
-        width: 14px;
-        height: 8px;
-        border-top: 2px solid;
-        border-right: 2px solid;
-        transform: rotate(124deg);
-        color: #84019b;
-        margin: 0 5px;
-    }
-
-    .product-card .star-container {
-        width: 100%;
-    }
-
-    .product-card .star-container .star-card {
+    .top-product-card .price {
         display: flex;
-        justify-content: center;
-        padding: 3px 0;
-    }
-
-    .product-card .star-container .star-card i {
-        font-size: 15px;
-        color: #2f2f2f;
-    }
-
-    .product-card .price-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
         align-items: center;
-        padding: 3px 0;
+        padding: 2px 5px;
+        line-height: 1.1;
+        padding-bottom: 4px;
+        text-transform: uppercase;
     }
 
-    .product-card .price-container .discount-card {
-        padding: 0 2px;
-    }
-
-    .product-card .price-container .discount-card span {
-        color: #ababab;
-        font-weight: 900;
+    .top-product-card .price .tk {
+        color: #96006d;
+        font-weight: 700;
         font-size: 16px;
+    }
+
+    .top-product-card .price .discount {
         text-decoration: line-through;
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
+        margin: 0 3px;
     }
 
-    .product-card .price-container .price-card {
-        padding: 0 2px;
+    .top-product-card .price .percent {
+        border-radius: 1px 5px 1px 5px;
+        background: #af009c;
+        padding: 2px 10px;
+        color: #fff;
+        font-size: 13px;
     }
 
-    .product-card .price-container .price-card span {
-        color: rgb(155, 40, 175);
-        font-weight: 900;
+    /*------ Category-container all css */
+    .category-container {
+        margin: 10px 0;
+    }
+
+    .category-container .type {
+        border-radius: 3px;
+        width: 100%;
+        padding: 5px 10px;
+        background: #96006d;
+    }
+
+    .category-container .type span {
+        font-size: 18px;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #ddd;
+    }
+
+    .category-container .category-card {
+        background-color: transparent;
+        border-radius: 0;
+    }
+
+    .category-card ul {
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 5px;
+        height: 239px;
+        overflow: hidden;
+    }
+
+    .category-card a {
+        text-decoration: none;
+    }
+
+    .category-card a li img {
+        max-width: 100%;
+        height: 90px;
+        object-fit: cover;
+    }
+
+    .category-card a .card {
+        border-radius: 0;
+        overflow: hidden;
+        border: none;
+    }
+
+    .category-card a li span {
+        text-align: center;
+        text-transform: capitalize;
+        padding: 2px 0;
+        font-size: 14px;
+        color: #2a2f3b;
+        font-weight: 600;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+
+    /* top products container css*/
+    .main-product-container {
+        margin: 25px 0
+    }
+
+    .main-product-container .type {
+        border-radius: 3px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 5px 10px;
+        background: #96006d;
+    }
+
+    .main-product-container .type span {
+        font-size: 18px;
+        text-transform: capitalize;
+        font-weight: 600;
+        color: #ddd;
+    }
+
+    .main-product-container .type a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #ddd;
+        font-weight: 700;
+        font-size: 12px;
+    }
+
+    .product-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 5px;
+        row-gap: 10px;
+    }
+
+    .product-card {
+        width: 100%;
+        border: 1px solid #eeefff;
+        padding-bottom: 2px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .product-card .image {
+        height: 180px;
+        width: 100%;
+    }
+
+    .product-card .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-card .name {
+        line-height: 1;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        padding: 2px 5px;
+        text-transform: capitalize;
+    }
+
+    .product-card .price {
+        display: flex;
+        align-items: center;
+        padding: 2px 5px;
+        line-height: 1.1;
+        padding-bottom: 4px;
+        text-transform: uppercase;
+    }
+
+    .product-card .price .tk {
+        color: #96006d;
+        font-weight: 700;
         font-size: 16px;
+    }
+
+    .product-card .price .discount {
+        text-decoration: line-through;
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
+        margin: 0 3px;
+    }
+
+    .product-card .price .percent {
+        border-radius: 1px 5px 1px 5px;
+        background: #af009c;
+        padding: 2px 10px;
+        color: #fff;
+        font-size: 13px;
+    }
+
+    /* button more shoping */
+    .load-more {
+        width: 100%;
+        text-align: center;
+    }
+
+    .load-more .load-card {
+        border: 1px solid #555;
+    }
+
+    .load-more .load-card a {
+        font-size: 12px;
+        text-decoration: none;
+        font-weight: 700;
     }
 
     /* Default styles */
     /* Your default CSS styles go here */
 
     /* Media query for screens between 1280px and 1024px */
+    @media screen and (max-width: 1440px) {
+        .main-container {
+            padding: 0 180px;
+        }
+    }
+
     @media screen and (max-width: 1280px) {
-        /* Styles for screens between 1280px and 1024px */
+        .main-container {
+            padding: 0 130px;
+        }
+
+        .banner-container .banner-categories {
+            display: flex;
+            height: 340px;
+        }
     }
 
     /* Media query for screens between 1024px and 768px */
     @media screen and (max-width: 1024px) {
-        /* Styles for screens between 1024px and 768px */
+        .main-container {
+            padding: 20px 60px;
+        }
+
+        .top-product-card .image {
+            height: 170px;
+            width: 100%;
+        }
+
+        .product-card .image {
+            height: 170px;
+            width: 100%;
+        }
+
+        .banner-container .banner-categories {
+            display: flex;
+            height: 336px;
+        }
     }
 
     /* Media query for screens between 768px and 480px */
     @media screen and (max-width: 768px) {
+        .main-container {
+            padding: 0 20px;
+        }
+
+        .top-product-container {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
         .product-container {
-            column-gap: 20px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
         }
     }
 
@@ -318,19 +452,107 @@
             height: 250px;
         }
 
+        .banner-container .banner-categories .banner {
+            border-radius: 2px;
+        }
+
+        .main-top-product-container {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .main-product-container {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .top-product-container {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
         .product-container {
             grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .top-product-card .name {
+            color: #444;
+        }
+
+        .top-product-card .price .discount {
+            color: #555;
+        }
+
+        .top-product-card .image {
+            height: 165px;
+        }
+
+        .product-card .name {
+            color: #444;
+        }
+
+        .product-card .price .discount {
+            color: #555;
+        }
+
+        .product-card .image {
+            height: 165px;
         }
     }
 
     /* Media query for screens between 480px and 380px */
     @media screen and (max-width: 475px) {
-        /* Styles for screens between 480px and 380px */
+        .side-categories {
+            display: none;
+        }
+
+        .main-container {
+            padding: 0;
+        }
+
+        .category-container {
+            margin: 10px 5px;
+        }
+
+        .banner-container .banner-categories {
+            display: flex;
+            height: 200px;
+        }
+
+        .main-top-product-container {
+            margin: 0;
+            padding: 10px 5px;
+        }
+
+        .main-product-container {
+            margin: 0;
+            padding: 10px 5px;
+        }
+
+        .category-card ul {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .main-product-container {
+            margin: 0;
+            padding: 10px 5px;
+        }
+
+        .main-product-container {
+            margin: 0;
+            padding: 10px 5px;
+        }
+
     }
 
     /* Media query for screens below 380px */
     @media screen and (max-width: 375px) {
-        /* Styles for screens below 380px */
+        .top-product-container {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .product-container {
+            grid-template-columns: 1fr 1fr;
+        }
     }
 </style>
 
@@ -376,393 +598,330 @@
                 </div>
             </div>
         </div>
-        {{-- products container --}}
-        <div class="product-container">
-            <div class="product-card">
-                <div class="img-container">
-                    <a href="{{ Route('ProductView') }}">
+        {{-- top products container --}}
+        <div class="main-top-product-container">
+            <div class="type">
+                <span>top products</span>
+                <a href="">shop more</a>
+            </div>
+            <div class="top-product-container">
+                <div class="top-product-card">
+                    <div class="image">
                         <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
-                    </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$700</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
                         </div>
                     </div>
                 </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
+                <div class="top-product-card">
+                    <div class="image">
+                        <img src="Products/Amazing Rice Flour Face Packs For All Your Skin Concerns.jpg" alt="">
                     </div>
-                </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="{{ Route('ProductView') }}">all over printed</a>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
-                    </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-half-line"></i>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="img-container">
-                    <a href="">
-                        <img src="{{ asset('products/0KJtfEu3END2KjCk8YuASvudjL5azxcHD2in35Xj-682x1024.jpg') }}"
-                            alt="">
-                    </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
+                    <div class="price">
+                        <span class="tk">$480</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
                         </div>
                     </div>
                 </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
-                    </div>
-                </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="">all over printed</a>
-                    </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
-                    </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="img-container">
-                    <a href="">
-                        <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                    </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
-                    </div>
-                </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="">all over printed</a>
-                    </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
-                    </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-half-line"></i>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="img-container">
-                    <a href="">
-                        <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
-                    </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
-                    </div>
-                </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="">all over printed</a>
-                    </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
-                    </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-half-line"></i>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547;1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="img-container">
-                    <a href="">
+                <div class="top-product-card">
+                    <div class="image">
                         <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
-                    </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$1020</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
                         </div>
                     </div>
                 </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
-                    </div>
-                </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="">all over printed</a>
-                    </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
-                    </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-half-line"></i>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="img-container">
-                    <a href="">
+                <div class="top-product-card">
+                    <div class="image">
                         <img src="{{ asset('products/punjabi3.jpg') }}" alt="">
-                    </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$700</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
                         </div>
                     </div>
                 </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
+                <div class="top-product-card">
+                    <div class="image">
+                        <img src="Products/Amazing Rice Flour Face Packs For All Your Skin Concerns.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$570</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
                     </div>
                 </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="">all over printed</a>
-                    </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
-                    </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="img-container">
-                    <a href="">
+                <div class="top-product-card">
+                    <div class="image">
                         <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$500</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
                         </div>
                     </div>
                 </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
-                    </div>
-                </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="">all over printed</a>
-                    </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
-                    </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
-                </div>
             </div>
-
-            <div class="product-card">
-                <div class="img-container">
+        </div>
+        {{-- /* Category-container all html*/ --}}
+        <div class="category-container">
+            <div class="type">
+                <span>all category</span>
+            </div>
+            <div class="card category-card border-0">
+                <ul>
                     <a href="">
-                        <img src="{{ asset('products/2-1-682x1024.jpg') }}" alt="">
+                        <li class="card">
+                            <img src="{{ asset('products/2-1-682x1024.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
                     </a>
-                    <div class="icon-card">
-                        <div class="cart-icon">
-                            <a href="" class="ri-shopping-cart-line"></a>
-                            <a href="" class="ri-heart-line"></a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/1709024382-65dda47ed1d5d.jfif') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/1711678828-6606256c468fe.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi3.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li class="card">
+                            <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
+                            <span>punjabi</span>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        {{-- top products container --}}
+        <div class="main-product-container">
+            <div class="type">
+                <span>letest products</span>
+                <a href="">shop more</a>
+            </div>
+            <div class="product-container">
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$700</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
                         </div>
                     </div>
                 </div>
-                <div class="size-container">
-                    <div class="size-card">
-                        <div class="size">42</div>
-                        <div class="size">43</div>
-                        <div class="size">44</div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="Products/Amazing Rice Flour Face Packs For All Your Skin Concerns.jpg"
+                            alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$480</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
                     </div>
                 </div>
-                <div class="titel-container">
-                    <div class="titel-card">
-                        <a href="">all over printed</a>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
                     </div>
-                    <div class="category-titel-card">
-                        <span>all products,punjabi</span>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
                     </div>
-                </div>
-                <div class="stock-container">
-                    <div class="stock-card">
-                        <div class="stock-arrow"></div>
-                        <span>in stock</span>
-                    </div>
-                </div>
-                <div class="star-container">
-                    <div class="star-card">
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
-                        <i class="ri-star-line"></i>
+                    <div class="price">
+                        <span class="tk">$1020</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
                     </div>
                 </div>
-                <div class="price-container">
-                    <div class="discount-card"><span>&#2547; 1290.00</span></div>
-                    <div class="price-card"><span>&#2547; 1190.00</span></div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/punjabi3.jpg') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$700</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="Products/Amazing Rice Flour Face Packs For All Your Skin Concerns.jpg"
+                            alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$570</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/three1.jpg') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="price">
+                        <span class="tk">$500</span>
+                        <span class="discount">$500</span>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
 
+    </div>
+
+    <div class="load-more">
+        <div class="load-card btn">
+            <a href="">LOAD MORE</a>
         </div>
     </div>
     <script>

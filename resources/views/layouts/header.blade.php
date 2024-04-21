@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('logo/Hanif-Baba-2-2.png') }}">
     <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
 </head>
 <style>
     * {
@@ -26,34 +27,25 @@
 
     .top-header-container {
         width: 100%;
-        padding: 3px 50px;
+        padding: 4px 60px;
         background: #A60DE4;
+    }
+
+    .top-header-container .service {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        height: 100%;
     }
 
     .top-header-container .service a {
         text-decoration: none;
         text-transform: capitalize;
         color: #fff;
-        font-size: 15px;
+        font-size: 14px;
         margin: 0 10px;
+        line-height: 1;
     }
 
-    .top-header-container .account-service {
-        color: #fff;
-    }
-
-    .top-header-container .account-service a {
-        text-decoration: none;
-        text-transform: capitalize;
-        color: #fff;
-        font-size: 15px;
-    }
-
-    .top-header-container .account-service span {
-        font-weight: 900;
-    }
 
     .headerContainer {
         position: fixed;
@@ -64,7 +56,7 @@
 
     .header-container {
         background: #fff;
-        box-shadow: 1px 1px 1px #dee;
+        box-shadow: 1px 2px 1px #dee;
         padding: 5px 0;
         margin-bottom: 20px;
     }
@@ -111,7 +103,7 @@
         border: none;
         outline: none;
         box-shadow: none;
-        padding: 12px 15px;
+        padding: 0 15px;
         vertical-align: middle;
         color: #777;
         width: 100%;
@@ -125,7 +117,6 @@
         align-items: center;
         right: 0;
         top: 0;
-        height: 100%;
     }
 
     .search-container .search-card .categories-container .categories-card {
@@ -192,17 +183,18 @@
 
     .search-container .search-card .categories-container .search-icons {
         background: #A60DE4;
-        padding: 7px;
-        margin: 5px;
+        margin: 4px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        text-align: center;
+        line-height: 29px;
     }
 
     .search-container .search-card .categories-container .search-icons i {
         color: white;
         font-size: 18px;
+        vertical-align: middle;
     }
 
     .header-container .header-card .icons-container {
@@ -231,10 +223,22 @@
         cursor: pointer;
     }
 
-    .header-container .header-card .icons-container .account-card .user-icons .icons {
-        color: #333;
-        font-size: 18px;
-        text-transform: capitalize;
+    .header-container .header-card .icons-container .account-card .user-icons img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin: 0 5px;
+    }
+
+    .header-container .header-card .icons-container .account-card .user-icons i {
+        margin: 0 2px;
+        color: #555;
+        font-weight: 600;
+    }
+
+    .header-container .header-card .icons-container .account-card .user-icons span {
+        color: #555;
+        font-weight: 500;
     }
 
     .header-container .header-card .icons-container .account-card .user-icons .arrow {
@@ -277,13 +281,23 @@
     /* Your default CSS styles go here */
 
     /* Media query for screens between 1280px and 1024px */
+    @media screen and (max-width: 1440px) {
+        .header-container {
+            padding: 5px 115px;
+        }
+    }
+
     @media screen and (max-width: 1280px) {
-        /* Styles for screens between 1280px and 1024px */
+        .header-container {
+            padding: 5px 80px;
+        }
     }
 
     /* Media query for screens between 1024px and 768px */
     @media screen and (max-width: 1024px) {
-        /* Styles for screens between 1024px and 768px */
+        .header-container {
+            padding: 5px 40px;
+        }
     }
 
     /* Media query for screens between 768px and 480px */
@@ -294,6 +308,10 @@
 
         .top-header-container .service a {
             margin: 0 5px;
+        }
+
+        .header-container {
+            padding: 5px 20px;
         }
     }
 
@@ -335,7 +353,12 @@
 
     /* Media query for screens between 480px and 380px */
     @media screen and (max-width: 475px) {
-        /* Styles for screens between 480px and 380px */
+        .top-header-container {
+            display: none;
+        }
+        .header-container{
+            display: none;
+        }
     }
 
     /* Media query for screens below 380px */
@@ -347,16 +370,9 @@
 <body>
     <div class="top-header-container">
         <div class="service">
-            <a href="">order tracking</a>
-            <a href="">order checking</a>
-            <a href="">top products</a>
-            <a href="">my shop</a>
-            <a href="">blood donation service</a>
-        </div>
-        <div class="account-service">
-            <a href="{{ Route('register') }}">registration</a>
-            <span>/</span>
-            <a href="{{ Route('login') }}">login</a>
+            <a href="">all service</a>
+            <a href="">shop</a>
+            <a href="">help & support</a>
         </div>
     </div>
     <header>
@@ -405,7 +421,9 @@
                     </div>
                     <div class="account-card">
                         <div class="user-icons">
-                            <span class="ri-user-line icons">account</span>
+                            {{-- <i class="ri-login-box-line"></i> --}}
+                            <img src="{{ asset('logo/profile.png') }}" alt="">
+                            <span>Account</span>
                             <div class="arrow"></div>
                         </div>
                     </div>
@@ -417,8 +435,9 @@
                         <a href="">cancel order</a>
                         <a href="">blood donation service</a>
                         <a href="">help & support</a>
-                        <a href="">registration</a>
-                        <a href="">login</a>
+                        <a href="">logout</a>
+                        {{-- <a href="">registration</a> --}}
+                        {{-- <a href="">login</a> --}}
                     </div>
                 </div>
             </div>

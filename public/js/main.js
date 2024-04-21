@@ -1,9 +1,16 @@
-window.addEventListener('scroll', function () {
-    let headerContainer = document.querySelector('.header-container');
+let size = document.querySelectorAll('.size');
 
-    if (pageYOffset >= 200) {
-        headerContainer.classList.add('headerContainer');
-    } else {
-        headerContainer.classList.remove('headerContainer');
-    }
+size.forEach(Size => {
+    Size.addEventListener('click', function () {
+        size.forEach(size => {
+            size.style.borderColor = '';
+        });
+        this.style.borderColor = '#800097';
+    });
+});
+
+size.forEach(sizeText =>{
+    sizeText.addEventListener('click',function(){
+        alert(this.textContent);
+    });
 });
