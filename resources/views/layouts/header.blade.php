@@ -18,6 +18,10 @@
     }
 
     body {
+        font-family: 'Noto Sans Bengali', Arial, sans-serif;
+    }
+
+    body {
         background: #fff;
     }
 
@@ -317,49 +321,16 @@
 
     @media screen and (max-width: 640px) {
         .top-header-container {
-            padding: 3px 10px;
+            display: none;
         }
 
-        .top-header-container .service a {
-            margin: 0 3px;
-            font-size: 14px;
-        }
-
-        .top-header-container .account-service a {
-            font-size: 14px;
-        }
-
-        .header-container .header-card .search-container .search-card input {
-            padding: 0px 15px;
-        }
-
-        .search-container .search-card .categories-container .search-icons {
-            margin: 3px;
-        }
-
-        .search-container .search-card .categories-container .search-icons i {
-            color: white;
-            font-size: 15px;
-        }
-
-        .header-container .header-card .icons-container .icons-card .icons {
-            margin: 0 5px;
-        }
-
-        .header-container .header-card .icons-container .account-card .user-icons {
-            padding: 0 5px;
+        .header-container {
+            display: none;
         }
     }
 
     /* Media query for screens between 480px and 380px */
-    @media screen and (max-width: 475px) {
-        .top-header-container {
-            display: none;
-        }
-        .header-container{
-            display: none;
-        }
-    }
+    @media screen and (max-width: 475px) {}
 
     /* Media query for screens below 380px */
     @media screen and (max-width: 375px) {

@@ -1,16 +1,23 @@
-let size = document.querySelectorAll('.size');
+document.addEventListener("DOMContentLoaded", function () {
+    let multiImages = document.querySelectorAll('.multi-img');
+    let img = document.querySelector('.img');
+    let selectedImage = null;
 
-size.forEach(Size => {
-    Size.addEventListener('click', function () {
-        size.forEach(size => {
-            size.style.borderColor = '';
+    multiImages.forEach(multiImage => {
+        multiImage.addEventListener('click', function () {
+            let src = this.querySelector('img').getAttribute('src');
+
+            img.setAttribute('src', src);
+
+            if (selectedImage) {
+                selectedImage.style.border = 'none';
+                selectedImage.style.opacity = '1';
+            }
+
+
+            this.style.border = '1px solid #999999';
+            this.style.opacity = '0.8';
+            selectedImage = this;
         });
-        this.style.borderColor = '#800097';
-    });
-});
-
-size.forEach(sizeText =>{
-    sizeText.addEventListener('click',function(){
-        alert(this.textContent);
     });
 });
