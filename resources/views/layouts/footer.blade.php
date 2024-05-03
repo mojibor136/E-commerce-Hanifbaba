@@ -17,14 +17,10 @@
 
     body {
         background-color: #eee;
-        height: 100vh;
-        position: relative;
     }
 
     footer {
-        position: absolute;
-        bottom: 0;
-        background: #fff;
+        background: #444;
         width: 100%;
         padding: 50px 0 20px 0;
     }
@@ -35,7 +31,9 @@
 
     .follow-us h3 {
         text-align: center;
-        color: #222;
+        color: #eee;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
     .footer-icons {
@@ -89,12 +87,14 @@
     .copyright {
         text-align: center;
         margin-top: 5px;
-        color: #777;
+        color: #ddd;
         font-size: 15px;
         font-weight: bolder;
         padding: 20px 0;
         border-top: 1px solid #ddd;
         position: relative;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
     .copyright:before {

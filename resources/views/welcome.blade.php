@@ -10,11 +10,14 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('logo/Hanif-Baba-2-2.png') }}">
     <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 <style>
     body {
         font-family: 'Noto Sans Bengali', Arial, sans-serif;
-        background: #f1f1f1;
+        background: #e9ecef;
     }
 
     .main-container {
@@ -52,7 +55,9 @@
         text-decoration: none;
         color: #636464;
         font-size: 14px;
-        font-weight: 600;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
     }
 
     .banner-container .banner-categories .side-categories .side-category a:hover {
@@ -136,7 +141,9 @@
     .main-top-product-container .type span {
         font-size: 18px;
         text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
         font-weight: 600;
+        font-style: normal;
         color: #fff;
     }
 
@@ -144,7 +151,9 @@
         text-decoration: none;
         text-transform: uppercase;
         color: #fff;
-        font-weight: 700;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
         font-size: 12px;
     }
 
@@ -167,55 +176,85 @@
     }
 
     .top-product-card .image {
-        height: 180px;
         width: 100%;
     }
 
     .top-product-card .image img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
     }
 
     .top-product-card .name {
-        line-height: 1;
+        line-height: normal;
         font-size: 14px;
-        font-weight: 600;
-        color: #333;
+        color: #222;
         padding: 2px 5px;
         text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
     }
 
-    .top-product-card .price {
+    .top-product-card .free-card {
+        padding: 2px 5px;
+    }
+
+    .top-product-card .free {
+        background: #02473e;
+        border-radius: 10px;
+        font-size: 11px;
+        text-transform: capitalize;
+        width: fit-content;
+        padding: 2px 8px;
+        padding-left: 5px;
+        color: #eee;
+        line-height: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .top-product-card .free i {
+        font-size: 10px;
+    }
+
+    .top-product-card .price-card {
         display: flex;
         align-items: center;
-        justify-content: left;
         padding: 3px 5px;
         line-height: 1.1;
         padding-bottom: 4px;
         text-transform: uppercase;
     }
 
-    .top-product-card .price .tk {
+    .top-product-card .price-card .tk {
         color: #96006d;
-        font-weight: 700;
         font-size: 16px;
-    }
-
-    .top-product-card .price .discount {
-        text-decoration: line-through;
+        font-family: "Roboto", sans-serif;
         font-weight: 600;
-        color: #333;
-        font-size: 15px;
-        margin: 0 3px;
+        font-style: normal;
     }
 
-    .top-product-card .price .percent {
-        border-radius: 1px 5px 1px 5px;
+    .top-product-card .price-card .discount {
+        text-decoration: line-through;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .top-product-card .price-card .percent {
+        margin-left: 10px;
         background: #af009c;
-        padding: 2px 10px;
-        color: #fff;
-        font-size: 13px;
+        transform: skew(-18deg);
+        padding: 1px 10px;
+        color: #eee;
+        font-size: 12px;
+        line-height: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
     }
 
     /*------ Category-container all css */
@@ -235,7 +274,9 @@
     .category-container .type span {
         font-size: 18px;
         text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
         font-weight: 600;
+        font-style: normal;
         color: #fff;
     }
 
@@ -243,7 +284,9 @@
         text-decoration: none;
         text-transform: uppercase;
         color: #fff;
-        font-weight: 700;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
         font-size: 12px;
     }
 
@@ -285,6 +328,8 @@
         font-size: 14px;
         color: #2a2f3b;
         font-weight: 600;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -310,7 +355,9 @@
     .main-product-container .type span {
         font-size: 18px;
         text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
         font-weight: 600;
+        font-style: normal;
         color: #fff;
     }
 
@@ -318,7 +365,9 @@
         text-decoration: none;
         text-transform: uppercase;
         color: #fff;
-        font-weight: 700;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
         font-size: 12px;
     }
 
@@ -326,7 +375,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         column-gap: 5px;
-        row-gap: 10px;
+        row-gap: 15px;
     }
 
     .product-card {
@@ -337,7 +386,6 @@
     }
 
     .product-card .image {
-        height: 180px;
         width: 100%;
     }
 
@@ -348,15 +396,40 @@
     }
 
     .product-card .name {
-        line-height: 1;
+        line-height: normal;
         font-size: 14px;
-        font-weight: 600;
-        color: #333;
+        color: #222;
         padding: 2px 5px;
         text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
     }
 
-    .product-card .price {
+    .product-card .free-card {
+        padding: 2px 5px;
+    }
+
+    .product-card .free {
+        background: #02473e;
+        border-radius: 10px;
+        font-size: 11px;
+        text-transform: capitalize;
+        width: fit-content;
+        padding: 2px 8px;
+        padding-left: 5px;
+        color: #eee;
+        line-height: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .product-card .free i {
+        font-size: 10px;
+    }
+
+    .product-card .price-card {
         display: flex;
         align-items: center;
         padding: 3px 5px;
@@ -365,42 +438,63 @@
         text-transform: uppercase;
     }
 
-    .product-card .price .tk {
+    .product-card .price-card .tk {
         color: #96006d;
-        font-weight: 700;
         font-size: 16px;
-    }
-
-    .product-card .price .discount {
-        text-decoration: line-through;
+        font-family: "Roboto", sans-serif;
         font-weight: 600;
-        color: #333;
-        font-size: 15px;
-        margin: 0 3px;
+        font-style: normal;
     }
 
-    .product-card .price .percent {
-        border-radius: 1px 5px 1px 5px;
+    .product-card .price-card .discount {
+        text-decoration: line-through;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        color: #333;
+        font-size: 14px;
+    }
+
+    .product-card .price-card .percent {
+        margin-left: 10px;
         background: #af009c;
-        padding: 2px 10px;
-        color: #fff;
-        font-size: 13px;
+        transform: skew(-18deg);
+        padding: 1px 10px;
+        color: #eee;
+        font-size: 12px;
+        line-height: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
     }
 
     /* button more shoping */
     .load-more {
         width: 100%;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
     }
 
     .load-more .load-card {
-        border: 1px solid #555;
+        text-align: center;
+    }
+
+    .load-more .load-card:hover {
+        background: #ddd;
     }
 
     .load-more .load-card a {
-        font-size: 12px;
+        border: 1px solid #777;
+        border-radius: 5px;
+        display: block;
+        padding: 10px 50px;
+        font-size: 11px;
         text-decoration: none;
-        font-weight: 700;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
     }
 
     /* home-icon-container */
@@ -435,6 +529,9 @@
 
     .home-icon-card .icons span {
         font-size: 12px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     /* Default styles */
@@ -465,12 +562,10 @@
         }
 
         .top-product-card .image {
-            height: 170px;
             width: 100%;
         }
 
         .product-card .image {
-            height: 170px;
             width: 100%;
         }
 
@@ -498,7 +593,7 @@
     @media screen and (max-width: 640px) {
         .main-container {
             padding: 0 10px;
-            margin-bottom: 50px;
+            margin-bottom: 10px;
         }
 
         .side-categories {
@@ -513,6 +608,19 @@
             border-radius: 0;
         }
 
+        .top-product-container {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .category-card ul {
+            height: 210px;
+            overflow: hidden;
+        }
+
+        .category-card a li img {
+            height: 75px;
+        }
+
         .main-top-product-container {
             margin: 0;
             padding: 10px 0;
@@ -521,10 +629,6 @@
         .main-product-container {
             margin: 0;
             padding: 10px 0;
-        }
-
-        .top-product-container {
-            grid-template-columns: 1fr 1fr 1fr;
         }
 
         .product-container {
@@ -539,20 +643,12 @@
             color: #555;
         }
 
-        .top-product-card .image {
-            height: 165px;
-        }
-
         .product-card .name {
             color: #444;
         }
 
         .product-card .price .discount {
             color: #555;
-        }
-
-        .product-card .image {
-            height: 165px;
         }
 
         .home-icon-container {
@@ -663,93 +759,140 @@
                 <a href="{{ route('ProductView') }}">
                     <div class="top-product-card">
                         <div class="image">
-                            <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
+                            <img src="{{ asset('products/product1.png') }}" alt="">
                         </div>
                         <div class="name">
                             Amazing Rice Flour Face Packs For All
                         </div>
-                        <div class="price">
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
+                        <div class="free-card">
+                            <div class="free">
+                                <i class="ri-star-fill"></i>
+                                <span>free delivery</span>
+                            </div>
+                        </div>
+                        <div class="price-card">
+                            <div>
+                                <span class="tk">৳250</span>
+                                <span class="discount">৳300</span>
+                            </div>
                             <div class="percent">
-                                <span>10%</span>
+                                <span>7%</span>
                             </div>
                         </div>
                     </div>
                 </a>
                 <div class="top-product-card">
                     <div class="image">
-                        <img src="{{ asset('products/Amazing Rice Flour Face Packs For All Your Skin Concerns.jpg') }}"
-                            alt="">
+                        <img src="{{ asset('products/product2.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳480</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>verifyed</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
                 <div class="top-product-card">
                     <div class="image">
-                        <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
+                        <img src="{{ asset('products/product3.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳1020</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
                 <div class="top-product-card">
                     <div class="image">
-                        <img src="{{ asset('products/punjabi3.jpg') }}" alt="">
+                        <img src="{{ asset('products/product2.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳700</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
                 <div class="top-product-card">
                     <div class="image">
-                        <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
+                        <img src="{{ asset('products/product1.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳570</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
                 <div class="top-product-card">
                     <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
+                        <img src="{{ asset('products/product.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
@@ -883,14 +1026,22 @@
             <div class="product-container">
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
+                        <img src="{{ asset('products/product3.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳700</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
                         <div class="percent">
                             <span>10%</span>
                         </div>
@@ -903,11 +1054,19 @@
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳480</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
@@ -918,9 +1077,40 @@
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳1020</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳430</span>
+                            <span class="discount">৳450</span>
+                        </div>
+                        <div class="percent">
+                            <span>17%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/product2.png') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>cash delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
                         <div class="percent">
                             <span>10%</span>
                         </div>
@@ -928,14 +1118,22 @@
                 </div>
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/punjabi3.jpg') }}" alt="">
+                        <img src="{{ asset('products/product.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳700</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
                         <div class="percent">
                             <span>10%</span>
                         </div>
@@ -943,14 +1141,22 @@
                 </div>
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/malhar1.jpg') }}" alt="">
+                        <img src="{{ asset('products/product1.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳570</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
                         <div class="percent">
                             <span>10%</span>
                         </div>
@@ -958,14 +1164,137 @@
                 </div>
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
+                        <img src="{{ asset('products/chaler-ata.jpeg') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>cash delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/chaler-ata.jpeg') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/product1.png') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>verifyed</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/product2.png') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/product.png') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
+                        <div class="percent">
+                            <span>10%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="image">
+                        <img src="{{ asset('products/product1.png') }}" alt="">
+                    </div>
+                    <div class="name">
+                        Amazing Rice Flour Face Packs For All
+                    </div>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳700</span>
+                            <span class="discount">৳500</span>
+                        </div>
                         <div class="percent">
                             <span>10%</span>
                         </div>
@@ -974,7 +1303,7 @@
             </div>
         </div>
         <div class="load-more">
-            <div class="load-card btn">
+            <div class="load-card">
                 <a href="">LOAD MORE</a>
             </div>
         </div>
@@ -1047,3 +1376,4 @@
 </body>
 
 </html>
+@include('layouts.footer')

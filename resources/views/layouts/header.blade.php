@@ -9,6 +9,9 @@
     <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 <style>
     * {
@@ -29,27 +32,36 @@
         display: none;
     }
 
-    .top-header-container {
+    /* TOP HEADER  */
+    .top-header {
         width: 100%;
-        padding: 4px 60px;
-        background: #A60DE4;
+        background-color: #dee2e6;
+        padding: 0;
     }
 
-    .top-header-container .service {
+    .top-header ul {
         display: flex;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
         align-items: center;
-        height: 100%;
     }
 
-    .top-header-container .service a {
+    .top-header ul li {
+        list-style: none;
+        padding: 0 10px;
+        margin-top: -3px;
+    }
+
+    .top-header ul li a {
         text-decoration: none;
-        text-transform: capitalize;
-        color: #fff;
-        font-size: 14px;
-        margin: 0 10px;
-        line-height: 1;
+        text-transform: uppercase;
+        font-size: 11px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        color: #636464;
     }
-
 
     .headerContainer {
         position: fixed;
@@ -86,6 +98,9 @@
     .header-container .header-card .logo span {
         font-weight: bolder;
         color: #FF9800;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
     }
 
     .header-container .header-card .search-container {
@@ -94,7 +109,7 @@
 
     .header-container .header-card .search-container .search-card {
         border: 1px solid #A60DE4;
-        border-radius: 30px;
+        border-radius: 20px;
         width: 100%;
     }
 
@@ -107,36 +122,41 @@
         border: none;
         outline: none;
         box-shadow: none;
-        padding: 0 15px;
+        padding: 0 0 0 5px;
         vertical-align: middle;
         color: #777;
         width: 100%;
-        font-size: 15px;
+        height: 37px;
+        font-size: 16px;
         background: transparent;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
     .search-container .search-card .categories-container {
         cursor: pointer;
         display: flex;
+        width: 130px;
         align-items: center;
-        right: 0;
-        top: 0;
     }
 
     .search-container .search-card .categories-container .categories-card {
-        border-left: 1px solid #A60DE4;
         border-right: 1px solid #A60DE4;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 8px;
+        width: 100%;
+        padding-left: 10px;
         position: relative;
     }
 
     .search-container .search-card .categories-container .categories-card span {
         color: #777;
-        font-size: 14px;
-        font-family: monospace;
+        font-size: 13px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
         white-space: nowrap;
         text-overflow: ellipsis;
         text-transform: uppercase;
@@ -157,14 +177,14 @@
         left: 0;
         right: 0;
         background-color: white;
-        width: max-content;
+        width: fit-content;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
     }
 
     .search-container .search-card .categories-container .categories-card .categories .category {
-        display: flex;
-        flex-direction: column;
-        max-height: 300px;
-        overflow-y: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     .search-container .search-card .categories-container .categories-card .categories .category::-webkit-scrollbar {
@@ -173,30 +193,30 @@
 
     .search-container .search-card .categories-container .categories-card .categories .category span {
         text-transform: capitalize;
-        padding: 8px 16px;
+        padding: 5px 12px;
         transition: color 0.3s, background-color 0.3s;
         color: #333;
         font-size: 14px;
-        font-weight: 700;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
     }
 
     .search-container .search-card .categories-container .categories-card .categories .category span:hover {
         color: #A60DE4;
-        background-color: #f5f5f5;
+        background-color: #f2f2f2;
     }
 
-    .search-container .search-card .categories-container .search-icons {
-        background: #A60DE4;
-        margin: 4px;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 29px;
+    .search-container .search-card .search-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: normal;
+        padding: 0 7px;
     }
 
-    .search-container .search-card .categories-container .search-icons i {
-        color: white;
+    .search-container .search-card .search-icons i {
+        color: #333;
         font-size: 18px;
         vertical-align: middle;
     }
@@ -252,6 +272,17 @@
         margin: 12px 5px;
     }
 
+    .header-container .header-card .icons-container .account-card .user-link a {
+        text-decoration: none;
+        color: #555;
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
     .header-container .profile-container {
         position: absolute;
         top: 100%;
@@ -299,6 +330,7 @@
 
     /* Media query for screens between 1024px and 768px */
     @media screen and (max-width: 1024px) {
+
         .header-container {
             padding: 5px 40px;
         }
@@ -306,21 +338,29 @@
 
     /* Media query for screens between 768px and 480px */
     @media screen and (max-width: 768px) {
-        .top-header-container {
-            padding: 3px 20px;
+        .top-header ul li {
+            padding: 0 5px;
         }
 
-        .top-header-container .service a {
-            margin: 0 5px;
+        .top-header ul li a {
+            font-size: 10px;
         }
 
         .header-container {
             padding: 5px 20px;
         }
+
+        .header-container .header-card .logo span {
+            display: none;
+        }
+
+        .header-container .header-card .icons-container .icons-card {
+            display: none;
+        }
     }
 
     @media screen and (max-width: 640px) {
-        .top-header-container {
+        .top-header {
             display: none;
         }
 
@@ -339,12 +379,15 @@
 </style>
 
 <body>
-    <div class="top-header-container">
-        <div class="service">
-            <a href="">all service</a>
-            <a href="">shop</a>
-            <a href="">help & support</a>
-        </div>
+    <div class="top-header">
+        <ul>
+            <li><a href="">save more on app</a></li>
+            <li><a href="">online donates</a></li>
+            <li><a href="">sell on online</a></li>
+            <li><a href="">customer care</a></li>
+            <li><a href="">track my order</a></li>
+            <li><a href="">daily shop affiliate program</a></li>
+        </ul>
     </div>
     <header>
         <div class="header-container">
@@ -358,10 +401,9 @@
                 <div class="search-container">
                     <div class="search-card">
                         <form action="" class="form">
-                            <input type="text" placeholder="Search for products" class="input" required>
                             <div class="categories-container">
                                 <div class="categories-card">
-                                    <span class="showCategory">SELECT CATEGORY</span>
+                                    <span class="showCategory">All-CATEGORY</span>
                                     <div class="arrow"></div>
                                     <div class="categories">
                                         <div class="category">
@@ -375,28 +417,48 @@
                                             <span>youtube</span>
                                             <span>facebook</span>
                                             <span>youtube</span>
+                                            <span>facebook</span>
+                                            <span>youtube</span>
+                                            <span>facebook</span>
+                                            <span>youtube</span>
+                                            <span>facebook</span>
+                                            <span>youtube</span>
+                                            <span>facebook</span>
+                                            <span>youtube</span>
+                                            <span>facebook</span>
+                                            <span>youtube</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="search-icons">
-                                    <i class="ri-search-line"></i>
-                                </div>
+                            </div>
+                            <input type="text" placeholder="Search in hanifbaba" class="input" required>
+                            <div class="search-icons">
+                                <i class="ri-search-line"></i>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="icons-container">
-                    <div class="icons-card">
-                        <a href="" class="ri-heart-line icons"></a>
-                        <a href="" class="ri-shopping-cart-line icons"></a>
-                    </div>
-                    <div class="account-card">
-                        <div class="user-icons">
-                            {{-- <i class="ri-login-box-line"></i> --}}
-                            <img src="{{ asset('logo/profile.png') }}" alt="">
-                            <span>Account</span>
-                            <div class="arrow"></div>
+                    @if (Auth::check())
+                        <div class="icons-card">
+                            <a href="" class="ri-heart-line icons"></a>
+                            <a href="{{ route('addtocart') }}" class="ri-shopping-cart-line icons"></a>
                         </div>
+                    @endif
+                    <div class="account-card">
+                        @if (Auth::check())
+                            <div class="user-icons">
+                                <img src="{{ asset('logo/profile.png') }}" alt="">
+                                <span>Mojibor</span>
+                                <div class="arrow"></div>
+                            </div>
+                        @else
+                            <div class="user-link">
+                                <a href="{{ route('login') }}"><i class="ri-login-box-line"></i>Login</a>
+                                |
+                                <a href="{{ route('register') }}">Register</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-container">
@@ -406,9 +468,7 @@
                         <a href="">cancel order</a>
                         <a href="">blood donation service</a>
                         <a href="">help & support</a>
-                        <a href="">logout</a>
-                        {{-- <a href="">registration</a> --}}
-                        {{-- <a href="">login</a> --}}
+                        <a href="{{ route('logout') }}">logout</a>
                     </div>
                 </div>
             </div>
@@ -421,10 +481,11 @@
         let categoriesCard = document.querySelector('.categories-card');
         let arrow = document.querySelector('.arrow');
         let Input = document.querySelector('.input');
+        let categorycolorcard = document.querySelector('.categories-card');
         let searchCard = document.querySelector('.search-card');
         let showCategory = document.querySelector('.showCategory');
         let category = document.querySelectorAll('.category span');
-        let accountCard = document.querySelector('.account-card');
+        let accountCard = document.querySelector('.user-icons');
         let profileContainer = document.querySelector('.profile-container');
         let token = true;
 
@@ -447,10 +508,12 @@
 
         Input.addEventListener('focus', function() {
             searchCard.style.border = '1px solid rgb(205,205,205)';
+            categorycolorcard.style.borderRight = '1px solid rgb(205,205,205)';
         });
 
         Input.addEventListener('blur', function() {
             searchCard.style.border = '1px solid #A60DE4';
+            categorycolorcard.style.borderRight = '1px solid #A60DE4';
         });
 
         category.forEach(Category => {
@@ -458,16 +521,6 @@
                 let text = this.textContent;
                 showCategory.textContent = text;
             });
-        });
-
-        accountCard.addEventListener('click', function() {
-            if (token) {
-                profileContainer.style.display = 'block';
-            } else {
-                profileContainer.style.display = 'none';
-            }
-
-            token = !token;
         });
 
         window.addEventListener('scroll', function() {
@@ -478,6 +531,15 @@
             } else {
                 headerContainer.classList.remove('headerContainer');
             }
+        });
+        accountCard.addEventListener('click', function() {
+            if (token) {
+                profileContainer.style.display = 'block';
+            } else {
+                profileContainer.style.display = 'none';
+            }
+
+            token = !token;
         });
     </script>
 </body>

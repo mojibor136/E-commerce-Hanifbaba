@@ -39,7 +39,10 @@
         outline: none;
         background: transparent;
         padding: 10px 15px;
-        color: #333;
+        color: #555;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     .searchBox input::placeholder {
@@ -54,7 +57,7 @@
     @media screen and (max-width: 640px) {
         .phoneHeader {
             display: block;
-            padding: 10px 70px;
+            padding: 10px;
         }
     }
 

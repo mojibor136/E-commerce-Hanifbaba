@@ -14,7 +14,15 @@ class ProductController extends Controller
         return view('product-view');
     }
 
-    public function data(){
-        return 'login success';
+    public function AddtoCart(){
+        return view('addtocart');
+    }
+
+    public function Shipping(){
+        return view('shipping');
+    }
+
+    public function data(Request $request){
+        dd($request->all());
     }
 }
