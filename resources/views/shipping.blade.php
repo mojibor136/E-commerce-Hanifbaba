@@ -211,10 +211,6 @@
     /* Media queries for responsiveness */
 
     @media (max-width: 768px) {
-        nav {
-            padding: 5px 10px;
-        }
-
         main {
             display: flex;
             padding: 20px 30px;
@@ -244,6 +240,7 @@
 
         nav {
             display: inline-flex;
+            padding: 5px 10px;
         }
 
         main {
@@ -278,7 +275,7 @@
             visibility: visible;
         }
 
-        .footer {
+        footer {
             display: none;
         }
     }

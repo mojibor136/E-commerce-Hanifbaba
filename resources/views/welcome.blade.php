@@ -609,7 +609,7 @@
         }
 
         .top-product-container {
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
         }
 
         .category-card ul {
@@ -736,8 +736,8 @@
                     </div>
                 </div>
                 <div class="banner">
-                    <img class="slides-img" src="{{ asset('banner/রক্ত দিন জীবন বাঁচান (2).png') }}" alt="">
-                    <img class="slides-img" src="{{ asset('banner/রক্ত দিন জীবন বাঁচান (1).png') }}" alt="">
+                    <img class="slides-img" src="{{ asset('banner/banner1.png') }}" alt="">
+                    <img class="slides-img" src="{{ asset('banner/banner2.png') }}" alt="">
                     <div class="slider-btn">
                         <div class="slider-card" id="prev">
                             <div class="prev"></div>
@@ -944,7 +944,7 @@
                     </a>
                     <a href="">
                         <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
+                            <img src="{{ asset('products/Untitled design (1).png') }}" alt="">
                             <span>punjabi</span>
                         </li>
                     </a>

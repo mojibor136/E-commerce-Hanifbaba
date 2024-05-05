@@ -5,6 +5,9 @@
             <h5 class="mb-0">ADD CATEGORY</h5>
             <small class="text-muted float-end">Default label</small>
         </div>
+        @if (session()->has('massage'))
+            <li class="text-success mb-2">{{ session()->get('massage') }}</li>
+        @endif
         <div class="card-body">
             <form action="{{ route('storecategory') }}" method="POST" enctype="multipart/form-data">
                 @csrf

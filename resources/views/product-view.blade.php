@@ -900,8 +900,8 @@
                                 placeholder="Quantity">
                         </div>
                         <div class="product-button">
-                            <input type="submit" class="btn btn-success" value="AddtoCart">
-                            <input type="submit"class="btn btn-danger" value="Buy Now">
+                            <a href="{{ route('addtocart') }}" class="btn btn-success">AddtoCart</a>
+                            <a href="{{ route('shipping') }}" class="btn btn-danger">Buy Now</a>
                         </div>
                     </div>
                 </form>
@@ -1007,8 +1007,10 @@
                             </a>
                         </div>
                         <div class="phone-button">
-                            <input type="submit" class="btn btn-success" value="Buy Now">
-                            <input type="submit"class="btn btn-warning" value="AddtoCart">
+                            <a href="{{ route('addtocart') }}" class="btn btn-success">AddtoCart</a>
+                            <a href="{{ route('shipping') }}" class="btn btn-danger">Buy Now</a>
+                            {{-- <input type="submit" class="btn btn-success" value="Buy Now">
+                            <input type="submit"class="btn btn-warning" value="AddtoCart"> --}}
                         </div>
                     </div>
                 </div>

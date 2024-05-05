@@ -1,7 +1,16 @@
 @include('layouts.header')
-<link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
-<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-<link rel="stylesheet" href="{{ asset('css/product.css') }}">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <title>Document</title>
+</head>
 <style>
     * {
         margin: 0;
@@ -372,25 +381,33 @@
                 </div>
             </div>
         </div>
-        {{-- products container --}}
+        {{-- top products container --}}
         <div class="main-product-container">
             <div class="type">
-                <span>letest products</span>
+                <span>reletad products</span>
                 <a href="">shop more</a>
             </div>
             <div class="product-container">
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
+                        <img src="{{ asset('products/product3.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳700</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
@@ -401,11 +418,19 @@
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳480</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
@@ -416,221 +441,88 @@
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳1020</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/punjabi3.jpg') }}" alt="">
+                        <img src="{{ asset('products/product2.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳700</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/malhar1.jpg') }}" alt="">
+                        <img src="{{ asset('products/product.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳570</span>
-                        <span class="discount">৳500</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
+                        </div>
                         <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
                 <div class="product-card">
                     <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
+                        <img src="{{ asset('products/product1.png') }}" alt="">
                     </div>
                     <div class="name">
                         Amazing Rice Flour Face Packs For All
                     </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
+                    <div class="free-card">
+                        <div class="free">
+                            <i class="ri-star-fill"></i>
+                            <span>free delivery</span>
                         </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
+                    <div class="price-card">
+                        <div>
+                            <span class="tk">৳250</span>
+                            <span class="discount">৳300</span>
                         </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
                         <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/three1.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="price">
-                        <span class="tk">৳500</span>
-                        <span class="discount">৳500</span>
-                        <div class="percent">
-                            <span>10%</span>
+                            <span>7%</span>
                         </div>
                     </div>
                 </div>
@@ -654,4 +546,7 @@
             </div>
         </div>
     </form>
-    @include('layouts.footer')
+</body>
+
+</html>
+@include('layouts.footer')

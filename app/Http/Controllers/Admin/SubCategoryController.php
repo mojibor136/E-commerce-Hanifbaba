@@ -31,5 +31,11 @@ class SubCategoryController extends Controller
         ]);
  
         Category::where('id' , $category_id)->increment('subcategory_count');
+
+        return redirect()->route('allsubcategory')->with('massage', 'Added SubCategory Successful');
+    }
+
+    public function AllSubCategory(){
+        return view('admin.allsubcategory');
     }
 }

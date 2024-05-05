@@ -5,15 +5,18 @@
             <h5 class="mb-0">ADD SUBCATEGORY</h5>
             <small class="text-muted float-end">Default label</small>
         </div>
+        @if (session()->has('massage'))
+            <li class="text-success mb-2">{{ session()->get('massage') }}</li>
+        @endif
         <div class="card-body">
             <form action="{{ route('storesubcategory') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">SELECT CATEGORY</label>
                     <select class="form-select" id="category_id" name="category_id" aria-label="Default select example">
-                        <option selected>SELECT CATEGORY</option>
+                        <option selected class="font">SELECT CATEGORY</option>
                         @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->slug}}</option>
+                            <option value="{{ $category->id }}">{{ $category->slug }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -127,7 +127,7 @@
         color: #777;
         width: 100%;
         height: 37px;
-        font-size: 16px;
+        font-size: 15px;
         background: transparent;
         font-family: "Roboto", sans-serif;
         font-style: normal;

@@ -20,9 +20,22 @@
         background-color: #eeeeee;
     }
 
-    /* HEADER TOW*/
-    .header-tow-ul {
+
+    nav {
+        background-color: #dc3545;
+        width: 100%;
+        padding: 8px 30px 8px 30px;
+        display: flex;
+        justify-content: space-between;
         display: none;
+    }
+
+    nav .button {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-weight: 400;
+        cursor: pointer;
     }
 
     .register-form {
@@ -147,8 +160,13 @@
     }
 
     @media (max-width: 640px) {
+        nav {
+            display: inline-flex;
+            padding: 5px 10px;
+        }
+
         .register-bar {
-            margin-top: 80px;
+            margin-top: 50px;
             margin-bottom: 50px;
         }
 
@@ -167,6 +185,15 @@
 </style>
 
 <body>
+    <nav>
+        <div class="button">
+            <i class="ri-arrow-left-s-line" onclick="history.back()" id="back-buttton" style="font-size: 32px;"></i>
+            <p style="margin:0;">Register</p>
+        </div>
+        <div class="button">
+            <i class="ri-more-2-fill" style="font-size: 24px;"></i>
+        </div>
+    </nav>
     <div class="register-form">
         <div class="register-bar">
             <h5>REGISTER</h5>
@@ -235,3 +262,4 @@
 </body>
 
 </html>
+@include('layouts.footer')

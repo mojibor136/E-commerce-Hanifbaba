@@ -20,11 +20,12 @@ Route::controller(AdminController::class)->group(function () {
 });  
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/add/category' , 'AddCategory')->name('addcategory');
-    Route::get('/all-category' , 'AllCategory')->name('allcategory');
+    Route::get('/all/category' , 'AllCategory')->name('allcategory');
     Route::post('/store-category' , 'StoreCategory')->name('storecategory');
 });
 Route::controller(SubCategoryController::class)->group(function () {
     Route::get('/add/subcategory' , 'AddSubCategory')->name('addsubcategory');
+    Route::get('/all/subcategory' , 'AllSubCategory')->name('allsubcategory');
     Route::post('/store-subcategory' , 'StoreSubCategory')->name('storesubcategory');
 }); 
 Route::controller(ProductController::class)->group(function () {
@@ -33,8 +34,8 @@ Route::controller(ProductController::class)->group(function () {
 });
 Route::middleware(['auth','web'])->group(function () {
     Route::controller(ProductController::class)->group(function () {
-        Route::get('/AddtoCart' , 'AddtoCart')->name('addtocart');
-        Route::get('/Shipping' , 'Shipping')->name('shipping');
+        Route::get('/addtocart' , 'AddtoCart')->name('addtocart');
+        Route::get('/shipping' , 'Shipping')->name('shipping');
         Route::post('product/data' , 'data')->name('data');
     });
 });

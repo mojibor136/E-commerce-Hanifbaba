@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
 </head>
 
 <style>
@@ -13,6 +17,11 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+
+    .font {
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
     body {
@@ -53,10 +62,13 @@
         margin-right: 10px;
         cursor: pointer;
         text-transform: uppercase;
+        font-family: "Roboto", sans-serif;
         font-weight: 600;
+        font-style: normal;
         font-size: 14px;
         display: flex;
         align-items: center;
+        color: #555;
     }
 
     .admin-profile .img {
@@ -113,9 +125,12 @@
         text-transform: capitalize;
         cursor: pointer;
         padding: 10px 15px;
-        color: #111;
+        color: #444;
         border-bottom: 1px solid #ddd;
         font-size: 15px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
     }
 
     .dropdown-card .dropdown-btn:hover {
@@ -139,6 +154,9 @@
         padding: 7px 20px;
         color: #333;
         font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
     }
 
     .dropdown-card .dropdown-ui a:hover {
@@ -212,7 +230,7 @@
                     <div class="dropdown-ul">
                         <div class="dropdown-ui">
                             <a href="">all category</a>
-                            <a href="{{route('addcategory')}}">add category</a>
+                            <a href="{{ route('addcategory') }}">add category</a>
                         </div>
                     </div>
                 </div>
@@ -223,7 +241,7 @@
                     <div class="dropdown-ul">
                         <div class="dropdown-ui">
                             <a href="">all subcategory</a>
-                            <a href="{{route('addsubcategory')}}">add subcategory</a>
+                            <a href="{{ route('addsubcategory') }}">add subcategory</a>
                         </div>
                     </div>
                 </div>
