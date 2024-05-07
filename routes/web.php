@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,11 @@ use App\Http\Controllers\Admin\SubCategoryController;
 */
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin' , 'Admin')->name('admin');
+});
+Route::controller(AdminProductController::class)->group(function () {
+    Route::get('add/product' , 'AddProdouct')->name('addproduct');
+    Route::get('all/product' , 'AllProduct')->name('allproduct');
+    Route::post('store/product' , 'StoreProduct')->name('storeproduct');
 });  
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/add/category' , 'AddCategory')->name('addcategory');

@@ -152,13 +152,23 @@
         color: #666666;
     }
 
-    .card-container .list-content .summary-li form {
+    .card-container .list-content .summary-li form .voucher {
         width: -webkit-fill-available;
         display: flex;
     }
+    .card-container .list-content .summary-li .form-control {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .card-container .list-content .summary-li .btn-success {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 
-    .card-container .list-content .summary-li input {
-        border-radius: 0;
+    .card-container .list-content .summary-li form .btn-danger {
+        width: -webkit-fill-available;
+        margin-top: 8px;
+        border-radius: 8px;
     }
 
     .card-container .list-content .summary-li input::placeholder {
@@ -280,6 +290,9 @@
             font-size: 12px;
         }
 
+        .card-container .list-content .summary-li form .btn-danger{
+            display: none;
+        }
         .card-container .cart-content {
             width: initial;
             margin: 5px 0;
@@ -374,9 +387,13 @@
                 </div>
                 <div class="summary-li">
                     <form action="">
-                        <input type="text" class="form-control"style="border-radius: 0;"
+                        <div class="voucher">
+                            <input type="text" class="form-control"
                             placeholder="Enter Voucher Code">
-                        <input type="submit" class="btn btn-success" value="APPLY">
+                            <input type="submit" class="btn btn-success" value="APPLY">
+                        </div>
+                        <input type="submit" class="btn btn-danger" value="CHECKOUT">
+
                     </form>
                 </div>
             </div>
@@ -542,7 +559,7 @@
                 </div>
             </div>
             <div class="button">
-                <button type="submit" class="btn btn-warning" style=" font-weight:600;">CHECKOUT</button>
+                <button type="submit" class="btn btn-warning" style=" font-weight:400;">CHECKOUT</button>
             </div>
         </div>
     </form>

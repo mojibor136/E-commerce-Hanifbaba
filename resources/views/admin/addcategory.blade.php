@@ -1,5 +1,16 @@
 @extends('admin.layout.tempalate')
 @section('content')
+    <style>
+        .add-category {
+            margin: 50px 100px;
+            padding: 20px;
+            background-color: #Fff;
+            border-radius: 10px;
+        }
+        .main-content .content-ul{
+            right: 0px;
+        }
+    </style>
     <div class="add-category">
         <div class="card-header d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0">ADD CATEGORY</h5>
@@ -20,7 +31,7 @@
                     <label for="formFileDisabled" class="form-label mb-1">ADD CATEGORY IMG</label>
                     <input class="form-control" type="file" id="formFileDisabled" name="category_img" />
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Add Category</button>
+                <button type="submit" class="btn btn-primary mt-3">ADD CATEGORY</button>
             </form>
         </div>
     </div>

@@ -142,7 +142,7 @@
 
     .btn-success {
         width: 100%;
-        font-weight: bolder;
+        font-weight: 400;
     }
 
     /* Place button bar styles */
@@ -382,7 +382,7 @@
                         <p>Total</p>
                         <p style="text-transform: uppercase;">210tk</p>
                     </div>
-                    <button type="submit" class="btn btn-success">Place Order</button>
+                    <button type="submit" class="btn btn-success">PLACE ORDER</button>
                 </div>
             </div>
         </main>

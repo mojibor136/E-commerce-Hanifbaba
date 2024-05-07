@@ -34,6 +34,7 @@ class CategoryController extends Controller
     }
 
     public function AllCategory(){
-        return view('admin.allcategory');
+        $adminCategoires = Category::get()->all();
+        return view('admin.allcategory',compact('adminCategoires'));
     }
 }

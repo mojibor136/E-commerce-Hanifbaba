@@ -752,6 +752,14 @@
 
         .phone-button-icons a i {
             color: #800097;
+            font-size: 20px;
+        }
+
+        .phone-button-icons a .massage {
+            width: 16px;
+            height: 17px;
+            background: #2196F3;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
         }
 
         .phone-button {
@@ -761,8 +769,15 @@
         .phone-button .btn {
             border-radius: 0;
             padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            vertical-align: -webkit-baseline-middle;
         }
 
+        .phone-button .btn-success {
+            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+            padding-left: 27px;
+        }
         .product-rating-review-container {
             padding: 10px 5px 10px 7px;
         }
@@ -900,7 +915,7 @@
                                 placeholder="Quantity">
                         </div>
                         <div class="product-button">
-                            <a href="{{ route('addtocart') }}" class="btn btn-success">AddtoCart</a>
+                            <a href="{{ route('addtocart') }}" class="btn btn-success">Add to Cart</a>
                             <a href="{{ route('shipping') }}" class="btn btn-danger">Buy Now</a>
                         </div>
                     </div>
@@ -997,20 +1012,18 @@
                 <div class="phone-button-container">
                     <div class="phone-button-card">
                         <div class="phone-button-icons">
-                            <a href="">
-                                <i class="ri-home-3-line"></i>
+                            <a href="{{route('home')}}" class="home">
+                                <i class="ri-home-3-fill"></i>
                                 <span>Home</span>
                             </a>
                             <a href="">
-                                <i class="ri-message-2-line"></i>
+                                <div class="massage"></div>
                                 <span>Chat</span>
                             </a>
                         </div>
                         <div class="phone-button">
-                            <a href="{{ route('addtocart') }}" class="btn btn-success">AddtoCart</a>
-                            <a href="{{ route('shipping') }}" class="btn btn-danger">Buy Now</a>
-                            {{-- <input type="submit" class="btn btn-success" value="Buy Now">
-                            <input type="submit"class="btn btn-warning" value="AddtoCart"> --}}
+                            <input type="submit" value="Add to Cart" class="btn btn-success">
+                            <input type="submit" value="Buy Now" class="btn btn-warning">
                         </div>
                     </div>
                 </div>

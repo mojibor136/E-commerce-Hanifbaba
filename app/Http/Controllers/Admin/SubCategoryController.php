@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SubCategoryController extends Controller
 {
@@ -36,6 +37,7 @@ class SubCategoryController extends Controller
     }
 
     public function AllSubCategory(){
-        return view('admin.allsubcategory');
+        $adminSubCategories = SubCategory::paginate(8);
+        return view('admin.allsubcategory', ['adminSubCategories' => $adminSubCategories]);
     }
 }

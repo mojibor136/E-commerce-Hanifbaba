@@ -1,6 +1,14 @@
 @extends('admin.layout.tempalate')
 @section('content')
-    <div class="add-category">
+    <style>
+        .add-subcategory {
+            margin: 50px 100px;
+            padding: 20px;
+            background-color: #Fff;
+            border-radius: 10px;
+        }
+    </style>
+    <div class="add-subcategory">
         <div class="card-header d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0">ADD SUBCATEGORY</h5>
             <small class="text-muted float-end">Default label</small>
@@ -25,7 +33,7 @@
                     <input type="text" class="form-control" id="basic-default-fullname" name="subcategory_name"
                         value="" placeholder="ADD CATEGORY" required>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Add SubCategory</button>
+                <button type="submit" class="btn btn-primary mt-3">ADD SUBCATEGORY</button>
             </form>
         </div>
     </div>

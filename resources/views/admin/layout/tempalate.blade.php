@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-    rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
 </head>
 
@@ -26,6 +26,7 @@
 
     body {
         background-color: #ddd;
+        overflow: hidden;
     }
 
     body::-webkit-scrollbar {
@@ -33,7 +34,11 @@
     }
 
     .admin-header {
+        position: fixed;
+        top: 0;
+        right: 0;
         width: 100%;
+        z-index: 1000;
         background-color: #fff;
         padding: 2px 10px;
         display: flex;
@@ -89,6 +94,12 @@
         display: flex;
         width: 100%;
         height: 100%;
+        margin-top: 68px;
+    }
+
+    .main-content .nav-container {
+        position: fixed;
+        width: 100%;
     }
 
     .main-content .nav-content {
@@ -96,13 +107,16 @@
         height: 100%;
         background-color: #fff;
         border-top: 1px solid #ebebea;
+        overflow-x: auto;
     }
 
     .main-content .content-ul {
         width: 83%;
         height: 100%;
-        padding: 20px;
-        padding-top: 50px;
+        padding: 50px 20px 100px 20px;
+        overflow-x: auto;
+        position: fixed;
+        right: 0;
     }
 
     .main-content .content-ul .content-ui {
@@ -111,14 +125,16 @@
 
     label {
         font-size: 14px;
-        font-weight: 600;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
-    .add-category {
-        margin: 50px 100px;
-        padding: 20px;
-        background-color: #Fff;
-        border-radius: 10px;
+    .form-control::placeholder {
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        font-size: 15px;
     }
 
     .dropdown-card .dropdown-btn {
@@ -129,7 +145,7 @@
         border-bottom: 1px solid #ddd;
         font-size: 15px;
         font-family: "Roboto", sans-serif;
-        font-weight: 600;
+        font-weight: 500;
         font-style: normal;
     }
 
@@ -162,6 +178,58 @@
     .dropdown-card .dropdown-ui a:hover {
         background-color: #ccc;
     }
+
+    nav {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 12px;
+        color: #444;
+    }
+
+    .table-header {
+        text-transform: uppercase;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        color: #555;
+        font-size: 18px;
+        padding: 10px 0;
+        padding-top: 5px;
+    }
+
+    .table th,
+    .table td {
+        text-align: left;
+        padding: 5px 8px;
+        height: 40px;
+        white-space: nowrap;
+        font-size: 13px;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .table td .btn {
+        padding: 3px 8px;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
 
 <body>
@@ -181,135 +249,137 @@
             </div>
         </div>
         <div class="main-content">
-            <div class="nav-content">
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>dashboard</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="admin.html">home</a>
+            <div class="nav-container">
+                <div class="nav-content">
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>dashboard</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="admin.html">home</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>message</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="admin.html">message</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>message</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="admin.html">message</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>notifications</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="admin.html">notifications</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>notifications</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="admin.html">notifications</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>products</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">all products</a>
-                            <a href="">add products</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>products</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="{{ route('allproduct') }}">all products</a>
+                                <a href="{{ route('addproduct') }}">add products</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>categories</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">all category</a>
-                            <a href="{{ route('addcategory') }}">add category</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>categories</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="{{ route('allcategory') }}">all category</a>
+                                <a href="{{ route('addcategory') }}">add category</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>subcategories</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">all subcategory</a>
-                            <a href="{{ route('addsubcategory') }}">add subcategory</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>subcategories</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="{{ route('allsubcategory') }}">all subcategory</a>
+                                <a href="{{ route('addsubcategory') }}">add subcategory</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>manage order</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">all order</a>
-                            <a href="">cencel order</a>
-                            <a href="">confirm order</a>
-                            <a href="">panding order</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>manage order</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="">all order</a>
+                                <a href="">cencel order</a>
+                                <a href="">confirm order</a>
+                                <a href="">panding order</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>customer</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">user management</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>customer</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="">user management</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>customize panle</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">change profile photo</a>
-                            <a href="">change profile name</a>
-                            <a href="">change admin logo</a>
-                            <a href="">change admin name</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>customize panle</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="">change profile photo</a>
+                                <a href="">change profile name</a>
+                                <a href="">change admin logo</a>
+                                <a href="">change admin name</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>admin profile</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">admin profile</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>admin profile</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="">admin profile</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>admin logout</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">admin logout</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>admin logout</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="">admin logout</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="dropdown-card">
-                    <div class="dropdown-btn">
-                        <span>Settinge</span>
-                    </div>
-                    <div class="dropdown-ul">
-                        <div class="dropdown-ui">
-                            <a href="">change logo</a>
-                            <a href="">add banner</a>
-                            <a href="">change name</a>
+                    <div class="dropdown-card">
+                        <div class="dropdown-btn">
+                            <span>Settinge</span>
+                        </div>
+                        <div class="dropdown-ul">
+                            <div class="dropdown-ui">
+                                <a href="">change logo</a>
+                                <a href="">add banner</a>
+                                <a href="">change name</a>
+                            </div>
                         </div>
                     </div>
                 </div>
