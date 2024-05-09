@@ -20,7 +20,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin' , 'Admin')->name('admin');
 });
 Route::controller(AdminProductController::class)->group(function () {
-    Route::get('add/product' , 'AddProdouct')->name('addproduct');
+    Route::get('add/product' , 'AddProduct')->name('addproduct');
     Route::get('all/product' , 'AllProduct')->name('allproduct');
     Route::post('store/product' , 'StoreProduct')->name('storeproduct');
 });  

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('product_desc');
             $table->string('product_img');
             $table->integer('product_price');
-            $table->integer('ragular_price');
+            $table->integer('regular_price');
             $table->string('product_quantity');
             $table->string('product_brand');
             $table->integer('product_category_id');

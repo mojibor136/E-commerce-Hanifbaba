@@ -7,6 +7,25 @@
             background-color: #Fff;
             border-radius: 10px;
         }
+
+        .form-control {
+            cursor: pointer;
+        }
+
+        .size-content input {
+            margin: 0 3px;
+            cursor: pointer;
+        }
+
+        .size-content .size {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .size-content.hidden {
+            display: none;
+        }
     </style>
     <div class="add-product">
         <div class="card-header d-flex justify-content-between align-items-center mb-3">
@@ -21,38 +40,51 @@
                 @csrf
                 <div class="mb-2">
                     <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS NAME</label>
-                    <input type="text" class="form-control" id="basic-default-fullname" name="name" value=""
-                        placeholder="PRODUCTS NAME" required>
+                    <input type="text" class="form-control" id="basic-default-fullname" name="name"
+                        value="{{ old('name') }}" placeholder="PRODUCTS NAME">
                 </div>
                 <div class="mb-2">
                     <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS DESCRIPTION</label>
-                    <input type="text" class="form-control" id="basic-default-fullname" name="desc" value=""
-                        placeholder="PRODCUTS DESCRIPTION" required>
+                    <input type="text" class="form-control" id="basic-default-fullname" name="desc"
+                        value="{{ old('desc') }}" placeholder="PRODCUTS DESCRIPTION">
                 </div>
                 <div class="mb-2">
                     <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS REGULAR PRICE</label>
-                    <input type="NUMBER" class="form-control" id="basic-default-fullname" name="ragular_price"
-                        value="" placeholder="PRODCUTS REGULAR PRICE" required>
+                    <input type="NUMBER" class="form-control" id="basic-default-fullname" name="regular_price"
+                        value="{{ old('regular_price') }}" placeholder="PRODCUTS REGULAR PRICE">
                 </div>
                 <div class="mb-2">
                     <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS PRICE</label>
-                    <input type="NUMBER" class="form-control" id="basic-default-fullname" name="price" value=""
-                        placeholder="PRODCUTS PRICE" required>
+                    <input type="NUMBER" class="form-control" id="basic-default-fullname" name="price"
+                        value="{{ old('price') }}" placeholder="PRODCUTS PRICE">
                 </div>
                 <div class="mb-2">
                     <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS QUANTITY</label>
-                    <input type="NUMBER" class="form-control" id="basic-default-fullname" name="quantity" value=""
-                        placeholder="PRODCUTS QUANTITY" required>
+                    <input type="NUMBER" class="form-control" id="basic-default-fullname" name="quantity"
+                        value="{{ old('quantity') }}" placeholder="PRODCUTS QUANTITY">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS SIZE</label>
-                    <input type="text" class="form-control" id="basic-default-fullname" name="size" value=""
-                        placeholder="PRODCUTS SIZE" required>
+                    <div class="form-group">
+                        <label for="sizes">SELECT PRODUCT SIZE</label>
+                        <div class="form-control size-btn" onclick="toggleSizeContent()"><span>SELECT PRODUCT SIZE</span>
+                        </div>
+                        <div class="size-content hidden">
+                            <div class="form-control size"><input name="size[]" type="checkbox"
+                                    value="38"><span>38</span></div>
+                            <div class="form-control size"><input name="size[]" type="checkbox"
+                                    value="39"><span>39</span></div>
+                            <div class="form-control size"><input name="size[]"type="checkbox"
+                                    value="40"><span>40</span></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-2">
                     <label class="form-label mb-1" for="basic-default-fullname">BRAND NAME</label>
-                    <input type="text" class="form-control" id="basic-default-fullname" name="brande" value=""
-                        placeholder="BRAND NAME" required>
+                    @error('email')
+                        <div class="text-danger">{{ $brande }}</div>
+                    @enderror
+                    <input type="text" class="form-control" id="basic-default-fullname" name="brande"
+                        value="{{ old('brande') }}" placeholder="BRAND NAME">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">SELECT CATEGORY</label>
@@ -85,4 +117,18 @@
             </form>
         </div>
     </div>
+    <script>
+        function toggleSizeContent() {
+            var sizeContent = document.querySelector('.size-content');
+            sizeContent.classList.toggle('hidden');
+        }
+        let sizes = document.querySelectorAll('.size');
+
+        sizes.forEach(function(size) {
+            size.addEventListener("click", function() {
+                let checkbox = this.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+            });
+        });
+    </script>
 @endsection

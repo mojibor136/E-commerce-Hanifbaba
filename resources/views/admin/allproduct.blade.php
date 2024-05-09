@@ -29,22 +29,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                <img src="{{ asset('products/product1.png') }}" alt=""
-                                    width="40" height="40">
-                            </td>
-                            <td>WG243H3 ERRG3F </td>
-                            <td>700</td>
-                            <td>500</td>
-                            <td>1</td>
-                            <td>H43U T3 </td>
-                            <td>
-                                <a href="" class="btn btn-danger"><i class="ri-close-line"></i></a>
-                                <a href="" class="btn btn-success"><i class="ri-edit-2-fill"></i></a>
-                            </td>
-                        </tr>
+                    @foreach ($products as $product)
+                    <tr>
+                        <td>{{$product->id}}</td>
+                        <td>
+                            <img src="{{ asset('products/product1.png') }}" alt=""
+                                width="40" height="40">
+                        </td>
+                        <td>{{$product->product_name}}</td>
+                        <td>{{$product->regular_price}}</td>
+                        <td>{{$product->product_price}}</td>
+                        <td>{{$product->product_quantity}}</td>
+                        <td>{{$product->product_category_name}}</td>
+                        <td>
+                            <a href="" class="btn btn-danger"><i class="ri-close-line"></i></a>
+                            <a href="" class="btn btn-success"><i class="ri-edit-2-fill"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

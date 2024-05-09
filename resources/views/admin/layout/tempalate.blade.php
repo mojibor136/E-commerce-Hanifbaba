@@ -220,7 +220,7 @@
         font-family: "Roboto", sans-serif;
         font-style: normal;
         vertical-align: middle;
-        text-align: center;
+        /* text-align: center; */
     }
 
     .table td .btn {
