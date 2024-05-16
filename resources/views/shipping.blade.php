@@ -16,6 +16,11 @@
     }
 
     body {
+        font-family: 'Noto Sans Bengali', Arial, sans-serif;
+        background: #e9ecef;
+    }
+
+    body {
         background: #f1f1f1;
     }
 
@@ -130,7 +135,7 @@
     main .summary-ul .summary-li {
         display: flex;
         justify-content: space-between;
-        text-transform: uppercase;
+        text-transform: capitalize;
     }
 
     main .summary-ul .summary-li p {
@@ -337,18 +342,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <img src="{{ asset('products/product4.png') }}" alt="">
-                                </td>
-                                <td>
-                                </td>
-                                <td>Amazing Rice Flour Face Packs For All Your Skin Concerns X2</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>5000Tk</td>
-                            </tr>
+                            @php
+                                $totalPrice = 0;
+                            @endphp
+                            @foreach ($cartItem ?? [$buynowItem] as $index => $items)
+                                @if ($cartItem)
+                                    @php
+                                        $totalProducts = count($cartItem);
+                                    @endphp
+                                @else
+                                    @php
+                                        $totalProducts = '1';
+                                    @endphp
+                                @endif
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset('products/product4.png') }}" alt="">
+                                    </td>
+                                    <td></td>
+                                    <td>{{ $items['productName'] }} X {{ $items['productQuantity'] }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>৳{{ $items['productPrice'] }}</td>
+                                </tr>
+                                @php
+                                    $totalPrice += $items['productPrice'];
+                                @endphp
+                            @endforeach
                         </tbody>
                         <thead>
                             <tr>
@@ -358,29 +379,30 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th>5000Tk</th>
+                                <th>৳{{ $totalPrice }}</th>
                             </tr>
                         </thead>
                     </table>
+
                 </div>
 
                 <div class="summary-ul">
                     <h4>Total Summary</h4>
                     <div class="summary-li">
                         <p>Items Total</p>
-                        <p>2</p>
+                        <p> {{ $totalProducts }}</p>
                     </div>
                     <div class="summary-li">
                         <p>Delivery Fee</p>
-                        <p style="text-transform: uppercase;">10tk</p>
+                        <p style="text-transform: uppercase;">৳80</p>
                     </div>
                     <div class="summary-li">
                         <p>Total Payment</p>
-                        <p style="text-transform: uppercase;">210tk</p>
+                        <p style="text-transform: uppercase;">৳{{ $totalPrice }}</p>
                     </div>
                     <div class="summary-li" id="total-div">
                         <p>Total</p>
-                        <p style="text-transform: uppercase;">210tk</p>
+                        <p style="text-transform: uppercase;">৳{{ $totalPrice }}</p>
                     </div>
                     <button type="submit" class="btn btn-success">PLACE ORDER</button>
                 </div>

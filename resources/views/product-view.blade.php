@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Document</title>
 </head>
 <style>
@@ -101,27 +102,6 @@
         font-style: normal;
     }
 
-    .info-product-container .product-description {
-        padding: 5px;
-    }
-
-    .info-product-container .product-description .description {
-        text-transform: uppercase;
-        font-size: 16px;
-        margin: 0;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .info-product-container .product-description span {
-        font-size: 14px;
-        color: #555;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-    }
-
     .info-product-container .product-rating {
         padding: 2px 5px;
         font-family: "Roboto", sans-serif;
@@ -184,6 +164,11 @@
 
     .info-product-container .product-button {
         padding: 5px 5px;
+        display: flex;
+    }
+
+    .info-product-container .product-button form:nth-child(2) {
+        padding-left: 5px;
     }
 
     .phone-size-container {
@@ -554,6 +539,7 @@
             padding: 0 5px;
             font-family: "Roboto", sans-serif;
             font-style: normal;
+            text-transform: capitalize;
         }
 
         .phone-product-price {
@@ -778,6 +764,7 @@
             clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
             padding-left: 27px;
         }
+
         .product-rating-review-container {
             padding: 10px 5px 10px 7px;
         }
@@ -850,43 +837,30 @@
 
 <body>
     <div class="main-container">
-        <div class="info-product-container">
+        @foreach ($products as $product)
+            <div class="info-product-container">
 
-            <div class="product-img-container">
-                <div class="img-container">
-                    <img class="img" src="{{ asset('products/product1.png') }}" alt="">
+                <div class="product-img-container">
+                    <div class="img-container">
+                        <img class="img" src="{{ asset('assets/ProductImg/' . $product->product_img) }}"
+                            alt="">
+                    </div>
+                    @if ($images->isEmpty())
+                    @else
+                        <div class="multi-img-card">
+                            @foreach ($images as $image)
+                                <div class="multi-img">
+                                    <img src="{{ asset('assets/ProductImg/' . $image->product_img) }}" alt="">
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
-                <div class="multi-img-card">
-                    <div class="multi-img">
-                        <img src="{{ asset('products/product.png') }}" alt="">
-                    </div>
-                    <div class="multi-img">
-                        <img src="{{ asset('products/product1.png') }}" alt="">
-                    </div>
-                    <div class="multi-img">
-                        <img src="{{ asset('products/product3.png') }}" alt="">
-                    </div>
-                    <div class="multi-img">
-                        <img src="{{ asset('products/product4.png') }}" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="product-info-container">
-                <form action="{{ route('data') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="size" class="form-control" id="sizebox" placeholder="Size">
+                <div class="product-info-container">
                     <div class="product-info-card">
                         <div class="product-name">
                             <h3 class="name">products name</h3>
-                            <span>Trendy Panjabi with Chest Contrast Luxurious
-                            </span>
-                        </div>
-                        <div class="product-description">
-                            <h3 class="description">products description</h3>
-                            <span>
-                                Trendy Panjabi with Chest Contrast Luxurious
-                                Cotton Modern Design for Men Stylish
-                                and Sophisticated
+                            <span>{{ $product->product_name }}
                             </span>
                         </div>
                         <div class="product-rating">
@@ -898,137 +872,163 @@
                             <i class="ri-star-half-line"></i>
                         </div>
                         <div class="product-stock">
-                            <span>Stock 500</span>
+                            <span>Stock {{ $product->product_quantity }}</span>
                         </div>
                         <div class="product-price">
-                            <span>৳85000</span>
+                            <span>৳{{ $product->product_price }}</span>
                         </div>
-                        <div class="product-size">
-                            <div class="size">40</div>
-                            <div class="size">41</div>
-                            <div class="size">42</div>
-                            <div class="size">43</div>
-                        </div>
+                        @if ($sizes->isEmpty())
+                        @else
+                            <div class="product-size">
+                                <div class="size">40</div>
+                                <div class="size">41</div>
+                                <div class="size">42</div>
+                                <div class="size">43</div>
+                            </div>
+                        @endif
                         <div class="product-quantity">
                             <span class="quantity">Quantity</span>
-                            <input type="text" value="1" name="quantity" class="form-control"
-                                placeholder="Quantity">
+                            <input type="text" value="1" class="form-control" placeholder="Quantity"
+                                id="quantityText">
                         </div>
+                        @if (session()->has('message'))
+                            <script>
+                                swal({
+                                    title: "Successfully",
+                                    text: "{{ session()->get('message') }}",
+                                    icon: "success",
+                                });
+                            </script>
+                        @endif
                         <div class="product-button">
-                            <a href="{{ route('addtocart') }}" class="btn btn-success">Add to Cart</a>
-                            <a href="{{ route('shipping') }}" class="btn btn-danger">Buy Now</a>
+                            <form action="{{ route('storebuynow') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="buynow[productId]" value="{{ $product->id }}">
+                                <input type="hidden" name="buynow[productImg]" value="{{ $product->product_img }}">
+                                <input type="hidden" name="buynow[productName]" value="{{ $product->product_name }}">
+                                <input type="hidden" name="buynow[productPrice]"
+                                    value="{{ $product->product_price }}">
+                                <input type="hidden" value="1" id="quantityHidden1" name="buynow[productQuantity]"
+                                    class="form-control">
+                                <input type="hidden" name="buynow[productSize]" id="sizebox1">
+                                <input type="submit" class="btn btn-success" value="Buy Now">
+                            </form>
+                            <form action="{{ route('storecart') }}" method="post">
+                                @csrf
+                                <input type="hidden" value="1" id="quantityHidden2" name="productQuantity"
+                                    class="form-control">
+                                <input type="hidden" name="productImg" value="{{ $product->product_img }}">
+                                <input type="hidden" name="productName" value="{{ $product->product_name }}">
+                                <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
+                                <input type="hidden" name="productSize" id="sizebox2">
+                                <input type="hidden" name="productId" value="{{ $product->id }}">
+                                <input type="submit" class="btn btn-danger" value="Add to Cart">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- phone-size-container --}}
+            <div class="phone-size-container">
+                <form action="{{ route('storebuynow') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="size" class="form-control" id="phonesizebox" placeholder="Size">
+                    <div class="phone-product-image-container">
+                        <div class="phone-product-images">
+                            <div class="phone-product-img">
+                                <img class="img" src="{{ asset('assets/ProductImg/' . $product->product_img) }}"
+                                    alt="">
+                            </div>
+                            <div class="phone-product-media-gallery-box">
+                                @if ($images->isEmpty())
+                                @else
+                                    <div class="phone-product-media-gallery-box-card">
+                                        @foreach ($images as $image)
+                                            <div class="media-gallery-box">
+                                                <img src="{{ asset('assets/ProductImg/' . $image->product_img) }}"
+                                                    alt="">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
+                                <div class="phone-product-all-color">
+                                    <span> {{ $images->count() }} Color available </span>
+                                    <span class="color">Blue,Red</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-product-info-container">
+                        <div class="phone-product-name">
+                            <span>{{ $product->product_name }}</span>
+                        </div>
+                        <div class="phone-product-price">
+                            <span class="tk">৳{{ $product->product_price }}</span>
+                            <span class="discount">৳800</span>
+                            <div class="percent">
+                                <span>10%</span>
+                            </div>
+                        </div>
+                        <div class="return-card">
+                            <div class="return">
+                                <div>
+                                    <i class="ri-text-wrap"></i>
+                                    <span>Free Returns</span>
+                                </div>
+                                <div class="not">
+                                    <span>!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-size-quantity-container ">
+                        @if ($sizes->isEmpty())
+                        @else
+                            <div class="phone-size-card">
+                                <div class="phone-size-type">
+                                    <span>Size</span>
+                                </div>
+                                <div class="phone-size">
+                                    @foreach ($sizes as $size)
+                                        <div class="size">{{ $size->product_size }}</div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                        <div class="phone-quantity-container">
+                            <div class="quantity-type">
+                                <span>Quantity</span>
+                            </div>
+                            <div class="phone-quantity">
+                                <div class="decrement">
+                                    <div class="decrement-card"></div>
+                                </div>
+                                <input type="text" name="quantity" value="1" class="phone-quantity-text">
+                                <div class="increment">+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-button-container">
+                        <div class="phone-button-card">
+                            <div class="phone-button-icons">
+                                <a href="{{ route('home') }}" class="home">
+                                    <i class="ri-home-3-fill"></i>
+                                    <span>Home</span>
+                                </a>
+                                <a href="">
+                                    <div class="massage"></div>
+                                    <span>Chat</span>
+                                </a>
+                            </div>
+                            <div class="phone-button">
+                                <input type="submit" value="Add to Cart" class="btn btn-success">
+                                <input type="submit" value="Buy Now" class="btn btn-warning">
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
-        {{-- phone-size-container --}}
-
-        <div class="phone-size-container">
-            <form action="{{ route('data') }}" method="post">
-                @csrf
-                <input type="hidden" name="size" class="form-control" id="phonesizebox" placeholder="Size">
-                <div class="phone-product-image-container">
-                    <div class="phone-product-images">
-                        <div class="phone-product-img">
-                            <img src="{{ asset('products/product.png') }}" alt="">
-                        </div>
-                        <div class="phone-product-media-gallery-box">
-                            <div class="phone-product-media-gallery-box-card">
-                                <div class="media-gallery-box">
-                                    <img src="products/product1.png" alt="">
-                                </div>
-                                <div class="media-gallery-box">
-                                    <img src="products/product2.png" alt="">
-                                </div>
-                                <div class="media-gallery-box">
-                                    <img src="products/product3.png" alt="">
-                                </div>
-                                <div class="media-gallery-box">
-                                    <img src="{{ asset('products/product3.png') }}" alt="">
-                                </div>
-                                <div class="media-gallery-box">
-                                    <img src="products/product3.png" alt="">
-                                </div>
-                                <div class="media-gallery-box">
-                                    <img src="products/product2.png" alt="">
-                                </div>
-                            </div>
-                            <div class="phone-product-all-color">
-                                <span>7 Color available </span>
-                                <span class="color">Blue,Red</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="phone-product-info-container">
-                    <div class="phone-product-name">
-                        <span>Amazing Rice Flour Face Packs For All Your Skin Concerns</span>
-                    </div>
-                    <div class="phone-product-price">
-                        <span class="tk">৳700</span>
-                        <span class="discount">৳800</span>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                    <div class="return-card">
-                        <div class="return">
-                            <div>
-                                <i class="ri-text-wrap"></i>
-                                <span>Free Returns</span>
-                            </div>
-                            <div class="not">
-                                <span>!</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="phone-size-quantity-container ">
-                    <div class="phone-size-card">
-                        <div class="phone-size-type">
-                            <span>Size</span>
-                        </div>
-                        <div class="phone-size">
-                            <div class="size">M</div>
-                            <div class="size">L</div>
-                            <div class="size">XL</div>
-                            <div class="size">XXL</div>
-                        </div>
-                    </div>
-                    <div class="phone-quantity-container">
-                        <div class="quantity-type">
-                            <span>Quantity</span>
-                        </div>
-                        <div class="phone-quantity">
-                            <div class="decrement">
-                                <div class="decrement-card"></div>
-                            </div>
-                            <input type="text" name="quantity" value="1" class="phone-quantity-text">
-                            <div class="increment">+</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="phone-button-container">
-                    <div class="phone-button-card">
-                        <div class="phone-button-icons">
-                            <a href="{{route('home')}}" class="home">
-                                <i class="ri-home-3-fill"></i>
-                                <span>Home</span>
-                            </a>
-                            <a href="">
-                                <div class="massage"></div>
-                                <span>Chat</span>
-                            </a>
-                        </div>
-                        <div class="phone-button">
-                            <input type="submit" value="Add to Cart" class="btn btn-success">
-                            <input type="submit" value="Buy Now" class="btn btn-warning">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+        @endforeach
         <div class="product-rating-review-container">
             <div class="product-rating-review-card">
                 <div class="rating-type">
@@ -1466,6 +1466,17 @@
 
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
+        let quantityText = document.querySelector('#quantityText');
+        let quantityHidden1 = document.querySelector('#quantityHidden1');
+        let quantityHidden2 = document.querySelector('#quantityHidden2');
+
+
+        function updateHiddenValue() {
+            quantityHidden1.value = quantityText.value;
+            quantityHidden2.value = quantityText.value;
+        }
+        quantityText.addEventListener('input', updateHiddenValue);
+        window.addEventListener('load', updateHiddenValue);
         document.addEventListener("DOMContentLoaded", function() {
             let multiImages = document.querySelectorAll('.multi-img');
             let img = document.querySelector('.img');
@@ -1489,9 +1500,8 @@
             });
 
             let size = document.querySelectorAll('.size');
-            let phoneproductsize = document.querySelectorAll('.phone-size .size');
-            let sizebox = document.querySelector('#sizebox');
-            let phonesizebox = document.querySelector('#phonesizebox');
+            let sizebox1 = document.querySelector('#sizebox1');
+            let sizebox2 = document.querySelector('#sizebox2');
             size.forEach(Size => {
                 Size.addEventListener('click', function() {
                     size.forEach(size => {
@@ -1501,11 +1511,16 @@
                     this.style.color = '#fff';
 
                     selectedSize = this.textContent;
-                    sizebox.value = selectedSize;
+                    sizebox1.value = selectedSize;
+                    sizebox2.value = selectedSize;
                 });
             });
-            let selectedSizeElement = null;
 
+
+            let phoneproductsize = document.querySelectorAll('.phone-size .size');
+            let phonesizebox = document.querySelector('#phonesizebox');
+
+            let selectedSizeElement = null;
             phoneproductsize.forEach(productsize => {
                 productsize.addEventListener('click', function() {
                     if (selectedSizeElement) {

@@ -6,10 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('logo/Hanif-Baba-2-2.png') }}">
+    <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
-    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
 </head>
 <style>
     * {
@@ -20,7 +25,7 @@
 
     body {
         font-family: 'Noto Sans Bengali', Arial, sans-serif;
-        background: #f1f1f1;
+        background: #e9ecef;
     }
 
     nav {
@@ -68,6 +73,8 @@
     .delete-content-btn a {
         text-decoration: none;
         color: black;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
     .select-box {
@@ -76,8 +83,10 @@
     }
 
     .select-box span {
-        font-size: 13px;
+        font-size: 14px;
         padding: 0 5px;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
     .card-container .cart-content {
@@ -137,29 +146,38 @@
         font-size: 14px;
         text-transform: uppercase;
         color: #555666;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
     }
 
     .card-container .list-content .summary-li {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        text-transform: uppercase;
+        text-transform: capitalize;
     }
 
     .card-container .list-content .summary-li p {
         margin: 5px 0;
-        font-size: 12px;
+        font-size: 14px;
         color: #666666;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
 
     .card-container .list-content .summary-li form .voucher {
         width: -webkit-fill-available;
         display: flex;
     }
+
     .card-container .list-content .summary-li .form-control {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
     }
+
     .card-container .list-content .summary-li .btn-success {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
@@ -290,9 +308,10 @@
             font-size: 12px;
         }
 
-        .card-container .list-content .summary-li form .btn-danger{
+        .card-container .list-content .summary-li form .btn-danger {
             display: none;
         }
+
         .card-container .cart-content {
             width: initial;
             margin: 5px 0;
@@ -353,19 +372,22 @@
                 <div class="cart-content">
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    <img src="{{ asset('products/product4.png') }}" alt="">
-                                </td>
-                                <td class="align-middle">Amazing Rice Flour Face Packs For All Your Skin Concerns X2
-                                </td>
-                                <td class="align-middle"><input type="text" style="text-align: center;"
-                                        class="form-control" value="5"></td>
-                                <td class="align-middle">৳500</td>
-                                <td class="align-middle">
-                                    <a href="" class="ri-delete-bin-7-fill btn btn-danger"></a>
-                                </td>
-                            </tr>
+                            @foreach ($carts as $cart)
+                                <tr>
+                                    <td class="align-middle">
+                                        <img src="{{ asset('assets/ProductImg/' . $cart->product_img) }}"
+                                            alt="">
+                                    </td>
+                                    <td class="align-middle">{{ $cart->product_name }} X{{ $cart->product_quantity }}
+                                    </td>
+                                    <td class="align-middle"><input type="text" style="text-align: center;"
+                                            class="form-control" disabled value="{{ $cart->product_quantity }}"></td>
+                                    <td class="align-middle">৳{{ $cart->product_price }}</td>
+                                    <td class="align-middle">
+                                        <a href="" class="ri-close-line btn btn-danger"></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -375,25 +397,40 @@
                 <h4>Order Summary</h4>
                 <div class="summary-li">
                     <p>Subtotal items</p>
-                    <p></p>
+                    <p>{{ $cart->count() }}</p>
                 </div>
                 <div class="summary-li">
                     <p>Shopping Fee Discount</p>
-                    <p style="text-transform: uppercase;">450tk</p>
+                    <p style="text-transform: uppercase;">৳{{ $cart->sum('product_price') }}</p>
                 </div>
                 <div class="summary-li">
                     <p>Total</p>
-                    <p style="text-transform: uppercase;">400tk</p>
+                    <p style="text-transform: uppercase;">৳{{ $cart->sum('product_price') }}</p>
                 </div>
                 <div class="summary-li">
-                    <form action="">
+                    <form action="{{ route('sanddata') }}">
+                        @csrf
                         <div class="voucher">
-                            <input type="text" class="form-control"
-                            placeholder="Enter Voucher Code">
+                            <input type="text" class="form-control" placeholder="Enter Voucher Code">
                             <input type="submit" class="btn btn-success" value="APPLY">
                         </div>
+                        @foreach ($carts as $index => $cart)
+                            <input type="hidden" value="{{ $cart->id }}"
+                                name="cart[{{ $index }}][productId]">
+                            <input type="hidden" value="{{ $cart->product_img }}"
+                                name="cart[{{ $index }}][productImg]">
+                            <input type="hidden" value="{{ $cart->product_name }}"
+                                name="cart[{{ $index }}][productName]">
+                            <input type="hidden" value="{{ $cart->product_quantity }}"
+                                name="cart[{{ $index }}][productQuantity]">
+                            <input type="hidden" value="{{ $cart->product_price }}"
+                                name="cart[{{ $index }}][productPrice]">
+                            <input type="hidden" value="{{ $cart->product_size }}"
+                                name="cart[{{ $index }}][productSize]">
+                        @endforeach
+                        <input type="hidden" value="{{ $cart->sum('product_price') }}"
+                            name="cart[{{ $index }}][totalPrice]">
                         <input type="submit" class="btn btn-danger" value="CHECKOUT">
-
                     </form>
                 </div>
             </div>

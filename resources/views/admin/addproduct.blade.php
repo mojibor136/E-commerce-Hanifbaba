@@ -10,10 +10,12 @@
 
         .form-control {
             cursor: pointer;
+            text-transform: capitalize;
         }
 
         .size-content input {
             margin: 0 3px;
+            text-transform: capitalize;
             cursor: pointer;
         }
 
@@ -29,8 +31,9 @@
     </style>
     <div class="add-product">
         <div class="card-header d-flex justify-content-between align-items-center mb-3">
-            <h5 class="mb-0">ADD PRODUCTS</h5>
-            <small class="text-muted float-end">Default label</small>
+            <h5 class="mb-0">ADD PRODUCT</h5>
+            <small class="text-muted float-end"><a href="{{ route('allproduct') }}" style="text-decoration: none;"
+                    class="text-success">View Data</a></small>
         </div>
         @if (session()->has('massage'))
             <li class="text-success mb-2">{{ session()->get('massage') }}</li>
@@ -39,34 +42,49 @@
             <form action="{{ route('storeproduct') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS NAME</label>
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label mb-1" for="basic-default-fullname">product name</label>
                     <input type="text" class="form-control" id="basic-default-fullname" name="name"
-                        value="{{ old('name') }}" placeholder="PRODUCTS NAME">
+                        value="{{ old('name') }}" placeholder="product name">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS DESCRIPTION</label>
+                    @error('desc')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label mb-1" for="basic-default-fullname">product descrption</label>
                     <input type="text" class="form-control" id="basic-default-fullname" name="desc"
-                        value="{{ old('desc') }}" placeholder="PRODCUTS DESCRIPTION">
+                        value="{{ old('desc') }}" placeholder="product descrption">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS REGULAR PRICE</label>
+                    @error('regular_price')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label mb-1" for="basic-default-fullname">product regual price</label>
                     <input type="NUMBER" class="form-control" id="basic-default-fullname" name="regular_price"
-                        value="{{ old('regular_price') }}" placeholder="PRODCUTS REGULAR PRICE">
+                        value="{{ old('regular_price') }}" placeholder="product regual price">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS PRICE</label>
+                    @error('price')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label mb-1" for="basic-default-fullname">product price</label>
                     <input type="NUMBER" class="form-control" id="basic-default-fullname" name="price"
-                        value="{{ old('price') }}" placeholder="PRODCUTS PRICE">
+                        value="{{ old('price') }}" placeholder="product price">
                 </div>
                 <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">PRODCUTS QUANTITY</label>
+                    @error('quantity')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label mb-1" for="basic-default-fullname">product quantity</label>
                     <input type="NUMBER" class="form-control" id="basic-default-fullname" name="quantity"
-                        value="{{ old('quantity') }}" placeholder="PRODCUTS QUANTITY">
+                        value="{{ old('quantity') }}" placeholder="product quantity">
                 </div>
                 <div class="mb-2">
                     <div class="form-group">
-                        <label for="sizes">SELECT PRODUCT SIZE</label>
-                        <div class="form-control size-btn" onclick="toggleSizeContent()"><span>SELECT PRODUCT SIZE</span>
+                        <label for="sizes">select product size</label>
+                        <div class="form-control size-btn" onclick="toggleSizeContent()"><span>select product size</span>
                         </div>
                         <div class="size-content hidden">
                             <div class="form-control size"><input name="size[]" type="checkbox"
@@ -79,38 +97,44 @@
                     </div>
                 </div>
                 <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">BRAND NAME</label>
-                    @error('email')
-                        <div class="text-danger">{{ $brande }}</div>
-                    @enderror
+                    <label class="form-label mb-1" for="basic-default-fullname">brande name</label>
                     <input type="text" class="form-control" id="basic-default-fullname" name="brande"
-                        value="{{ old('brande') }}" placeholder="BRAND NAME">
+                        value="{{ old('brande') }}" placeholder="brande name">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-fullname">SELECT CATEGORY</label>
+                    @error('category_id')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label" for="basic-default-fullname">Select Category</label>
                     <select class="form-select" id="category_id" name="category_id" aria-label="Default select example">
-                        <option selected>SELECT CATEGORY</option>
+                        <option selected disabled>Select Category</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-company">SELECT SUBCATEGORY</label>
+                    @error('subcategory_id')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label" for="basic-default-company">Select Sub-Category</label>
                     <select class="form-select" id="subcategory_id" name="subcategory_id"
                         aria-label="Default select example">
-                        <option selected>SELECT SUB-CATEGORY</option>
+                        <option selected disabled>Select Sub-Category</option>
                         @foreach ($subcategories as $subcategory)
                             <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div>
-                    <label for="formFileDisabled" class="form-label mb-1">ADD CATEGORY IMG</label>
+                    @error('image')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <label for="formFileDisabled" class="form-label mb-1">add product image</label>
                     <input class="form-control" type="file" id="formFileDisabled" name="image" />
                 </div>
                 <div>
-                    <label for="formFileDisabled" class="form-label">ADD MULTIPLE IMG</label>
+                    <label for="formFileDisabled" class="form-label">add multipale image</label>
                     <input class="form-control" multiple type="file" id="formFileDisabled" name="multipleImg[]" />
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">ADD PRODUCTS</button>

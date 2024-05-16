@@ -7,9 +7,15 @@
     </style>
     <div class="table-container">
         <table class="table">
-            <div class="table-header">
-                <span>subCategory Page</span>
+            <div class="card-header d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">ALL SUBCATEGORY</h5>
+                <small class="text-muted float-end">
+                    <a href="{{ route('addsubcategory') }}" class="btn btn-primary">Add Data</a>
+                </small>
             </div>
+            @if (session()->has('massage'))
+                <li class="text-success mb-2">{{ session()->get('massage') }}</li>
+            @endif
             <thead>
                 <tr>
                     <th>ID</th>
@@ -29,8 +35,10 @@
                         <td>{{ $adminSubCategory->product_count }}</td>
                         <td>{{ $adminSubCategory->category_name }}</td>
                         <td>
-                            <a href="" class="btn btn-danger"><i class="ri-close-line"></i></a>
-                            <a href="" class="btn btn-success"><i class="ri-edit-2-fill"></i></a>
+                            <a href="{{ route('deletesubcategory', $adminSubCategory->id) }}" class="btn btn-danger"><i
+                                    class="ri-close-line"></i></a>
+                            <a href="{{ route('editsubcategory', $adminSubCategory->id) }}" class="btn btn-success"><i
+                                    class="ri-edit-2-fill"></i></a>
                         </td>
                     </tr>
                 @endforeach

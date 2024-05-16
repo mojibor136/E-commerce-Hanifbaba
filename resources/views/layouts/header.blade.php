@@ -198,7 +198,6 @@
         color: #333;
         font-size: 14px;
         font-family: "Roboto", sans-serif;
-        font-weight: 600;
         font-style: normal;
     }
 
@@ -394,7 +393,7 @@
             <div class="header-card">
                 <div class="logo">
                     <a href="{{ Route('home') }}">
-                        <img src="logo/Hanif-Baba-2-2.png" alt="">
+                        <img src="{{asset('logo/Hanif-Baba-2-2.png')}}" alt="">
                         <span>HANIF BABA</span>
                     </a>
                 </div>
@@ -407,26 +406,18 @@
                                     <div class="arrow"></div>
                                     <div class="categories">
                                         <div class="category">
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
-                                            <span>facebook</span>
-                                            <span>youtube</span>
+                                            @php
+                                                $sidecategory = getCategoryData();
+                                            @endphp
+                                            @if ($sidecategory->isEmpty())
+                                                <span
+                                                    class="text-danger d-flex justify-content-center align-items-center">
+                                                    Not available category</span>
+                                            @else
+                                                @foreach ($sidecategory as $category)
+                                                    <span>{{ $category->category_name }}</span>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -448,7 +439,7 @@
                     <div class="account-card">
                         @if (Auth::check())
                             <div class="user-icons">
-                                <img src="{{ asset('logo/profile.png') }}" alt="">
+                                <img src="{{ asset('logo/profile.png') }}" alt="no image">
                                 <span>Mojibor</span>
                                 <div class="arrow"></div>
                             </div>

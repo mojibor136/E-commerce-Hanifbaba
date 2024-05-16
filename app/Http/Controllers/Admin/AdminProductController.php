@@ -43,7 +43,7 @@ class AdminProductController extends Controller
 
         if ($image = $request->file('image')) {
             $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('assets/image/ProductImg'), $imageName);
+            $image->move(public_path('assets/ProductImg'), $imageName);
         }
 
         $categoryId = $request->category_id;
@@ -71,7 +71,7 @@ class AdminProductController extends Controller
 
             foreach ($request->file('multipleImg') as $multipleImg) {
                 $multipleImgName = time() . '-' . uniqid() . '.' . $multipleImg->getClientOriginalExtension();
-                $multipleImg->move(public_path('assets/image/ProductImg'), $multipleImgName);
+                $multipleImg->move(public_path('assets/ProductImg'), $multipleImgName);
                 $uploadedFiles[] = [
                     'product_id' => $product->id,
                     'product_img' => $multipleImgName,
@@ -91,9 +91,17 @@ class AdminProductController extends Controller
             }
         }
 
-        SubCategory::where('id', $subcategoryId)->increment('prodcut_count', 1);
-        Category::where('id', $categoryId)->increment('prodcut_count', 1);
+        $subCategory = SubCategory::find($subcategoryId);
+        $subCategory->product_id = $product->id;
+        $subCategory->save();
+        SubCategory::where('id', $subcategoryId)->increment('product_count', 1);
+        Category::where('id', $categoryId)->increment('product_count', 1);
         
-        return 'success';
+        return redirect()->route('allproduct')->with('massage', 'Added your product Successful');
+    }
+
+    public function DeleteProduct($id){
+        Product::findOrFail($id)->delete();
+        return redirect()->route('allproduct')->with('massage', 'Delete your product Successful');
     }
 }

@@ -10,11 +10,19 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('logo/Hanif-Baba-2-2.png') }}">
     <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
 </head>
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     body {
         font-family: 'Noto Sans Bengali', Arial, sans-serif;
         background: #e9ecef;
@@ -193,7 +201,13 @@
         font-family: "Roboto", sans-serif;
         font-weight: 500;
         font-style: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-height: 2 * (14px + 4px);
     }
+
 
     .top-product-card .free-card {
         padding: 2px 5px;
@@ -310,30 +324,40 @@
     }
 
     .category-card a li img {
-        max-width: 100%;
+        width: 100%;
         height: 90px;
         object-fit: cover;
     }
 
-    .category-card a .card {
+    .category-img-card {
+        padding: 5px;
+        padding-bottom: 0;
+    }
+
+    .category-card a li {
         border-radius: 0;
         overflow: hidden;
         border: none;
+        background: #fff;
     }
 
     .category-card a li span {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* Limit the number of lines to 2 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
         text-align: center;
-        text-transform: capitalize;
+        text-transform: lowercase;
         padding: 2px 0;
         font-size: 14px;
         color: #2a2f3b;
         font-weight: 600;
+        line-height: 1.1;
         font-family: "Roboto", sans-serif;
         font-style: normal;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        margin: 0 8px;
     }
 
 
@@ -378,6 +402,10 @@
         row-gap: 15px;
     }
 
+    .product-container a {
+        text-decoration: none;
+    }
+
     .product-card {
         width: 100%;
         background: #fff;
@@ -404,6 +432,11 @@
         font-family: "Roboto", sans-serif;
         font-weight: 500;
         font-style: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-height: 2 * (14px + 4px);
     }
 
     .product-card .free-card {
@@ -479,6 +512,7 @@
 
     .load-more .load-card {
         text-align: center;
+        line-height: normal;
     }
 
     .load-more .load-card:hover {
@@ -503,7 +537,6 @@
         background: #fff;
         position: fixed;
         bottom: 0;
-        padding: 6px 15px;
         display: none;
     }
 
@@ -511,6 +544,10 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
+    }
+
+    .home-icon-card a {
+        text-decoration: none;
     }
 
     .home-icon-card .icons {
@@ -600,6 +637,10 @@
             display: none;
         }
 
+        .category-container {
+            display: none;
+        }
+
         .banner-container .banner-categories {
             height: 250px;
         }
@@ -653,6 +694,90 @@
 
         .home-icon-container {
             display: block;
+        }
+
+        .nav-container {
+            width: 100%;
+            height: 100vh;
+            background: #eee;
+            position: relative;
+            z-index: 999999;
+            display: none;
+        }
+
+        .side-nav-container {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 200px;
+            height: 100%;
+            background: #fff;
+            padding: 50px 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: red;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .side-nav-container .side-nav-content a {
+            display: flex;
+            flex-direction: columns;
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            font-family: "Roboto", sans-serif;
+            font-style: normal;
+        }
+
+        .phone-profile-content {
+            padding: 10px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #999;
+        }
+
+        .phone-profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .phone-profile-img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .phone-profile-name {
+            text-transform: uppercase;
+            padding-top: 5px;
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .form-control {
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #eee;
+            font-family: "Roboto", sans-serif;
+            font-style: normal;
+            padding-left: 15px;
+        }
+
+        .side-nav-container .form-control:focus {
+            outline-color: none;
+            border: none;
+            outline: none;
         }
     }
 
@@ -716,23 +841,18 @@
             <div class="banner-categories">
                 <div class="side-categories">
                     <div class="side-category">
-                        <a href="">health</a>
-                        <a href="">punjabi</a>
-                        <a href="">baby dress</a>
-                        <a href="">t-shrit</a>
-                        <a href="">baby dress</a>
-                        <a href="">t-shrit</a>
-                        <a href="">health</a>
-                        <a href="">punjabi</a>
-                        <a href="">baby dress</a>
-                        <a href="">health</a>
-                        <a href="">punjabi</a>
-                        <a href="">baby dress</a>
-                        <a href="">t-shrit</a>
-                        <a href="">health</a>
-                        <a href="">punjabi</a>
-                        <a href="">baby dress</a>
-                        <a href="">t-shrit</a>
+                        @php
+                            $sidecategory = getCategoryData();
+                        @endphp
+                        @if ($sidecategory->isEmpty())
+                            <a href="" class="d-flex justify-content-center align-items-center">
+                                <span class="text-danger">Not available category</span>
+                            </a>
+                        @else
+                            @foreach ($sidecategory as $category)
+                                <a href="">{{ $category->category_name }}</a>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="banner">
@@ -756,146 +876,30 @@
                 <a href="">shop more</a>
             </div>
             <div class="top-product-container">
-                <a href="{{ route('ProductView') }}">
-                    <div class="top-product-card">
-                        <div class="image">
-                            <img src="{{ asset('products/product1.png') }}" alt="">
-                        </div>
-                        <div class="name">
-                            Amazing Rice Flour Face Packs For All
-                        </div>
-                        <div class="free-card">
-                            <div class="free">
-                                <i class="ri-star-fill"></i>
-                                <span>free delivery</span>
+                @foreach ($products as $product)
+                    <a href="{{ route('singleproduct', $product->id) }}">
+                        <div class="top-product-card">
+                            <div class="image">
+                                <img src="{{ asset('assets/ProductImg/' . $product->product_img) }}" alt="">
+                            </div>
+                            <div class="name">
+                                {{ $product->product_name }}
+                            </div>
+                            <div class="free-card">
+                                <div class="free">
+                                    <i class="ri-star-fill"></i>
+                                    <span>free delivery</span>
+                                </div>
+                            </div>
+                            <div class="price-card">
+                                <div>
+                                    <span class="tk">৳{{ $product->product_price }}</span>
+                                    <span class="discount">৳{{ $product->regular_price }}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="price-card">
-                            <div>
-                                <span class="tk">৳250</span>
-                                <span class="discount">৳300</span>
-                            </div>
-                            <div class="percent">
-                                <span>7%</span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <div class="top-product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product2.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>verifyed</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product3.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product2.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product1.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                @endforeach
             </div>
         </div>
         {{-- /* Category-container all html*/ --}}
@@ -905,401 +909,45 @@
                 <a href="">shop more</a>
             </div>
             <div class="card category-card border-0">
-                <ul>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/2-1-682x1024.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/1709024382-65dda47ed1d5d.jfif') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/1711678828-6606256c468fe.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/Untitled design (1).png') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi1.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi3.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi2.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
-                    <a href="">
-                        <li class="card">
-                            <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
-                            <span>punjabi</span>
-                        </li>
-                    </a>
+                <ul class="category-list"><!-- Added a class for easier targeting -->
+                    <!-- Categories will be dynamically added here -->
                 </ul>
             </div>
         </div>
         {{-- top products container --}}
         <div class="main-product-container">
             <div class="type">
-                <span>letest products</span>
+                <span>just for you</span>
                 <a href="">shop more</a>
             </div>
             <div class="product-container">
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product3.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
+                @foreach ($products as $product)
+                    <a href="{{ route('singleproduct', $product->id) }}">
+                        <div class="product-card">
+                            <div class="image">
+                                <img src="{{ asset('assets/ProductImg/' . $product->product_img) }}" alt="">
+                            </div>
+                            <div class="name">
+                                {{ $product->product_name }}
+                            </div>
+                            <div class="free-card">
+                                <div class="free">
+                                    <i class="ri-star-fill"></i>
+                                    <span>cash delivery</span>
+                                </div>
+                            </div>
+                            <div class="price-card">
+                                <div>
+                                    <span class="tk">৳{{ $product->product_price }}</span>
+                                    <span class="discount">৳{{ $product->regular_price }}</span>
+                                </div>
+                                <div class="percent">
+                                    <span>10%</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/chaler-ata.jpeg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳430</span>
-                            <span class="discount">৳450</span>
-                        </div>
-                        <div class="percent">
-                            <span>17%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product2.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>cash delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product1.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/chaler-ata.jpeg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>cash delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/chaler-ata.jpeg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product1.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>verifyed</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product2.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product1.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳700</span>
-                            <span class="discount">৳500</span>
-                        </div>
-                        <div class="percent">
-                            <span>10%</span>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                @endforeach
             </div>
         </div>
         <div class="load-more">
@@ -1309,24 +957,124 @@
         </div>
     </div>
     <div class="home-icon-container">
-        <div class="home-icon-card">
-            <div class="icons">
-                <i class="ri-home-2-fill"></i>
-                <span>Home</span>
+        <div style="padding: 7px 15px;">
+            <div class="home-icon-card">
+                <a href="{{ route('home') }}">
+                    <div class="icons">
+                        <i class="ri-home-2-fill"></i>
+                        <span>Home</span>
+                    </div>
+                </a>
+                <a href="{{ route('categorypage') }}">
+                    <div class="icons">
+                        <i class="ri-layout-grid-fill"></i> <span>categories</span>
+                    </div>
+                </a>
+                <a href="{{ route('addtocart') }}">
+                    <div class="icons">
+                        <i class="ri-shopping-cart-2-fill"></i>
+                        <span>cart</span>
+                    </div>
+                </a>
+                <div class="icons" id="user-profile">
+                    <i class="ri-user-fill"></i>
+                    <span>account</span>
+                </div>
             </div>
-            <div class="icons">
-                <i class="ri-layout-grid-fill"></i> <span>categories</span>
-            </div>
-            <div class="icons">
-                <i class="ri-shopping-cart-2-fill"></i>
-                <span>cart</span>
-            </div>
-            <div class="icons">
-                <i class="ri-user-fill"></i>
-                <span>account</span>
+        </div>
+        <div class="nav-container">
+            <div class="side-nav-container">
+                <div style="position: relative; padding:10px;">
+                    <div class="close">
+                        <i class="ri-close-large-fill"></i>
+                    </div>
+                    <div class="phone-profile-content">
+                        <div class="phone-profile-img">
+                            <img src="{{ asset('banner/images.png') }}" alt="">
+                        </div>
+                        <div class="phone-profile-name">
+                            <span>md ariful islam</span>
+                        </div>
+                    </div>
+                    <div class="side-nav-content">
+                        <a href="">Order Tracking</a>
+                        <a href="">Cancel Order</a>
+                        <select name="" id="" class="form-control">
+                            <option selected disabled>Language</option>
+                            <option value="">Bangla</option>
+                            <option value="">English </option>
+                            <option value="">Hindi</option>
+                        </select>
+                        <a href="">Registration</a>
+                        <a href="">Login</a>
+                        <a href="">Settings</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        let close = document.querySelector('.close');
+        let navbar = document.querySelector('.nav-container');
+        let profile = document.querySelector('#user-profile');
+        let body = document.querySelector('body');
+
+        profile.addEventListener('click', function() {
+            navbar.style.display = 'block';
+            body.style.overflow = 'hidden'; // Disable scrolling when navbar is open
+            resetScrollPosition(); // Reset scroll position to top when navbar is opened
+        });
+
+        function closeNavbar() {
+            navbar.style.display = 'none';
+            body.style.overflow = 'auto'; // Enable scrolling when navbar is closed
+        }
+
+        close.addEventListener('click', function() {
+            closeNavbar();
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === navbar) {
+                closeNavbar();
+            }
+        });
+
+        // Function to reset scroll position to top
+        function resetScrollPosition() {
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+
+    <script>
+        let CategoryNames = '';
+        fetch('/GetCategoriesData')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    let CategoryName = item.category_name.split(' ');
+                    let CategoryId = item.id;
+                    let CategoryImg = item.category_img;
+                    let CategorySlug = item.slug;
+                    let imageUrl = `/assets/CategoryImg/${CategoryImg}`;
+                    let url = '';
+                    url = url.replace(':id', item.id).replace(':slug', item.slug);
+                    CategoryNames +=
+                        `<a href="${url}">
+                    <li class="card">
+                        <div class="category-img-card"> 
+                            <img src="${imageUrl}" alt="">
+                        </div>
+                        <span>${CategoryName.join(' ')}</span>
+                    </li>
+                </a>`;
+                });
+                let CategoryElement = document.querySelector('.category-card .category-list'); // Corrected selector
+                CategoryElement.innerHTML = CategoryNames;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
     <script>
         let cartIcon = document.querySelectorAll('.cart-icon')
         let slides = document.querySelectorAll('.slides-img');

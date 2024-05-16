@@ -100,6 +100,8 @@
     .main-content .nav-container {
         position: fixed;
         width: 100%;
+        height: 100vh;
+        overflow-y: auto;
     }
 
     .main-content .nav-content {
@@ -127,6 +129,7 @@
         font-size: 14px;
         font-family: "Roboto", sans-serif;
         font-style: normal;
+        text-transform: capitalize;
     }
 
     .form-control::placeholder {
@@ -174,7 +177,9 @@
         font-weight: 400;
         font-style: normal;
     }
-
+    .dropdown-card .dropdown-ui .active{
+        color: red;
+    }
     .dropdown-card .dropdown-ui a:hover {
         background-color: #ccc;
     }
@@ -199,17 +204,6 @@
         color: #444;
     }
 
-    .table-header {
-        text-transform: uppercase;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        color: #555;
-        font-size: 18px;
-        padding: 10px 0;
-        padding-top: 5px;
-    }
-
     .table th,
     .table td {
         text-align: left;
@@ -220,7 +214,11 @@
         font-family: "Roboto", sans-serif;
         font-style: normal;
         vertical-align: middle;
-        /* text-align: center; */
+        text-align: center;
+    }
+
+    .table td {
+        text-transform: lowercase;
     }
 
     .table td .btn {
@@ -257,7 +255,7 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="admin.html">home</a>
+                                <a href="" class="nav-link">home</a>
                             </div>
                         </div>
                     </div>
@@ -267,7 +265,7 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="admin.html">message</a>
+                                <a href="" class="nav-link">message</a>
                             </div>
                         </div>
                     </div>
@@ -287,8 +285,8 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="{{ route('allproduct') }}">all products</a>
-                                <a href="{{ route('addproduct') }}">add products</a>
+                                <a href="{{ route('allproduct') }}" class="nav-link">all products</a>
+                                <a href="{{ route('addproduct') }}" class="nav-link">add products</a>
                             </div>
                         </div>
                     </div>
@@ -298,8 +296,8 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="{{ route('allcategory') }}">all category</a>
-                                <a href="{{ route('addcategory') }}">add category</a>
+                                <a href="{{ route('allcategory') }}" class="nav-link">all category</a>
+                                <a href="{{ route('addcategory') }}" class="nav-link">add category</a>
                             </div>
                         </div>
                     </div>
@@ -309,8 +307,8 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="{{ route('allsubcategory') }}">all subcategory</a>
-                                <a href="{{ route('addsubcategory') }}">add subcategory</a>
+                                <a href="{{ route('allsubcategory') }}" class="nav-link">all subcategory</a>
+                                <a href="{{ route('addsubcategory') }}" class="nav-link">add subcategory</a>
                             </div>
                         </div>
                     </div>
@@ -320,10 +318,10 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="">all order</a>
-                                <a href="">cencel order</a>
-                                <a href="">confirm order</a>
-                                <a href="">panding order</a>
+                                <a href="" class="nav-link">all order</a>
+                                <a href="" class="nav-link">cencel order</a>
+                                <a href="" class="nav-link">confirm order</a>
+                                <a href="" class="nav-link">panding order</a>
                             </div>
                         </div>
                     </div>
@@ -333,7 +331,7 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="">user management</a>
+                                <a href="" class="nav-link">user management</a>
                             </div>
                         </div>
                     </div>
@@ -343,10 +341,10 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="">change profile photo</a>
-                                <a href="">change profile name</a>
-                                <a href="">change admin logo</a>
-                                <a href="">change admin name</a>
+                                <a href="" class="nav-link">change profile photo</a>
+                                <a href="" class="nav-link">change profile name</a>
+                                <a href="" class="nav-link">change admin logo</a>
+                                <a href="" class="nav-link">change admin name</a>
                             </div>
                         </div>
                     </div>
@@ -356,7 +354,7 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="">admin profile</a>
+                                <a href="" class="nav-link">admin profile</a>
                             </div>
                         </div>
                     </div>
@@ -366,7 +364,7 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="">admin logout</a>
+                                <a href="" class="nav-link">admin logout</a>
                             </div>
                         </div>
                     </div>
@@ -376,9 +374,9 @@
                         </div>
                         <div class="dropdown-ul">
                             <div class="dropdown-ui">
-                                <a href="">change logo</a>
-                                <a href="">add banner</a>
-                                <a href="">change name</a>
+                                <a href="" class="nav-link">change logo</a>
+                                <a href="" class="nav-link">add banner</a>
+                                <a href="" class="nav-link">change name</a>
                             </div>
                         </div>
                     </div>
@@ -391,6 +389,30 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let navLinks = document.querySelectorAll('.nav-link');
+    
+            navLinks.forEach(navLink => {
+                navLink.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent the default behavior of the anchor tag
+                    let href = this.getAttribute('href'); // Get the href attribute value
+                    
+                    // Optionally, you can add your own logic here
+                    // For example, you can navigate to the href URL using JavaScript:
+                    window.location.href = href;
+    
+                    // Add the 'active' class to the clicked nav-link
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+    
+    
     <script>
         let dropdownBtn = document.querySelectorAll('.dropdown-btn');
         let dropdown = document.querySelectorAll('.dropdown-ul');
