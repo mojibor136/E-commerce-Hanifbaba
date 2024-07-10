@@ -23,7 +23,6 @@
     nav {
         background-color: #dc3545;
         width: 100%;
-        padding: 8px 30px 8px 30px;
         display: flex;
         justify-content: space-between;
         display: none;
@@ -135,7 +134,7 @@
     @media (max-width: 640px) {
         nav {
             display: inline-flex;
-            padding: 5px 10px;
+            padding: 0px 10px;
         }
     }
 </style>
@@ -144,7 +143,7 @@
     <nav>
         <div class="button">
             <i class="ri-arrow-left-s-line" onclick="history.back()" id="back-buttton" style="font-size: 32px;"></i>
-            <p style="margin:0;">just for you</p>
+            <p style="margin:0;">Just for you</p>
         </div>
         <div class="button">
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>

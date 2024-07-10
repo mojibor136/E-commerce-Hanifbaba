@@ -27,7 +27,6 @@
     nav {
         background-color: #dc3545;
         width: 100%;
-        padding: 8px 30px 8px 30px;
         display: flex;
         justify-content: space-between;
         display: none;
@@ -245,7 +244,7 @@
 
         nav {
             display: inline-flex;
-            padding: 5px 10px;
+            padding: 0px 10px;
         }
 
         main {
@@ -302,27 +301,44 @@
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>
         </div>
     </nav>
-    <form action="">
+    <form action="{{ route('storeshipping') }}" method="post">
+        @csrf
         <main>
             <!-- ORDER FORM CUSTOMER DETAILS -->
             <div class="order-form">
                 <h4>Add New Address</h4>
                 <div class="form-group">
                     <label for="Name">Full Name</label>
-                    <input type="text" class="form-control" placeholder="Enter your Name">
+                    <input type="text" class="form-control" placeholder="Enter your Name" name="name">
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address
                     </label>
-                    <input type="email" class="form-control" placeholder="Enter your email">
+                    <input type="email" class="form-control" placeholder="Enter your email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="phone">Mobile Number</label>
-                    <input type="phone" class="form-control" placeholder="Enter your phone number">
+                    <input type="phone" class="form-control" placeholder="Enter your phone number" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="">Division</label>
+                    <select name="" id="" class="form-control">
+                        <option value="" selected disabled>Select division</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">City</label>
+                    <select name="" id="" class="form-control">
+                        <option value="" selected disabled>Select City</option>
+                        <option value="">Rangpur</option>
+                        <option value="">Dhaka</option>
+                        <option value="">Barishal</option>
+                         <option value="">Rajshahi</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="Address">Address</label>
-                    <input type="address" class="form-control" placeholder="Enter your Address">
+                    <input type="address" class="form-control" placeholder="Enter your Address" name="address">
                 </div>
             </div>
 

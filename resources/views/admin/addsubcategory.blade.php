@@ -1,55 +1,89 @@
-@extends('admin.layout.tempalate')
+@extends('admin.dashboard')
+@include('admin.logo.logo')
 @section('content')
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Add Service Category</title>
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    </head>
     <style>
-        .add-subcategory {
-            margin: 50px 100px;
-            padding: 20px;
-            background-color: #Fff;
-            border-radius: 10px;
+        .main {
+            grid-template-columns: 1fr;
         }
 
-        .form-control {
-            text-transform: capitalize;
+        .all-product-container {
+            background: #fff;
+            padding: 30px;
+            width: 100%;
         }
 
-        form label {
-            text-transform: capitalize;
+        .product-header {
+            text-transform: uppercase;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .product-link-content {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        label {
+            margin-top: 5px;
+            margin-bottom: 2px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
         }
     </style>
-    <div class="add-subcategory">
-        <div class="card-header d-flex justify-content-between align-items-center mb-3">
-            <h5 class="mb-0">ADD SUBCATEGORY</h5>
-            <small class="text-muted float-end"><a href="{{ route('allsubcategory') }}" style="text-decoration: none;"
-                    class="text-success">View Data</a></small>
-        </div>
-        @if (session()->has('massage'))
-            <li class="text-success mb-2">{{ session()->get('massage') }}</li>
-        @endif
-        <div class="card-body">
-            <form action="{{ route('storesubcategory') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    @error('category_id')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                    <label class="form-label" for="basic-default-fullname">Select Category</label>
-                    <select class="form-select" id="category_id" name="category_id" aria-label="Default select example">
-                        <option selected disabled>Select Category</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->slug }}</option>
-                        @endforeach
-                    </select>
+
+    <body>
+        <div class="all-product-container">
+            <div class="product-header">
+                <span>Add SubCategory</span>
+            </div>
+            <div class="all-product-content">
+                <div class="product-link-content">
+                    <div class="add">
+                        <a href="{{ route('allsubcategory') }}" class="btn btn-success">All SubCategories</a>
+                    </div>
                 </div>
-                <div class="mb-2">
-                    @error('subcategory_name')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                    <label class="form-label mb-1" for="basic-default-fullname">add subcategory</label>
-                    <input type="text" class="form-control" id="basic-default-fullname" name="subcategory_name"
-                        value="" placeholder="add subcategory">
+                <div class="product-content">
+                    <form action="{{ route('storesubcategory') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div>
+                            @error('subcategory_name')
+                                <div class="text-danger error">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="subcategory_name">Service Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Service Name"
+                                    name="subcategory_name" id="subcategory_name">
+                            </div>
+                            @error('category_id')
+                                <div class="text-danger error">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="category_id">Select Category</label>
+                                <select class="form-control" id="category_id" name="category_id">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Add SubCategory</button>
+                        </div>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Add Subcategory</button>
-            </form>
+            </div>
         </div>
-    </div>
+    </body>
+
+    </html>
 @endsection

@@ -15,10 +15,6 @@
         box-sizing: border-box;
     }
 
-    body {
-        background-color: #eee;
-    }
-
     footer {
         background: #444;
         width: 100%;

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('product_count')->default(0);
             $table->bigInteger('category_id');
             $table->string('category_name');
-            $table->integer('product_id')->default(null);
+            $table->integer('product_id')->default(0);
             $table->timestamps();
         });
     }

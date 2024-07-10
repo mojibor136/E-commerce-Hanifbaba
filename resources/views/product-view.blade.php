@@ -1021,8 +1021,31 @@
                                 </a>
                             </div>
                             <div class="phone-button">
-                                <input type="submit" value="Add to Cart" class="btn btn-success">
-                                <input type="submit" value="Buy Now" class="btn btn-warning">
+                                <form action="{{ route('storebuynow') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="buynow[productId]" value="{{ $product->id }}">
+                                    <input type="hidden" name="buynow[productImg]"
+                                        value="{{ $product->product_img }}">
+                                    <input type="hidden" name="buynow[productName]"
+                                        value="{{ $product->product_name }}">
+                                    <input type="hidden" name="buynow[productPrice]"
+                                        value="{{ $product->product_price }}">
+                                    <input type="hidden" value="1" id="quantityHidden1"
+                                        name="buynow[productQuantity]" class="form-control">
+                                    <input type="hidden" name="buynow[productSize]" id="sizebox1">
+                                    <input type="submit" class="btn btn-success" value="Buy Now">
+                                </form>
+                                <form action="{{ route('storecart') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" value="1" id="quantityHidden2" name="productQuantity"
+                                        class="form-control">
+                                    <input type="hidden" name="productImg" value="{{ $product->product_img }}">
+                                    <input type="hidden" name="productName" value="{{ $product->product_name }}">
+                                    <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
+                                    <input type="hidden" name="productSize" id="sizebox2">
+                                    <input type="hidden" name="productId" value="{{ $product->id }}">
+                                    <input type="submit" class="btn btn-danger" value="Add to Cart">
+                                </form>
                             </div>
                         </div>
                     </div>

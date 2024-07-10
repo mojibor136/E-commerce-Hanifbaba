@@ -131,146 +131,6 @@
         visibility: visible;
     }
 
-
-    /* top products container css*/
-    .main-top-product-container {
-        margin: 25px 0
-    }
-
-    .main-top-product-container .type {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 5px 10px;
-        background: #A60DE4;
-    }
-
-    .main-top-product-container .type span {
-        font-size: 18px;
-        text-transform: capitalize;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        color: #fff;
-    }
-
-    .main-top-product-container .type a {
-        text-decoration: none;
-        text-transform: uppercase;
-        color: #fff;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        font-size: 12px;
-    }
-
-    .top-product-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        column-gap: 5px;
-        row-gap: 10px;
-    }
-
-    .top-product-container a {
-        text-decoration: none;
-    }
-
-    .top-product-card {
-        width: 100%;
-        background: #fff;
-        padding-bottom: 2px;
-        overflow: hidden;
-    }
-
-    .top-product-card .image {
-        width: 100%;
-    }
-
-    .top-product-card .image img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .top-product-card .name {
-        line-height: normal;
-        font-size: 14px;
-        color: #222;
-        padding: 2px 5px;
-        text-transform: capitalize;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        max-height: 2 * (14px + 4px);
-    }
-
-
-    .top-product-card .free-card {
-        padding: 2px 5px;
-    }
-
-    .top-product-card .free {
-        background: #02473e;
-        border-radius: 10px;
-        font-size: 11px;
-        text-transform: capitalize;
-        width: fit-content;
-        padding: 2px 8px;
-        padding-left: 5px;
-        color: #eee;
-        line-height: normal;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .top-product-card .free i {
-        font-size: 10px;
-    }
-
-    .top-product-card .price-card {
-        display: flex;
-        align-items: center;
-        padding: 3px 5px;
-        line-height: 1.1;
-        padding-bottom: 4px;
-        text-transform: uppercase;
-    }
-
-    .top-product-card .price-card .tk {
-        color: #96006d;
-        font-size: 16px;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-    }
-
-    .top-product-card .price-card .discount {
-        text-decoration: line-through;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        color: #333;
-        font-size: 14px;
-    }
-
-    .top-product-card .price-card .percent {
-        margin-left: 10px;
-        background: #af009c;
-        transform: skew(-18deg);
-        padding: 1px 10px;
-        color: #eee;
-        font-size: 12px;
-        line-height: normal;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-    }
-
     /*------ Category-container all css */
     .category-container {
         margin: 10px 0;
@@ -329,6 +189,11 @@
         object-fit: cover;
     }
 
+    .category-card a li:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+    }
+
     .category-img-card {
         padding: 5px;
         padding-bottom: 0;
@@ -360,174 +225,102 @@
         margin: 0 8px;
     }
 
-
-    /* top products container css*/
-    .main-product-container {
-        margin: 25px 0;
-        margin-bottom: 10px;
+    .product-container .product-header {
+        text-align: center;
+        padding: 10px 0;
+        padding-bottom: 15px;
     }
 
-    .main-product-container .type {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 5px 10px;
-        background: #A60DE4;
-    }
-
-    .main-product-container .type span {
-        font-size: 18px;
-        text-transform: capitalize;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        color: #fff;
-    }
-
-    .main-product-container .type a {
-        text-decoration: none;
+    .product-container .product-header h4 {
         text-transform: uppercase;
-        color: #fff;
+        margin: 0;
         font-family: "Roboto", sans-serif;
         font-weight: 500;
         font-style: normal;
-        font-size: 12px;
     }
 
-    .product-container {
+    .product-container .product-header span {
+        text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+    }
+
+    .product-container .product-content {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        column-gap: 5px;
-        row-gap: 15px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
     }
 
-    .product-container a {
+    .product-card a {
         text-decoration: none;
     }
 
-    .product-card {
-        width: 100%;
-        background: #fff;
-        padding-bottom: 2px;
+    .product-content .product-card .card {
+        border: none;
+    }
+
+    .product-content .product-card .product-img {
+        border: 1px solid #ddd;
+        box-shadow: 4px 2px 20px 0px #b4c9d3;
         overflow: hidden;
     }
 
-    .product-card .image {
+    .product-content .product-card .card img {
         width: 100%;
     }
 
-    .product-card .image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    .product-content .product-card .card:hover img {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
     }
 
-    .product-card .name {
-        line-height: normal;
-        font-size: 14px;
-        color: #222;
-        padding: 2px 5px;
+    .product-card .titel {
+        padding: 5px 7px;
         text-transform: capitalize;
+        line-height: normal;
+        padding-bottom: 0;
+        color: #222;
         font-family: "Roboto", sans-serif;
-        font-weight: 500;
+        font-weight: 400;
+        font-size: 16px;
         font-style: normal;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        max-height: 2 * (14px + 4px);
+        text-overflow: ellipsis;
     }
 
-    .product-card .free-card {
-        padding: 2px 5px;
+    .product-card .star {
+        padding: 0 7px;
+        padding-top: 0;
+        color: coral;
     }
 
-    .product-card .free {
-        background: #02473e;
-        border-radius: 10px;
-        font-size: 11px;
-        text-transform: capitalize;
-        width: fit-content;
-        padding: 2px 8px;
-        padding-left: 5px;
-        color: #eee;
-        line-height: normal;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .product-card .free i {
-        font-size: 10px;
-    }
-
-    .product-card .price-card {
-        display: flex;
-        align-items: center;
-        padding: 3px 5px;
-        line-height: 1.1;
-        padding-bottom: 4px;
-        text-transform: uppercase;
-    }
-
-    .product-card .price-card .tk {
-        color: #96006d;
+    .product-card .price {
+        padding: 5px 7px;
+        padding-top: 0;
         font-size: 16px;
+        color: #222;
+        line-height: normal;
         font-family: "Roboto", sans-serif;
-        font-weight: 600;
+        font-weight: 400;
         font-style: normal;
     }
 
-    .product-card .price-card .discount {
+    .product-card .price .discount {
         text-decoration: line-through;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        color: #333;
+    }
+
+    .product-card .btn {
+        color: #fff;
+        text-transform: uppercase;
         font-size: 14px;
-    }
-
-    .product-card .price-card .percent {
-        margin-left: 10px;
-        background: #af009c;
-        transform: skew(-18deg);
-        padding: 1px 10px;
-        color: #eee;
-        font-size: 12px;
-        line-height: normal;
+        padding: 10px;
+        width: 100%;
+        border-radius: 3px;
         font-family: "Roboto", sans-serif;
         font-weight: 500;
-        font-style: normal;
-    }
-
-    /* button more shoping */
-    .load-more {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .load-more .load-card {
-        text-align: center;
-        line-height: normal;
-    }
-
-    .load-more .load-card:hover {
-        background: #ddd;
-    }
-
-    .load-more .load-card a {
-        border: 1px solid #777;
-        border-radius: 5px;
-        display: block;
-        padding: 10px 50px;
-        font-size: 11px;
-        text-decoration: none;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
         font-style: normal;
     }
 
@@ -592,18 +385,80 @@
         }
     }
 
+    /* shop-container html code */
+    .shop-container {
+        padding: 35px 0px;
+        padding-top: 0px;
+    }
+
+    .shop-container .shop-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+    }
+
+    .shop-container .shop-content a {
+        text-decoration: none;
+    }
+
+    .shop-container .shop-hadding {
+        text-align: center;
+        line-height: normal;
+        padding: 10px 0;
+        padding-bottom: 15px;
+        color: #333;
+    }
+
+    .shop-container .shop-hadding h4 {
+        text-transform: uppercase;
+        margin: 10px 0;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .shop-container .shop-hadding span {
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+    }
+
+    .shop-container .shop-content a .text {
+        padding: 5px 0;
+        line-height: normal;
+    }
+
+    .shop-container .shop-content a .text span {
+        color: #333;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .shop-container .shop-content a .text span strong {
+        font-weight: 500;
+        font-size: 14px;
+        margin-left: 5px;
+    }
+
+    .shop-container .shop-content .card {
+        box-shadow: 4px 2px 20px 0px #b4c9d3;
+        overflow: hidden;
+    }
+
+    .shop-container .shop-content .card img {
+        width: 100%;
+    }
+
+    .product-container {
+        margin: 15px 0;
+    }
+
     /* Media query for screens between 1024px and 768px */
     @media screen and (max-width: 1024px) {
         .main-container {
             padding: 0px 60px;
-        }
-
-        .top-product-card .image {
-            width: 100%;
-        }
-
-        .product-card .image {
-            width: 100%;
         }
 
         .banner-container .banner-categories {
@@ -616,14 +471,6 @@
     @media screen and (max-width: 768px) {
         .main-container {
             padding: 0 20px;
-        }
-
-        .top-product-container {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .product-container {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
         }
     }
 
@@ -649,10 +496,6 @@
             border-radius: 0;
         }
 
-        .top-product-container {
-            grid-template-columns: 1fr 1fr;
-        }
-
         .category-card ul {
             height: 210px;
             overflow: hidden;
@@ -660,36 +503,6 @@
 
         .category-card a li img {
             height: 75px;
-        }
-
-        .main-top-product-container {
-            margin: 0;
-            padding: 10px 0;
-        }
-
-        .main-product-container {
-            margin: 0;
-            padding: 10px 0;
-        }
-
-        .product-container {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .top-product-card .name {
-            color: #444;
-        }
-
-        .top-product-card .price .discount {
-            color: #555;
-        }
-
-        .product-card .name {
-            color: #444;
-        }
-
-        .product-card .price .discount {
-            color: #555;
         }
 
         .home-icon-container {
@@ -774,10 +587,22 @@
             padding-left: 15px;
         }
 
-        .side-nav-container .form-control:focus {
+        .form-control:focus-visible {
             outline-color: none;
             border: none;
             outline: none;
+        }
+
+        .product-container .product-content {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .shop-container {
+            padding-top: 10px;
+        }
+
+        .shop-container .shop-content {
+            grid-template-columns: 1fr 1fr 1fr;
         }
     }
 
@@ -797,41 +622,20 @@
             height: 200px;
         }
 
-        .main-top-product-container {
-            margin: 0;
-            padding: 10px 5px;
-        }
-
-        .main-product-container {
-            margin: 0;
-            padding: 10px 5px;
-        }
-
-        .category-card ul {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-
-        .main-product-container {
-            margin: 0;
-            padding: 10px 5px;
-        }
-
-        .main-product-container {
-            margin: 0;
-            padding: 10px 5px;
-        }
-
-    }
-
-    /* Media query for screens below 380px */
-    @media screen and (max-width: 375px) {
-        .top-product-container {
+        .product-container .product-content {
             grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
-        .product-container {
+        .shop-container .shop-content {
             grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
+
+        .shop-container .shop-content a .text span {
+            font-size: 14px;
+        }
+
     }
 </style>
 
@@ -850,7 +654,8 @@
                             </a>
                         @else
                             @foreach ($sidecategory as $category)
-                                <a href="">{{ $category->category_name }}</a>
+                                <a
+                                    href="{{ route('filterproduct', ['id' => ':id', 'slug' => ':slug']) }}">{{ $category->category_name }}</a>
                             @endforeach
                         @endif
                     </div>
@@ -869,90 +674,79 @@
                 </div>
             </div>
         </div>
-        {{-- top products container --}}
-        <div class="main-top-product-container">
-            <div class="type">
-                <span>top products</span>
-                <a href="">shop more</a>
+        {{-- Shop By Department --}}
+        <div class="shop-container" id="shop">
+            <div class="shop-hadding">
+                <h4>Shop By Department</h4>
+                <span>Take A Look At Our Other Products</span>
             </div>
-            <div class="top-product-container">
-                @foreach ($products as $product)
-                    <a href="{{ route('singleproduct', $product->id) }}">
-                        <div class="top-product-card">
-                            <div class="image">
-                                <img src="{{ asset('assets/ProductImg/' . $product->product_img) }}" alt="">
-                            </div>
-                            <div class="name">
-                                {{ $product->product_name }}
-                            </div>
-                            <div class="free-card">
-                                <div class="free">
-                                    <i class="ri-star-fill"></i>
-                                    <span>free delivery</span>
-                                </div>
-                            </div>
-                            <div class="price-card">
-                                <div>
-                                    <span class="tk">৳{{ $product->product_price }}</span>
-                                    <span class="discount">৳{{ $product->regular_price }}</span>
-                                </div>
-                            </div>
+            <div class="shop-content">
+                @foreach ($categories as $category)
+                    <a href="{{ route('singleproduct', ['id' => $category->id]) }}">
+                        <div class="card">
+                            <img src="{{ asset('CategoryImg/' . $category->category_img) }}" alt="">
+                        </div>
+                        <div class="text">
+                            <span>{{ $category->category_name }}<strong>({{ $category->product_count }})</strong></span>
                         </div>
                     </a>
                 @endforeach
             </div>
         </div>
-        {{-- /* Category-container all html*/ --}}
-        <div class="category-container">
-            <div class="type">
-                <span>all category</span>
-                <a href="">shop more</a>
+
+        {{-- product html code --}}
+        <div class="product-container">
+            <div class="product-header">
+                <h4>new products</h4>
+                <span>first-class quality products for appying eyelash extensions</span>
             </div>
-            <div class="card category-card border-0">
-                <ul class="category-list"><!-- Added a class for easier targeting -->
-                    <!-- Categories will be dynamically added here -->
-                </ul>
-            </div>
-        </div>
-        {{-- top products container --}}
-        <div class="main-product-container">
-            <div class="type">
-                <span>just for you</span>
-                <a href="">shop more</a>
-            </div>
-            <div class="product-container">
+            <div class="product-content">
                 @foreach ($products as $product)
-                    <a href="{{ route('singleproduct', $product->id) }}">
-                        <div class="product-card">
-                            <div class="image">
-                                <img src="{{ asset('assets/ProductImg/' . $product->product_img) }}" alt="">
-                            </div>
-                            <div class="name">
-                                {{ $product->product_name }}
-                            </div>
-                            <div class="free-card">
-                                <div class="free">
+                    <div class="product-card">
+                        <a href="{{ route('singleproduct', $product->id) }}">
+                            <div class="card">
+                                <div class="card product-img">
+                                    <img src="{{ asset('ProductImg/' . $product->product_img) }}" alt="">
+                                </div>
+                                <div class="titel">
+                                    <span>{{ $product->product_name }}</span>
+                                </div>
+                                <div class="star">
                                     <i class="ri-star-fill"></i>
-                                    <span>cash delivery</span>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
                                 </div>
+                                <div class="price">
+                                    @if ($product->regularPrice)
+                                        <div class="discount">
+                                            <span>DKK {{ $product->regular_price }}.00</span>
+                                        </div>
+                                    @endif
+                                    <span>DKK {{ $product->product_price }}.00</span>
+                                </div>
+                                @if ($product->quantity > 0)
+                                    <a href="javascript:void(0);" class="btn btn-dark" onclick="submitForm(this);">
+                                        <span class="ri-shopping-cart-line"></span>
+                                        addtocart
+                                    </a>
+                                @else
+                                    <input type="submit" class="btn btn-dark" disabled value="out of stock">
+                                @endif
+                                <form action="{{ route('storecart') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="1" id="quantityHidden2" name="productQuantity"
+                                        class="form-control">
+                                    <input type="hidden" name="productImg" value="{{ $product->productImg }}">
+                                    <input type="hidden" name="productName" value="{{ $product->productName }}">
+                                    <input type="hidden" name="productPrice" value="{{ $product->productPrice }}">
+                                    <input type="hidden" name="productId" value="{{ $product->id }}">
+                                </form>
                             </div>
-                            <div class="price-card">
-                                <div>
-                                    <span class="tk">৳{{ $product->product_price }}</span>
-                                    <span class="discount">৳{{ $product->regular_price }}</span>
-                                </div>
-                                <div class="percent">
-                                    <span>10%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 @endforeach
-            </div>
-        </div>
-        <div class="load-more">
-            <div class="load-card">
-                <a href="">LOAD MORE</a>
             </div>
         </div>
     </div>
@@ -1054,11 +848,9 @@
             .then(data => {
                 data.forEach(item => {
                     let CategoryName = item.category_name.split(' ');
-                    let CategoryId = item.id;
                     let CategoryImg = item.category_img;
-                    let CategorySlug = item.slug;
-                    let imageUrl = `/assets/CategoryImg/${CategoryImg}`;
-                    let url = '';
+                    let imageUrl = `/CategoryImg/${CategoryImg}`;
+                    let url = '{{ route('filterproduct', ['id' => ':id', 'slug' => ':slug']) }}';
                     url = url.replace(':id', item.id).replace(':slug', item.slug);
                     CategoryNames +=
                         `<a href="${url}">

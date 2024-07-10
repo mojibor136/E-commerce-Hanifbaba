@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
 </head>
 <style>
+    body {
+        background: #fbf7f5;
+    }
+
     .main-container {
         padding: 0 80px;
     }
@@ -159,90 +163,130 @@
         border-bottom: 1px solid #d7d7d7;
     }
 
-    .sort-content .category-filter .dropdown-bar {
-        margin-bottom: 5px;
-        position: relative;
-        box-sizing: border-box;
-        background: #333;
-        cursor: pointer;
+    /* Products container all css */
+    .main-product-container {
+        margin: 25px 0;
+        margin-bottom: 10px;
     }
 
-    .sort-content .category-filter .dropdown-bar .select-bar {
+    .main-product-container .type {
+        width: 100%;
+        padding: 5px 10px;
+    }
+
+    .main-product-container .type span {
+        font-size: 18px;
+        text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        color: #444;
+    }
+
+    .product-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        column-gap: 5px;
+        row-gap: 15px;
+    }
+
+    .product-container a {
+        text-decoration: none;
+    }
+
+    .product-card {
+        width: 100%;
+        background: #fff;
+        padding-bottom: 2px;
+        overflow: hidden;
+    }
+
+    .product-card .image {
+        width: 100%;
+    }
+
+    .product-card .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-card .name {
+        line-height: normal;
+        font-size: 14px;
+        color: #222;
+        padding: 2px 5px;
+        text-transform: capitalize;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-height: 2 * (14px + 4px);
+    }
+
+    .product-card .free-card {
+        padding: 2px 5px;
+    }
+
+    .product-card .free {
+        background: #02473e;
+        border-radius: 10px;
+        font-size: 11px;
+        text-transform: capitalize;
+        width: fit-content;
+        padding: 2px 8px;
+        padding-left: 5px;
+        color: #eee;
+        line-height: normal;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .product-card .free i {
+        font-size: 10px;
+    }
+
+    .product-card .price-card {
         display: flex;
         align-items: center;
-        color: #e9ecef;
-        background-color: transparent;
-        padding: 7px 25px;
+        padding: 3px 5px;
+        line-height: 1.1;
+        padding-bottom: 4px;
+        text-transform: uppercase;
+    }
+
+    .product-card .price-card .tk {
+        color: #96006d;
+        font-size: 16px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+    }
+
+    .product-card .price-card .discount {
+        text-decoration: line-through;
+        font-family: "Roboto", sans-serif;
         font-weight: 500;
-        text-transform: capitalize;
+        font-style: normal;
+        color: #333;
+        font-size: 14px;
     }
 
-    .sort-content .category-filter .dropdown-bar .select-bar .caret {
-        border-right: 5px solid transparent;
-        border-left: 5px solid transparent;
-        border-top: 6px solid #e9ecef;
-        margin-left: 7px;
-        margin-top: 2px;
-    }
-
-    .sort-content .category-filter .dropdown-bar .category-bar {
-        display: none;
-        position: absolute;
-        z-index: 10;
-        width: -webkit-fill-available;
-        top: 100%;
-        background: #f8f9fa;
-        border: 1px solid #dee2e6;
-        border-radius: 5px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        margin: 0;
-        padding: 0;
-        cursor: pointer;
-    }
-
-    .sort-content .category-filter .dropdown-bar .category-bar a {
-        display: block;
-        padding: 5px 10px;
-        text-decoration: none;
-        color: #41464b;
-        border-bottom: 1px solid #dee2e6;
-        font-size: 15px;
+    .product-card .price-card .percent {
+        margin-left: 10px;
+        background: #af009c;
+        transform: skew(-18deg);
+        padding: 1px 10px;
+        color: #eee;
+        font-size: 12px;
+        line-height: normal;
+        font-family: "Roboto", sans-serif;
         font-weight: 500;
-        text-transform: capitalize;
-    }
-
-    .sort-content .category-filter .dropdown-bar .category-bar a:hover {
-        color: #f8f9fa;
-        background: #41464b;
-    }
-
-    .sort-content .category-filter .dropdown-bar .category-bar-block {
-        display: block;
-    }
-
-    /* Products container all css */
-    .product-container {
-        margin: 0;
-    }
-
-    .product-container .type {
-        padding: 8px 2px;
-    }
-
-    .product-container .type span {
-        text-transform: capitalize;
-        font-weight: 500;
-        font-size: 17px;
-        color: #41464b;
-    }
-
-    .product-container .product-card {
-        background-color: transparent;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 10px;
-        border: none;
+        font-style: normal;
     }
 
     .product-container .massage {
@@ -262,10 +306,6 @@
         .category-card ul {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         }
-
-        .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
     }
 
     @media (max-width: 768px) {
@@ -275,10 +315,6 @@
 
         .category-card ul {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        }
-
-        .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr;
         }
     }
 
@@ -359,11 +395,7 @@
             width: 160px;
         }
 
-        .product-container .product-card {
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 5px;
-        }
-        .footer{
+        .footer {
             margin-bottom: 0;
         }
     }
@@ -416,11 +448,6 @@
             font-display: 13px;
         }
 
-        .product-container .product-card {
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
-        }
-
         @media (max-width: 475px) {
             .main-container {
                 padding: 0 4px;
@@ -448,10 +475,6 @@
                 width: 150px;
             }
 
-            .product-container .product-card {
-                grid-template-columns: 1fr;
-                gap: 5px;
-            }
         }
 
         @media (max-width: 320px) {
@@ -487,13 +510,13 @@
                         $categories = getCategoryData();
                     @endphp
                     @foreach ($categories as $category)
-                        <a href="{{ route('category.product', ['id' => $category->id, 'slug' => $category->slug]) }}">
+                        <a href="{{ route('filterproduct', ['id' => $category->id, 'slug' => $category->slug]) }}">
                             <li><span>{{ $category->category_name }}</span></li>
                         </a>
                     @endforeach
                 </ul>
 
-                <form action="{{ route('PriceFiltur') }}" method="get">
+                <form action="{{ route('pricefilter') }}" method="get">
                     <ul>
                         <span class="type">price</span>
                         <li>
@@ -539,7 +562,7 @@
                         <span>Indian</span>
                     </li>
                 </ul>
-                <form action="{{ route('SizeFiltur') }}" method="get">
+                <form action="{{ route('sizefilter') }}" method="get">
                     <ul>
                         <span class="type">size</span>
                         <li>
@@ -643,100 +666,56 @@
             </div>
             <div class="product-content">
                 <div class="filter-box">
-                    @if (isset($categorySlugs))
-                        @foreach ($categorySlugs as $slug)
-                            <h1> {{ $slug->slug }}</h1>
-                        @endforeach
-                    @else
-                        @foreach ($categoriesData as $category)
-                            <h1>{{ $category['categorySlug'] }}</h1>
-                        @endforeach
-                    @endif
                     <div class="sort-content">
                         <div class="result-bar">
                             <span>11,174 items found for</span>
-                            @if (isset($categorySlugs))
-                                @foreach ($categorySlugs as $slug)
-                                    <span>
-                                        {{ $slug->slug }}
-                                    </span>
-                                @endforeach
-                            @else
-                                @foreach ($categoriesData as $category)
-                                    <span>{{ $category['categorySlug'] }}</span>
-                                @endforeach
-                            @endif
                         </div>
-                        <div class="category-filter">
-                            <div class="dropdown-bar  Click-Category">
-                                <div class="select-bar">
-                                    <span class="selected">
-                                        @if (isset($categorySlugs))
-                                            @foreach ($categorySlugs as $slug)
-                                                <span> {{ $slug->slug }}</span>
-                                            @endforeach
-                                        @else
-                                            @foreach ($categoriesData as $category)
-                                                <span>{{ $category['categorySlug'] }}</span>
-                                            @endforeach
-                                        @endif
-                                    </span>
-                                    <div class="caret"></div>
-                                </div>
-                                <ul class="category-bar">
-                                    @php
-                                        $categories = getCategoryData();
-                                    @endphp
-                                    @foreach ($categories as $category)
-                                        <a
-                                            href="{{ route('category.product', ['id' => $category->id, 'slug' => $category->slug]) }}">{{ $category->category_name }}</a>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
+                        <select name="" id="">
+                            @php
+                                $categories = getCategoryData();
+                            @endphp
+                            <option disabled selected>Select Category</option>
+                            @foreach ($categories as $category)
+                                <option value="" style="text-transform: capitalize;">{{ $category->category_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                {{-- /* Products container all html*/ --}}
-                <div class="product-container">
-                    @if (isset($error))
-                        <div class="massage">
-                            <span>{{ $error }} Not available products</span>
-                        </div>
-                    @else
-                        <div class="type">
-                            <span>All products</span>
-                        </div>
-                        <div class="card product-card">
-                            @foreach ($priceProducts ?? ($products ?? $productSizes) as $Product)
-                                <a
-                                    href="{{ route('product.details', ['id' => $Product->id, 'productName' => $Product->product_name]) }}">
-                                    <li class="card">
-                                        <img src="{{ asset('assets/image/ProductImg/' . $Product->product_img) }}"
+                {{-- top products container --}}
+                <div class="main-product-container">
+                    <div class="type">
+                        <span>category by products</span>
+                    </div>
+                    <div class="product-container">
+                        @foreach ($priceProducts ?? ($products ?? $productSizes) as $product)
+                            <a href="{{ route('singleproduct', $product->id) }}">
+                                <div class="product-card">
+                                    <div class="image">
+                                        <img src="{{ asset('assets/ProductImg/' . $product->product_img) }}"
                                             alt="">
-                                        <div class="text">
-                                            <span class="titel">{{ $Product->product_name }}</span>
-                                            <div class="price">
-                                                <span class="price">bdt:{{ $Product->product_price }}</span>
-                                                <div class="discount">
-                                                    <span>bdt:570</span>
-                                                </div>
-                                            </div>
-                                            <div class="star">
-                                                <i class="ri-star-fill"></i>
-                                                <i class="ri-star-fill"></i>
-                                                <i class="ri-star-fill"></i>
-                                                <i class="ri-star-fill"></i>
-                                                <i class="ri-star-half-line"></i>
-                                                <span>(25)</span>
-                                                <div class="charge">
-                                                    <span>free</span>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    <div class="name">
+                                        {{ $product->product_name }}
+                                    </div>
+                                    <div class="free-card">
+                                        <div class="free">
+                                            <i class="ri-star-fill"></i>
+                                            <span>cash delivery</span>
                                         </div>
-                                    </li>
-                                </a>
-                            @endforeach
-                    @endif
+                                    </div>
+                                    <div class="price-card">
+                                        <div>
+                                            <span class="tk">৳{{ $product->product_price }}</span>
+                                            <span class="discount">৳{{ $product->regular_price }}</span>
+                                        </div>
+                                        <div class="percent">
+                                            <span>10%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -750,14 +729,14 @@
             .then(data => {
                 data.forEach(item => {
                     let CategoryName = item.category_name.split(' ', 1);
-                    let CategoryId = item.id;
-                    let CategorySlug = item.slug;
-                    var url = '{{ route('category.product', ['id' => ':id', 'slug' => ':slug']) }}';
+                    let CategoryImg = item.category_img;
+                    let imageUrl = `/CategoryImg/${CategoryImg}`;
+                    var url = '{{ route('filterproduct', ['id' => ':id', 'slug' => ':slug']) }}';
                     url = url.replace(':id', item.id).replace(':slug', item.slug);
                     CategoryNames +=
                         `<a href="${url}" class="card">
                     <li>
-                    <img src="{{ asset('assets/img/banner/vivo.jfif') }}" alt="">
+                    <img src="${imageUrl}" alt="">
                     <span>${CategoryName.join(' ')}</span>
                     </li>
                 </a>`;

@@ -20,4 +20,8 @@ class CheckoutController extends Controller
             $processeData = array_merge($productItems);
             return $processeData;
         }
+
+        public function StoreShipping(Request $request){
+            dd($request->all());
+        }
 }

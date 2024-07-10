@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('product_price');
             $table->integer('regular_price');
             $table->string('product_quantity');
-            $table->string('product_brand');
             $table->integer('product_category_id');
             $table->string('product_category_name');
             $table->integer('product_subcategory_id');

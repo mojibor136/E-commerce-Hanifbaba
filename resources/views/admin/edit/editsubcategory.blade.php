@@ -1,33 +1,80 @@
-@extends('admin.layout.tempalate')
+@extends('admin.dashboard')
 @section('content')
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Update SubCategory</title>
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </head>
     <style>
-        .add-subcategory {
-            margin: 50px 100px;
-            padding: 20px;
-            background-color: #Fff;
-            border-radius: 10px;
+        .main {
+            grid-template-columns: 1fr;
+        }
+
+        .all-product-container {
+            background: #fff;
+            padding: 30px;
+            width: 100%;
+        }
+
+        .product-header {
+            text-transform: uppercase;
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .product-link-content {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        label {
+            margin-top: 5px;
+            margin-bottom: 2px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
         }
     </style>
-    <div class="add-subcategory">
-        <div class="card-header d-flex justify-content-between align-items-center mb-3">
-            <h5 class="mb-0">UPDATE SUBCATEGORY</h5>
-            <small class="text-muted float-end"><a href="{{ route('allsubcategory') }}" style="text-decoration: none;"
-                    class="text-success">View Data</a></small>
-        </div>
-        @if (session()->has('massage'))
-            <li class="text-success mb-2">{{ session()->get('massage') }}</li>
-        @endif
-        <div class="card-body">
-            <form action="{{ route('updatesubcategory') }}" method="POST">
-                @csrf
-                <input type="hidden" value="{{ $subcategories->id }}" name="subcategory_id">
-                <div class="mb-2">
-                    <label class="form-label mb-1" for="basic-default-fullname">UPDATE SUBCATEGORY</label>
-                    <input type="text" class="form-control" id="basic-default-fullname" name="subcategory_name"
-                        value="{{ $subcategories->subcategory_name }}" placeholder="ADD CATEGORY" required>
+
+    <body>
+        <div class="all-product-container">
+            <div class="product-header">
+                <span>Update SubCategory</span>
+            </div>
+            <div class="all-product-content">
+                <div class="product-link-content">
+                    <div class="add">
+                        <a href="{{ route('allsubcategory') }}" class="btn btn-success">All SubCategories</a>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-2">UPDATE SUBCATEGORY</button>
-            </form>
+                <div class="product-content">
+                    <form action="{{ route('updatesubcategory') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div>
+                            @error('subcategory_name')
+                                <div class="text-danger error">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="subcategory_name">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter SubCategory Name"
+                                    name="subcategory_name" value="{{ $subcategories->subcategory_name }}">
+                            </div>
+                            <input type="hidden" value="{{ $subcategories->id }}" name="id">
+                            <button type="submit" class="btn btn-primary mt-3">Update SubCategory</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
+    </body>
+
+    </html>
 @endsection

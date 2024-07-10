@@ -1,44 +1,91 @@
-@extends('admin.layout.tempalate')
+@extends('admin.dashboard')
 @section('content')
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Update Category</title>
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    </head>
     <style>
-        .add-category {
-            margin: 50px 100px;
-            padding: 20px;
-            background-color: #Fff;
-            border-radius: 10px;
+        .main {
+            grid-template-columns: 1fr;
         }
 
-        .main-content .content-ul {
-            right: 0px;
+        .all-product-container {
+            background: #fff;
+            padding: 30px;
+            width: 100%;
+        }
+
+        .product-header {
+            text-transform: uppercase;
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+        }
+
+        .product-link-content {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        label {
+            margin-top: 5px;
+            margin-bottom: 2px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
         }
     </style>
-    <div class="add-category">
-        <div class="card-header d-flex justify-content-between align-items-center mb-3">
-            <h5 class="mb-0">UPDATE CATEGORY</h5>
-            <small class="text-muted float-end"><a href="{{ route('allcategory') }}" style="text-decoration: none;"
-                    class="text-success">View Data</a></small>
+
+    <body>
+        <div class="all-product-container">
+            <div class="product-header">
+                <span>Update Categories</span>
+            </div>
+            <div class="all-product-content">
+                <div class="product-link-content">
+                    <div class="add">
+                        <a href="{{ route('allcategory') }}" class="btn btn-success">All Categories</a>
+                    </div>
+                </div>
+                <div class="product-content">
+                    <form action="{{ route('updatecategory') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div>
+                            @error('category_name')
+                                <div class="text-danger error">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group">
+                                <label for="category_name">Name</label>
+                                <input type="text" class="form-control" placeholder="Enter Category Name"
+                                    name="category_name" value="{{ $category->category_name }}">
+                            </div>
+                            @error('category_img')
+                                <div class="text-danger error">{{ $message }}</div>
+                            @enderror
+                            <div class="form-group mt-1">
+                                <img src="{{ url('CategoryImg/' . $category->category_img) }}" width="50"
+                                    alt="">
+                            </div>
+                            <div>
+                                <label for="category_img" class="form-label mb-1">Add Image</label>
+                                <input class="form-control" type="file" id="category_img" name="category_img" />
+                            </div>
+                            <input type="hidden" value="{{ $category->id }}" name="id">
+                            <button type="submit" class="btn btn-primary mt-3">Update Categories</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <form action="{{ route('updatecategory') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @foreach ($category as $category)
-                    <input type="hidden" value="{{ $category->id }}" name="category_id">
-                    <div class="mb-2">
-                        <label class="form-label mb-1" for="basic-default-fullname">UPDATE CATEGORY</label>
-                        <input type="text" class="form-control" id="basic-default-fullname" name="category_name"
-                            value="{{ $category->category_name }}" placeholder="ADD CATEGORY" required>
-                    </div>
-                    <div>
-                        <label for="formFileDisabled" class="form-label mb-1">UPDATE CATEGORY IMG</label>
-                        <input class="form-control" type="file" id="formFileDisabled" name="category_img" />
-                    </div>
-                    <div class="img">
-                        <img src="{{ asset('assets/CategoryImg/' . $category->category_img) }}" alt=""
-                            width="50" height="50" class="mt-2">
-                    </div>
-                @endforeach
-                <button type="submit" class="btn btn-primary mt-2">UPDATE CATEGORY</button>
-            </form>
-        </div>
-    </div>
+    </body>
+
+    </html>
 @endsection

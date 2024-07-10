@@ -3,7 +3,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommonController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -46,17 +50,62 @@ Route::controller(SubCategoryController::class)->group(function () {
     Route::get('/delete/subcategory/{id}' , 'DeleteSubCategory')->name('deletesubcategory');
     Route::get('/edit/subcategory/{id}' , 'EditSubCategory')->name('editsubcategory');
     Route::post('/update/subcategory' ,'UpdateSubCategory')->name('updatesubcategory');
-}); 
+});
+
+Route::controller(OrderController::class)->group(function(){
+    Route::get('/all/order', 'AllOrder')->name('allorder');
+    Route::get('/view/order/{orderId}', 'ViewOrder')->name('vieworder');
+    Route::get('/processing/order/{id}', 'processing')->name('processingorder');
+    Route::get('/completed/order/{id}', 'completed')->name('completedorder');
+    Route::get('/cancelled/order/{id}', 'cancelled')->name('cancelledorder');
+});
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/all/user', 'AllUser')->name('alluser');
+    Route::get('/delete/user/{id}' , 'DeleteUser')->name('deleteuser');
+});
+
 Route::controller(ProductController::class)->group(function () {
     Route::get('/' , 'Index')->name('home');
     Route::get('/single/product{id}' , 'SingleProduct')->name('singleproduct');
+    Route::get('/filter/products{id}/{slug}', 'FilterProduct')->name('filterproduct');
+    Route::get('/price/filter' , 'PriceFilter')->name('pricefilter');
+    Route::get('/size/filter', 'SizeFilter')->name('sizefilter');
+    Route::get('/shop' , 'Shop')->name('shop');
     Route::get('/GetCategoriesData','GetCategoriesData')->name('GetCategoriesData');
     Route::get('/test' , 'Test')->name('test');
 });
+
+Route::controller(Controller::class)->group(function(){
+    Route::post('/question' , 'Question')->name('question');
+    Route::get('/all/question' , 'AllQuestion')->name('allquestion');
+    Route::get('/answer/{id}' , 'Answer')->name('answer');
+    Route::post('/answer/update' , 'AnswerUpdate')->name('answerupdate');
+});
+
+Route::controller(SettingsController::class)->group(function(){
+    Route::get('/setting', 'Setting')->name('setting');
+    Route::prefix('settings')->group(function(){
+        Route::get('/banner/change', 'BannerChange')->name('bannerchange');
+        Route::post('/banner/upload', 'BannerUpload')->name('bannerupload');
+        Route::get('banner/delete/{id}' , 'BannerDelete')->name('bannerdelete');
+        Route::get('/delivery/charge', 'Charge')->name('charge');
+        Route::post('/delivery/charge', 'StoreCharge')->name('storecharge');
+        Route::get('/logo/change' , 'LogoChange')->name('logochange');
+        Route::post('/logo/upload' , 'LogoUpload')->name('logoupload');
+        Route::get('/account/settings' , 'AccountSettings')->name('accountsettings');
+        Route::prefix('account/settings')->group(function(){
+            Route::get('/password/change' , 'PasswordChange')->name('passwordchange');
+            Route::post('/password/upload' , 'PasswordUpload')->name('passwordupload');
+        });
+        Route::post('/admin/update' , 'AdminUpdate')->name('adminupdate');
+    });
+});
+
 Route::middleware(['auth','web'])->group(function () {
     Route::controller(ProductController::class)->group(function () {
-        Route::get('/shipping' , 'Shipping')->name('shipping');
-    });
+        Route::get('/shipping', 'Shipping')->name('shipping');
+    });    
 });
 
 Route::middleware(['auth','web'])->group(function () {
@@ -65,6 +114,9 @@ Route::middleware(['auth','web'])->group(function () {
     });
     Route::controller(CheckoutController::class)->group(function(){
         Route::get('/Checkout', 'SandData')->name('sanddata');
+        Route::post('/store/shipping' , 'StoreShipping')->name('storeshipping');
+        Route::post('/order' , 'Order')->name('order');
+        Route::post('/payment' , 'Payment')->name('payment');
     });
     Route::controller(CartController::class)->group(function(){
         Route::get('/addtocart' , 'AddtoCart')->name('addtocart');

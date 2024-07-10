@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
 </head>
 <style>
@@ -24,15 +24,11 @@
         font-family: 'Noto Sans Bengali', Arial, sans-serif;
     }
 
-    body {
-        background: #fff;
-    }
-
     body::-webkit-scrollbar {
         display: none;
     }
 
-    /* TOP HEADER  */
+    /* TOP HEADER */
     .top-header {
         width: 100%;
         background-color: #dee2e6;
@@ -63,6 +59,7 @@
         color: #636464;
     }
 
+    /* HEADER */
     .headerContainer {
         position: fixed;
         top: 0;
@@ -103,142 +100,85 @@
         font-style: normal;
     }
 
-    .header-container .header-card .search-container {
-        width: 450px;
-    }
-
-    .header-container .header-card .search-container .search-card {
-        border: 1px solid #A60DE4;
-        border-radius: 20px;
-        width: 100%;
-    }
-
-    .header-container .header-card .search-container .search-card form {
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .header-container .header-card .search-container .search-card input {
-        border: none;
-        outline: none;
-        box-shadow: none;
-        padding: 0 0 0 5px;
-        vertical-align: middle;
-        color: #777;
-        width: 100%;
-        height: 37px;
-        font-size: 15px;
-        background: transparent;
-        font-family: "Roboto", sans-serif;
-        font-style: normal;
-    }
-
-    .search-container .search-card .categories-container {
-        cursor: pointer;
-        display: flex;
-        width: 130px;
-        align-items: center;
-    }
-
-    .search-container .search-card .categories-container .categories-card {
-        border-right: 1px solid #A60DE4;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 8px;
-        width: 100%;
-        padding-left: 10px;
+    /* SEARCH */
+    .search-container {
         position: relative;
     }
 
-    .search-container .search-card .categories-container .categories-card span {
-        color: #777;
-        font-size: 13px;
+    .search-container .search-content {
+        border: 1px solid #A60DE4;
+        padding: 0px 10px;
+        padding-right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .dropdown-category {
+        position: absolute;
+        top: 100%;
+        background: #fff;
+        color: #333;
+        padding: 10px 0;
+        z-index: 999;
+        display: none;
+        width: 200px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    .dropdown-category a {
+        display: block;
+        padding: 8px 15px;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .dropdown-category a:hover {
+        background-color: #f5f5f5;
+        /* Optional: Highlight on hover */
+    }
+
+    .search-container .search-content .h-category-container .h-category-content {
+        padding: 7px 0;
         font-family: "Roboto", sans-serif;
         font-weight: 500;
         font-style: normal;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+
+    .search-container .search-content .h-category-container .h-category-content span {
         text-transform: uppercase;
-    }
-
-    .search-container .search-card .categories-container .categories-card .arrow {
-        border-right: 6px solid transparent;
-        border-left: 6px solid transparent;
-        border-top: 7px solid #777;
-        margin-left: 5px;
-    }
-
-    .search-container .search-card .categories-container .categories-card .categories {
-        visibility: hidden;
-        position: absolute;
-        z-index: 99999;
-        top: 40px;
-        left: 0;
-        right: 0;
-        background-color: white;
-        width: fit-content;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
-
-    .search-container .search-card .categories-container .categories-card .categories .category {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .search-container .search-card .categories-container .categories-card .categories .category::-webkit-scrollbar {
-        display: none;
-    }
-
-    .search-container .search-card .categories-container .categories-card .categories .category span {
-        text-transform: capitalize;
-        padding: 5px 12px;
-        transition: color 0.3s, background-color 0.3s;
         color: #333;
         font-size: 14px;
-        font-family: "Roboto", sans-serif;
-        font-style: normal;
     }
 
-    .search-container .search-card .categories-container .categories-card .categories .category span:hover {
-        color: #A60DE4;
-        background-color: #f2f2f2;
-    }
-
-    .search-container .search-card .search-icons {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        line-height: normal;
-        padding: 0 7px;
-    }
-
-    .search-container .search-card .search-icons i {
-        color: #333;
-        font-size: 18px;
-        vertical-align: middle;
-    }
-
-    .header-container .header-card .icons-container {
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    .header-container .header-card .icons-container .icons-card {
+    .search-container .search-content .search-card {
         display: flex;
         align-items: center;
-        justify-content: space-around;
-    }
-
-    .header-container .header-card .icons-container .icons-card .icons {
-        text-decoration: none;
-        color: #333;
-        font-size: 18px;
-        cursor: pointer;
         margin: 0 10px;
     }
 
+    .search-container .search-content .search-card input {
+        border: none;
+        outline: none;
+        font-size: 16px;
+        padding: 0 5px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /* ICONS */
+    .search-container .search-content .search-card .search-icons {
+        cursor: pointer;
+    }
+
+    /* ACCOUNT */
     .header-container .header-card .icons-container .account-card .user-icons {
         padding: 0 10px;
         display: flex;
@@ -282,6 +222,7 @@
         font-style: normal;
     }
 
+    /* PROFILE */
     .header-container .profile-container {
         position: absolute;
         top: 100%;
@@ -311,10 +252,7 @@
         background-color: #f5f5f5;
     }
 
-    /* Default styles */
-    /* Your default CSS styles go here */
-
-    /* Media query for screens between 1280px and 1024px */
+    /* MEDIA QUERIES */
     @media screen and (max-width: 1440px) {
         .header-container {
             padding: 5px 115px;
@@ -327,15 +265,12 @@
         }
     }
 
-    /* Media query for screens between 1024px and 768px */
     @media screen and (max-width: 1024px) {
-
         .header-container {
             padding: 5px 40px;
         }
     }
 
-    /* Media query for screens between 768px and 480px */
     @media screen and (max-width: 768px) {
         .top-header ul li {
             padding: 0 5px;
@@ -368,10 +303,10 @@
         }
     }
 
-    /* Media query for screens between 480px and 380px */
-    @media screen and (max-width: 475px) {}
+    @media screen and (max-width: 475px) {
+        /* Styles for screens between 480px and 380px */
+    }
 
-    /* Media query for screens below 380px */
     @media screen and (max-width: 375px) {
         /* Styles for screens below 380px */
     }
@@ -393,42 +328,37 @@
             <div class="header-card">
                 <div class="logo">
                     <a href="{{ Route('home') }}">
-                        <img src="{{asset('logo/Hanif-Baba-2-2.png')}}" alt="">
+                        <img src="{{ asset('LogoImg/Hanif-Baba-2-2.png') }}" alt="">
                         <span>HANIF BABA</span>
                     </a>
                 </div>
                 <div class="search-container">
-                    <div class="search-card">
-                        <form action="" class="form">
-                            <div class="categories-container">
-                                <div class="categories-card">
-                                    <span class="showCategory">All-CATEGORY</span>
-                                    <div class="arrow"></div>
-                                    <div class="categories">
-                                        <div class="category">
-                                            @php
-                                                $sidecategory = getCategoryData();
-                                            @endphp
-                                            @if ($sidecategory->isEmpty())
-                                                <span
-                                                    class="text-danger d-flex justify-content-center align-items-center">
-                                                    Not available category</span>
-                                            @else
-                                                @foreach ($sidecategory as $category)
-                                                    <span>{{ $category->category_name }}</span>
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
+                    <form action="" class="form">
+                        <div class="search-content">
+                            <div class="dropdown h-category-container">
+                                <div class="h-category-content">
+                                    <span>All Category</span>
+                                    <i class="ri-arrow-down-s-fill"></i>
                                 </div>
                             </div>
-                            <input type="text" placeholder="Search in hanifbaba" class="input" required>
-                            <div class="search-icons">
-                                <i class="ri-search-line"></i>
+                            <div class="search-card">
+                                <input type="text" placeholder="Search in hanifbaba" class="input" required>
+                                <div class="search-icons">
+                                    <i class="ri-search-line"></i>
+                                </div>
                             </div>
-                        </form>
+                        </div>
+                    </form>
+                    @php
+                        $categories = getCategoryData();
+                    @endphp
+                    <div class="dropdown-category">
+                        @foreach ($categories as $category)
+                            <a class="dropdown-item" href="{{ $category->id }}">{{ $category->category_name }}</a>
+                        @endforeach
                     </div>
                 </div>
+
                 <div class="icons-container">
                     @if (Auth::check())
                         <div class="icons-card">
@@ -465,20 +395,40 @@
             </div>
         </div>
     </header>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     <script>
         let searchIcons = document.querySelector('.search-icons');
         let form = document.querySelector('.form');
-        let categories = document.querySelector('.categories');
-        let categoriesCard = document.querySelector('.categories-card');
         let arrow = document.querySelector('.arrow');
         let Input = document.querySelector('.input');
-        let categorycolorcard = document.querySelector('.categories-card');
-        let searchCard = document.querySelector('.search-card');
-        let showCategory = document.querySelector('.showCategory');
-        let category = document.querySelectorAll('.category span');
+        let searchCard = document.querySelector('.search-content');
         let accountCard = document.querySelector('.user-icons');
         let profileContainer = document.querySelector('.profile-container');
         let token = true;
+
+
+        let dropdownToggle = document.querySelector('.h-category-content');
+        let dropdownMenu = document.querySelector('.dropdown-category');
+
+        dropdownToggle.addEventListener('click', function(event) {
+            event.stopPropagation();
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            let isClickInside = dropdownToggle.contains(event.target) || dropdownMenu.contains(event.target);
+            if (!isClickInside) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+
+
 
         searchIcons.addEventListener('click', function() {
             if (Input.value.trim() !== '') {
@@ -486,15 +436,6 @@
             } else {
                 form.reportValidity();
             }
-        });
-
-        categoriesCard.addEventListener('click', function() {
-            if (token) {
-                categories.style.visibility = 'visible';
-            } else {
-                categories.style.visibility = 'hidden';
-            }
-            token = !token;
         });
 
         Input.addEventListener('focus', function() {
@@ -505,13 +446,6 @@
         Input.addEventListener('blur', function() {
             searchCard.style.border = '1px solid #A60DE4';
             categorycolorcard.style.borderRight = '1px solid #A60DE4';
-        });
-
-        category.forEach(Category => {
-            Category.addEventListener('click', function() {
-                let text = this.textContent;
-                showCategory.textContent = text;
-            });
         });
 
         window.addEventListener('scroll', function() {

@@ -31,7 +31,6 @@
     nav {
         background-color: #dc3545;
         width: 100%;
-        padding: 8px 30px 8px 30px;
         display: flex;
         justify-content: space-between;
         display: none;
@@ -261,7 +260,7 @@
 
     @media (max-width: 768px) {
         nav {
-            padding: 5px 10px;
+            padding: 0px 10px;
         }
 
         .main-container {
