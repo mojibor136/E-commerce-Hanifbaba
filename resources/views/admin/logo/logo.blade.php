@@ -5,7 +5,11 @@
 @endphp
 
 <head>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('LogoImg/' . $logos->logo) }}">
+    @if (!empty($logos->logo))
+        <link rel="shortcut icon" type="image/png" href="{{ asset('LogoImg/' . $logos->logo) }}">
+    @else
+        <link rel="shortcut icon" type="image/png" href="{{ asset('icon/icon.jpg') }}">
+    @endif
 </head>
 
 </html>

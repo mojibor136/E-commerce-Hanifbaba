@@ -1,5 +1,6 @@
 @include('layouts.header')
 @include('layouts.phoneHeader')
+@include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('logo/Hanif-Baba-2-2.png') }}">
     <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
@@ -682,7 +682,7 @@
             </div>
             <div class="shop-content">
                 @foreach ($categories as $category)
-                    <a href="{{ route('singleproduct', ['id' => $category->id]) }}">
+                    <a href="{{ route('viewproduct', ['id' => $category->id]) }}">
                         <div class="card">
                             <img src="{{ asset('CategoryImg/' . $category->category_img) }}" alt="">
                         </div>
@@ -703,7 +703,7 @@
             <div class="product-content">
                 @foreach ($products as $product)
                     <div class="product-card">
-                        <a href="{{ route('singleproduct', $product->id) }}">
+                        <a href="{{ route('viewproduct', $product->id) }}">
                             <div class="card">
                                 <div class="card product-img">
                                     <img src="{{ asset('ProductImg/' . $product->product_img) }}" alt="">
@@ -726,7 +726,7 @@
                                     @endif
                                     <span>DKK {{ $product->product_price }}.00</span>
                                 </div>
-                                @if ($product->quantity > 0)
+                                @if ($product->product_quantity > 0)
                                     <a href="javascript:void(0);" class="btn btn-dark" onclick="submitForm(this);">
                                         <span class="ri-shopping-cart-line"></span>
                                         addtocart

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/png" href="{{ asset('logo/Hanif-Baba-2-2.png') }}">
     <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
@@ -90,6 +89,7 @@
 
     .header-container .header-card .logo img {
         width: 60px;
+        margin: 0 4px;
     }
 
     .header-container .header-card .logo span {
@@ -178,6 +178,24 @@
         cursor: pointer;
     }
 
+    .header-container .header-card .icons-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .header-container .header-card .icons-container .icons-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-container .header-card .icons-container .icons-card a {
+        text-decoration: none;
+        font-size: 20px;
+        color: #333;
+    }
+
     /* ACCOUNT */
     .header-container .header-card .icons-container .account-card .user-icons {
         padding: 0 10px;
@@ -188,8 +206,8 @@
 
     .header-container .header-card .icons-container .account-card .user-icons img {
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         margin: 0 5px;
     }
 
@@ -287,10 +305,6 @@
         .header-container .header-card .logo span {
             display: none;
         }
-
-        .header-container .header-card .icons-container .icons-card {
-            display: none;
-        }
     }
 
     @media screen and (max-width: 640px) {
@@ -324,11 +338,18 @@
         </ul>
     </div>
     <header>
+        @php
+            $logos = getLogo();
+        @endphp
         <div class="header-container">
             <div class="header-card">
                 <div class="logo">
                     <a href="{{ Route('home') }}">
-                        <img src="{{ asset('LogoImg/Hanif-Baba-2-2.png') }}" alt="">
+                        @if (!empty($logos->logo))
+                            <img src="{{ asset('LogoImg/' . $logos->logo) }}" alt="">
+                        @else
+                            <img src="{{ asset('icon/icon.jpg') }}" alt="">
+                        @endif
                         <span>HANIF BABA</span>
                     </a>
                 </div>
@@ -369,7 +390,7 @@
                     <div class="account-card">
                         @if (Auth::check())
                             <div class="user-icons">
-                                <img src="{{ asset('logo/profile.png') }}" alt="no image">
+                                <img src="{{ asset('icon/icon.jpg') }}" alt="">
                                 <span>Mojibor</span>
                                 <div class="arrow"></div>
                             </div>

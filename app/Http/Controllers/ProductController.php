@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductImg;
-use App\Models\ProductSize;
+use App\Models\Question;
 
 class ProductController extends Controller {
     public function Index() {
@@ -15,12 +14,13 @@ class ProductController extends Controller {
         return view( 'welcome', compact( 'products', 'categories' ) );
     }
 
-    public function SingleProduct( $id ) {
-        $products = Product::findOrFail( $id )->get();
-        $productId = collect( $products )->pluck( 'id' )->toArray();
-        $sizes = ProductSize::where( 'product_id', $productId )->get();
-        $images = ProductImg::where( 'product_id', $productId )->get();
-        return view( 'product-view', compact( 'products', 'sizes', 'images' ) );
+    public function ViewProduct( $id ) {
+        $questions = Question::where( 'status', 1 )
+        ->where( 'productId', $id )
+        ->get();
+        $product = Product::findOrFail( $id );
+        $reviews = $product->reviews;
+        return view( 'productview', compact( 'product', 'questions', 'reviews' ) );
     }
 
     public function GetCategoriesData() {

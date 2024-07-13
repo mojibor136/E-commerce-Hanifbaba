@@ -272,14 +272,14 @@
         <i id="button" class="ri-menu-line"></i>
         <div class="admin-content">
             <div class="image">
-                @if ($admin->image)
-                    <img src="{{ asset('Admins/' . $admin->image) }}" alt="" width="45">
+                @if (!empty($admin) && !empty($admin->image))
+                    <img src="{{ asset('Admins/' . $admin->image) }}" alt="Admin Image" width="45">
                 @else
-                    <img src="{{ asset('Admins/profile.jpg') }}" alt="" width="45">
+                    <img src="{{ asset('Admins/profile.jpg') }}" width="45">
                 @endif
             </div>
             <div>
-                <span>{{ $admin->name }}</span>
+                <span>{{ !empty($admin->name) ? $admin->name : 'Name not available' }}</span>
             </div>
         </div>
     </header>
