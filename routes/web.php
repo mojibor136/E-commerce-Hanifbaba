@@ -116,7 +116,7 @@ Route::middleware(['auth', 'web'])->group(function () {
         Route::get('/receivedata', 'ReceiveData')->name('receivedata');
     });
     Route::controller(CheckoutController::class)->group(function () {
-        Route::get('/Checkout', 'SandData')->name('sanddata');
+        Route::post('/Checkout', 'SandData')->name('sanddata');
         Route::post('/store/shipping', 'StoreShipping')->name('storeshipping');
         Route::post('/order', 'Order')->name('order');
         Route::post('/payment', 'Payment')->name('payment');
@@ -125,6 +125,7 @@ Route::middleware(['auth', 'web'])->group(function () {
         Route::get('/addtocart', 'AddtoCart')->name('addtocart');
         Route::post('store/cart', 'StoreCart')->name('storecart');
         Route::post('/buynow', 'StoreBuyNow')->name('storebuynow');
+        Route::get('/delete/cart/{id}' , 'DeleteCart')->name('delete.cart');
     });
 });
 

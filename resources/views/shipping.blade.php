@@ -94,7 +94,7 @@
     }
 
     main .order-content table thead tr th {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     main .order-content table tbody tr td {
@@ -140,9 +140,9 @@
 
     main .summary-ul .summary-li p {
         margin: 5px 0;
-        font-size: 12.5px;
-        font-weight: 600;
-        color: #666666;
+        font-size: 14px;
+        font-weight: 500;
+        color: #333;
     }
 
     .btn-success {
@@ -211,6 +211,11 @@
     .button-container .button button {
         width: 100%;
         font-weight: 600;
+    }
+
+    .text-danger {
+        padding: 0;
+        margin: 2px 0;
     }
 
     /* Media queries for responsiveness */
@@ -307,37 +312,57 @@
         <main>
             <!-- ORDER FORM CUSTOMER DETAILS -->
             <div class="order-form">
-                <h4>Add New Address</h4>
+                <h4>Billing & Shipping</h4>
                 <div class="form-group">
+                    @error('name')
+                        <div class="alert text-danger">{{ $message }}</div>
+                    @enderror
                     <label for="Name">Full Name</label>
                     <input type="text" class="form-control" placeholder="Enter your Name" name="name">
                 </div>
                 <div class="form-group">
+                    @error('email')
+                        <div class="alert text-danger">{{ $message }}</div>
+                    @enderror
                     <label for="email">Email Address
                     </label>
                     <input type="email" class="form-control" placeholder="Enter your email" name="email">
                 </div>
                 <div class="form-group">
+                    @error('phone')
+                        <div class="alert text-danger">{{ $message }}</div>
+                    @enderror
                     <label for="phone">Mobile Number</label>
                     <input type="phone" class="form-control" placeholder="Enter your phone number" name="phone">
                 </div>
                 <div class="form-group">
+                    @error('division')
+                        <div class="alert text-danger">{{ $message }}</div>
+                    @enderror
                     <label for="">Division</label>
-                    <select name="" id="" class="form-control">
+                    <select name="division" id="" class="form-control">
                         <option value="" selected disabled>Select division</option>
+                        <option value="Barishal">Barishal</option>
+                        <option value="Rajshahi">Rajshahi</option>
                     </select>
                 </div>
                 <div class="form-group">
+                    @error('city')
+                        <div class="alert text-danger">{{ $message }}</div>
+                    @enderror
                     <label for="">City</label>
-                    <select name="" id="" class="form-control">
+                    <select name="city" id="" class="form-control">
                         <option value="" selected disabled>Select City</option>
-                        <option value="">Rangpur</option>
-                        <option value="">Dhaka</option>
-                        <option value="">Barishal</option>
-                         <option value="">Rajshahi</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Barishal">Barishal</option>
+                        <option value="Rajshahi">Rajshahi</option>
                     </select>
                 </div>
                 <div class="form-group">
+                    @error('address')
+                        <div class="alert text-danger">{{ $message }}</div>
+                    @enderror
                     <label for="Address">Address</label>
                     <input type="address" class="form-control" placeholder="Enter your Address" name="address">
                 </div>
@@ -374,18 +399,24 @@
                                 @endif
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('products/product4.png') }}" alt="">
+                                        <img src="{{ asset('ProductImg/' . $items['productImg']) }}" alt="">
                                     </td>
                                     <td></td>
                                     <td>{{ $items['productName'] }} X {{ $items['productQuantity'] }}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>৳{{ $items['productPrice'] }}</td>
+                                    <td>BDT {{ $items['productPrice'] }}</td>
                                 </tr>
                                 @php
                                     $totalPrice += $items['productPrice'];
                                 @endphp
+
+                                {{-- data pass and checkout product hidden input  --}}
+                                <input type="hidden" name="cname" value="{{ $items['productName'] }}">
+                                <input type="hidden" name="price" value="{{ $items['productPrice'] }}">
+                                <input type="hidden" name="quantity" value="{{ $items['productQuantity'] }}">
+                                <input type="hidden" name="image" value="{{ $items['productImg'] }}">
                             @endforeach
                         </tbody>
                         <thead>
@@ -396,11 +427,10 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th>৳{{ $totalPrice }}</th>
+                                <th>BDT {{ $totalPrice }}</th>
                             </tr>
                         </thead>
                     </table>
-
                 </div>
 
                 <div class="summary-ul">
@@ -411,15 +441,15 @@
                     </div>
                     <div class="summary-li">
                         <p>Delivery Fee</p>
-                        <p style="text-transform: uppercase;">৳80</p>
+                        <p style="text-transform: uppercase;">BDT 80</p>
                     </div>
                     <div class="summary-li">
                         <p>Total Payment</p>
-                        <p style="text-transform: uppercase;">৳{{ $totalPrice }}</p>
+                        <p style="text-transform: uppercase;">BDT {{ $totalPrice }}</p>
                     </div>
                     <div class="summary-li" id="total-div">
                         <p>Total</p>
-                        <p style="text-transform: uppercase;">৳{{ $totalPrice }}</p>
+                        <p style="text-transform: uppercase;">BDT {{ $totalPrice }}</p>
                     </div>
                     <button type="submit" class="btn btn-success">PLACE ORDER</button>
                 </div>

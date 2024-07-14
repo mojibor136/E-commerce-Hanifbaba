@@ -738,9 +738,9 @@
                                     @csrf
                                     <input type="hidden" value="1" id="quantityHidden2" name="productQuantity"
                                         class="form-control">
-                                    <input type="hidden" name="productImg" value="{{ $product->productImg }}">
-                                    <input type="hidden" name="productName" value="{{ $product->productName }}">
-                                    <input type="hidden" name="productPrice" value="{{ $product->productPrice }}">
+                                    <input type="hidden" name="productImg" value="{{ $product->product_img }}">
+                                    <input type="hidden" name="productName" value="{{ $product->product_name }}">
+                                    <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
                                     <input type="hidden" name="productId" value="{{ $product->id }}">
                                 </form>
                             </div>
@@ -913,6 +913,48 @@
             });
         });
     </script>
+    <script>
+        function submitForm(element) {
+            element.nextElementSibling.submit();
+        }
+    </script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                title: 'error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        title: 'swal-title',
+                        content: 'swal-text'
+                    }
+                });
+            });
+        </script>
+    @endif
 </body>
 
 </html>

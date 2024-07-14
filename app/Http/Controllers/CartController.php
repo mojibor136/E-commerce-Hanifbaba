@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Cart;
+use App\Models\Product;
 
 class CartController extends Controller {
     public function AddtoCart() {
+        $products = Product::get()->All();
         $userId  = Auth::id();
         $carts = Cart::where( 'user_id', $userId )->get();
-        return view( 'addtocart', compact( 'carts' ) );
+        return view( 'addtocart', compact( 'carts', 'products' ) );
     }
 
     public function StoreBuyNow( Request $request ) {
@@ -37,6 +39,12 @@ class CartController extends Controller {
 
         Cart::insert( $cartData );
 
-        return back()->with( 'message', 'Products Cart Added Successfully' );
+        return back()->with( 'success', 'Products Cart Added Successfully' );
+    }
+
+    public function DeleteCart( $id ) {
+        Cart::findOrFail( $id )->delete();
+        return back()->with( 'success', 'Cart Deleted Successfully' );
+
     }
 }

@@ -847,8 +847,8 @@
                             <input type="hidden" value="1" id="quantityHidden2" name="productQuantity"
                                 class="form-control">
                             <input type="hidden" name="productImg" value="{{ $product->product_img }}">
-                            <input type="hidden" name="productName" value="{{ $product->product_name}}">
-                            <input type="hidden" name="productPrice" value="{{ $product->product_price}}">
+                            <input type="hidden" name="productName" value="{{ $product->product_name }}">
+                            <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
                             <input type="hidden" name="productId" value="{{ $product->id }}">
                             <input type="submit" class="btn btn-danger" value="Add to Cart">
                         @else
@@ -865,7 +865,7 @@
         <div class="phone-product-image-container">
             <div class="phone-product-images">
                 <div class="phone-product-img">
-                    <img class="img" src="{{ asset('ProductImg/' . $product->productImg) }}" alt="">
+                    <img class="img" src="{{ asset('ProductImg/' . $product->product_img) }}" alt="">
                 </div>
                 <div class="phone-product-media-gallery-box">
                     <div class="phone-product-media-gallery-box-card">
@@ -885,10 +885,10 @@
         </div>
         <div class="phone-product-info-container">
             <div class="phone-product-name">
-                <span>{{ $product->productName }}</span>
+                <span>{{ $product->product_name }}</span>
             </div>
             <div class="phone-product-price">
-                <span class="tk">DKK {{ $product->productPrice }}</span>
+                <span class="tk">DKK {{ $product->product_price }}</span>
                 <span class="discount">DKK 800</span>
                 <div class="percent">
                     <span>10%</span>
@@ -930,18 +930,18 @@
         </div>
         <div class="phone-button-container">
             <div class="phone-button-card">
-                @if ($product->quantity > 0)
+                @if ($product->product_quantity > 0)
                     <div class="phone-button">
                     @else
                         <div class="phone-button" style="display: block;">
                 @endif
                 <form action="{{ route('storebuynow') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    @if ($product->quantity > 0)
+                    @if ($product->product_quantity > 0)
                         <input type="hidden" name="buynow[productId]" value="{{ $product->id }}">
-                        <input type="hidden" name="buynow[productImg]" value="{{ $product->productImg }}">
-                        <input type="hidden" name="buynow[productName]" value="{{ $product->productName }}">
-                        <input type="hidden" name="buynow[productPrice]" value="{{ $product->productPrice }}">
+                        <input type="hidden" name="buynow[productImg]" value="{{ $product->product_img }}">
+                        <input type="hidden" name="buynow[productName]" value="{{ $product->product_name }}">
+                        <input type="hidden" name="buynow[productPrice]" value="{{ $product->product_price }}">
                         <input type="hidden" id="quantityHidden3" name="buynow[productQuantity]"
                             class="form-control" value="1">
                         <input type="hidden" name="buynow[productSize]" id="sizebox1">
@@ -952,12 +952,12 @@
 
                 <form action="{{ route('storecart') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    @if ($product->quantity > 0)
+                    @if ($product->product_quantity > 0)
                         <input type="hidden" id="quantityHidden4" name="productQuantity" class="form-control"
                             value="1">
-                        <input type="hidden" name="productImg" value="{{ $product->productImg }}">
-                        <input type="hidden" name="productName" value="{{ $product->productName }}">
-                        <input type="hidden" name="productPrice" value="{{ $product->productPrice }}">
+                        <input type="hidden" name="productImg" value="{{ $product->product_img }}">
+                        <input type="hidden" name="productName" value="{{ $product->product_name }}">
+                        <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
                         <input type="hidden" name="productId" value="{{ $product->id }}">
                         <input type="submit" class="btn btn-danger" value="Add to Cart">
                     @else
@@ -977,7 +977,7 @@
                 @php
                     $totalRatings = count($reviews ?? []);
                     $totalStars = 0;
-            
+
                     if ($totalRatings > 0) {
                         foreach ($reviews as $review) {
                             $totalStars += $review->rating;
@@ -1082,17 +1082,17 @@
                 @else
                     <p>No reviews found.</p>
                 @endif
-            </div>            
+            </div>
         </div>
     </div>
     <div class="product-description-container">
         <div class="product-description-card">
             <div class="product-description-titel">
-                <span>{{ $product->productName }}</span>
+                <span>{{ $product->product_name }}</span>
             </div>
             <div class="product-description-content">
                 <div class="product-description">
-                    <ul>{{ $product->productDesc }}</ul>
+                    <ul>{{ $product->product_desc }}</ul>
                 </div>
 
             </div>

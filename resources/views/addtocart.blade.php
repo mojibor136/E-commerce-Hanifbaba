@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
 </head>
@@ -166,41 +166,31 @@
         font-style: normal;
     }
 
-    .card-container .list-content .summary-li form .voucher {
+    .card-container .list-content .button-content form .voucher {
         width: -webkit-fill-available;
         display: flex;
     }
 
-    .card-container .list-content .summary-li .form-control {
+    .card-container .list-content .button-content .form-control {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         font-family: "Roboto", sans-serif;
         font-style: normal;
     }
 
-    .card-container .list-content .summary-li .btn-success {
+    .card-container .list-content .button-content .btn-success {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
 
-    .card-container .list-content .summary-li form .btn-danger {
+    .card-container .list-content .button-content form .btn-danger {
         width: -webkit-fill-available;
         margin-top: 8px;
         border-radius: 8px;
     }
 
-    .card-container .list-content .summary-li input::placeholder {
+    .card-container .list-content .button-content input::placeholder {
         font-size: 14px;
-    }
-
-    .checkout-button-bar {
-        padding: 10px;
-        padding-top: 5px;
-        background-color: #fff;
-        visibility: hidden;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
     }
 
     .checkout-button-bar .total-bar {
@@ -277,7 +267,6 @@
 
         .main-container {
             padding: 0;
-            margin-bottom: 80px;
         }
 
         .card-container {
@@ -305,7 +294,7 @@
         }
 
         .card-container .list-content .summary-li p {
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .card-container .list-content .summary-li form .btn-danger {
@@ -325,10 +314,6 @@
         .checkout-button-bar {
             visibility: visible;
         }
-
-        footer {
-            display: none;
-        }
     }
 
     @media (max-width: 475px) {
@@ -338,15 +323,13 @@
             padding: 0;
         }
     }
-
-    @media (max-width: 320px) {}
 </style>
 
 <body>
     <nav>
         <div class="button">
             <i class="ri-arrow-left-s-line" onclick="history.back()" id="back-buttton" style="font-size: 32px;"></i>
-            <p style="margin:0;">AddtoCart(3)</p>
+            <p style="margin:0;">AddtoCart({{ $carts->count() ? $carts->count() : 0 }})</p>
         </div>
         <div class="button">
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>
@@ -375,16 +358,16 @@
                             @foreach ($carts as $cart)
                                 <tr>
                                     <td class="align-middle">
-                                        <img src="{{ asset('assets/ProductImg/' . $cart->product_img) }}"
-                                            alt="">
+                                        <img src="{{ asset('ProductImg/' . $cart->product_img) }}" alt="">
                                     </td>
                                     <td class="align-middle">{{ $cart->product_name }} X{{ $cart->product_quantity }}
                                     </td>
                                     <td class="align-middle"><input type="text" style="text-align: center;"
                                             class="form-control" disabled value="{{ $cart->product_quantity }}"></td>
-                                    <td class="align-middle">৳{{ $cart->product_price }}</td>
+                                    <td class="align-middle">BDT{{ $cart->product_price }}</td>
                                     <td class="align-middle">
-                                        <a href="" class="ri-close-line btn btn-danger"></a>
+                                        <a href="{{ route('delete.cart', $cart->id) }}"
+                                            class="ri-close-line btn btn-danger"></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -397,18 +380,20 @@
                 <h4>Order Summary</h4>
                 <div class="summary-li">
                     <p>Subtotal items</p>
-                    <p>{{ $cart->count() }}</p>
+                    <p>{{ $carts->count() ? $carts->count() : 0 }}</p>
                 </div>
                 <div class="summary-li">
                     <p>Shopping Fee Discount</p>
-                    <p style="text-transform: uppercase;">৳{{ $cart->sum('product_price') }}</p>
+                    <p style="text-transform: uppercase;">BDT{{ $carts->isEmpty() ? 0 : $carts->sum('product_price') }}
+                    </p>
                 </div>
                 <div class="summary-li">
                     <p>Total</p>
-                    <p style="text-transform: uppercase;">৳{{ $cart->sum('product_price') }}</p>
+                    <p style="text-transform: uppercase;">BDT{{ $carts->isEmpty() ? 0 : $carts->sum('product_price') }}
+                    </p>
                 </div>
-                <div class="summary-li">
-                    <form action="{{ route('sanddata') }}">
+                <div class="button-content">
+                    <form action="{{ route('sanddata') }}" method="POST">
                         @csrf
                         <div class="voucher">
                             <input type="text" class="form-control" placeholder="Enter Voucher Code">
@@ -428,178 +413,128 @@
                             <input type="hidden" value="{{ $cart->product_size }}"
                                 name="cart[{{ $index }}][productSize]">
                         @endforeach
-                        <input type="hidden" value="{{ $cart->sum('product_price') }}"
-                            name="cart[{{ $index }}][totalPrice]">
+                        <input type="hidden" value="{{ $carts->sum('product_price') }}" name="totalPrice">
                         <input type="submit" class="btn btn-danger" value="CHECKOUT">
                     </form>
                 </div>
             </div>
         </div>
-        {{-- top products container --}}
-        <div class="main-product-container">
-            <div class="type">
-                <span>reletad products</span>
-                <a href="">shop more</a>
+        {{-- products container --}}
+
+        {{-- product html code --}}
+        <div class="product-container">
+            <div class="product-header">
+                <h4>new products</h4>
+                <span>first-class quality products for appying eyelash extensions</span>
             </div>
-            <div class="product-container">
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product3.png') }}" alt="">
+            <div class="product-content">
+                @foreach ($products as $product)
+                    <div class="product-card">
+                        <a href="{{ route('viewproduct', $product->id) }}">
+                            <div class="card">
+                                <div class="card product-img">
+                                    <img src="{{ asset('ProductImg/' . $product->product_img) }}" alt="">
+                                </div>
+                                <div class="titel">
+                                    <span>{{ $product->product_name }}</span>
+                                </div>
+                                <div class="star">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-line"></i>
+                                </div>
+                                <div class="price">
+                                    @if ($product->regularPrice)
+                                        <div class="discount">
+                                            <span>DKK {{ $product->regular_price }}.00</span>
+                                        </div>
+                                    @endif
+                                    <span>DKK {{ $product->product_price }}.00</span>
+                                </div>
+                                @if ($product->product_quantity > 0)
+                                    <a href="javascript:void(0);" class="btn btn-dark" onclick="submitForm(this);">
+                                        <span class="ri-shopping-cart-line"></span>
+                                        addtocart
+                                    </a>
+                                @else
+                                    <input type="submit" class="btn btn-dark" disabled value="out of stock">
+                                @endif
+                                <form action="{{ route('storecart') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="1" id="quantityHidden2" name="productQuantity"
+                                        class="form-control">
+                                    <input type="hidden" name="productImg" value="{{ $product->product_img }}">
+                                    <input type="hidden" name="productName" value="{{ $product->product_name }}">
+                                    <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
+                                    <input type="hidden" name="productId" value="{{ $product->id }}">
+                                </form>
+                            </div>
+                        </a>
                     </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/chaler-ata.jpeg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/punjabi5.jpg') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product2.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="image">
-                        <img src="{{ asset('products/product1.png') }}" alt="">
-                    </div>
-                    <div class="name">
-                        Amazing Rice Flour Face Packs For All
-                    </div>
-                    <div class="free-card">
-                        <div class="free">
-                            <i class="ri-star-fill"></i>
-                            <span>free delivery</span>
-                        </div>
-                    </div>
-                    <div class="price-card">
-                        <div>
-                            <span class="tk">৳250</span>
-                            <span class="discount">৳300</span>
-                        </div>
-                        <div class="percent">
-                            <span>7%</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
+        {{-- products container --}}
     </main>
-    <!-- ORDER BUTTON SECTION -->
-    <form action="">
-        <input type="hidden" value="id" name="cart">
-        <div class="checkout-button-bar">
-            <div class="total-bar">
-                <p class="name">Total:</p>
-                <p class="price">2500Tk</p>
-                <div class="details-bar">
-                    <p>Details</p>
-                    <div class="arr"></div>
-                </div>
-            </div>
-            <div class="button">
-                <button type="submit" class="btn btn-warning" style=" font-weight:400;">CHECKOUT</button>
-            </div>
-        </div>
-    </form>
+    <script src="{{ asset('jquery/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.bundle.js') }}"></script>
+    <script>
+        function updateCart(cartId, quantity) {
+            $.ajax({
+                url: '/update-cart',
+                method: 'POST',
+                data: {
+                    cartId: cartId,
+                    quantity: quantity,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(error) {
+                    console.error('Error updating cart:', error);
+                }
+            });
+        }
+        $(document).on('change', '.form-control', function() {
+            var cartId = $(this).data('cart-id');
+            var quantity = $(this).val();
+            updateCart(cartId, quantity);
+        });
+
+        function submitForm(element) {
+            element.nextElementSibling.submit();
+        }
+    </script>
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                title: 'error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        title: 'swal-title',
+                        content: 'swal-text'
+                    }
+                });
+            });
+        </script>
+    @endif
 </body>
 
 </html>
