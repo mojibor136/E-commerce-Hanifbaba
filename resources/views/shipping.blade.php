@@ -250,7 +250,7 @@
 
         nav {
             display: inline-flex;
-            padding: 0px 10px;
+            padding: 7px 10px;
         }
 
         main {
@@ -301,7 +301,7 @@
     <nav>
         <div class="button">
             <i class="ri-arrow-left-s-line" onclick="history.back()" id="back-buttton" style="font-size: 32px;"></i>
-            <p style="margin:0;">Checkout(3)</p>
+            <p style="margin:0;">Checkout</p>
         </div>
         <div class="button">
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>
@@ -413,10 +413,14 @@
                                 @endphp
 
                                 {{-- data pass and checkout product hidden input  --}}
-                                <input type="hidden" name="cname" value="{{ $items['productName'] }}">
-                                <input type="hidden" name="price" value="{{ $items['productPrice'] }}">
-                                <input type="hidden" name="quantity" value="{{ $items['productQuantity'] }}">
-                                <input type="hidden" name="image" value="{{ $items['productImg'] }}">
+                                <input type="hidden" name="products[{{ $index }}][name]"
+                                    value="{{ $items['productName'] }}">
+                                <input type="hidden" name="products[{{ $index }}][price]"
+                                    value="{{ $items['productPrice'] }}">
+                                <input type="hidden" name="products[{{ $index }}][quantity]"
+                                    value="{{ $items['productQuantity'] }}">
+                                <input type="hidden" name="products[{{ $index }}][image]"
+                                    value="{{ $items['productImg'] }}">
                             @endforeach
                         </tbody>
                         <thead>

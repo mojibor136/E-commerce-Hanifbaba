@@ -9,10 +9,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('assets/css/welcome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
 </head>
 <style>
     body {
         background: #fbf7f5;
+    }
+
+    nav {
+        background-color: #dc3545;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        display: none;
+    }
+
+    nav .button {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-weight: 400;
+        cursor: pointer;
     }
 
     .main-container {
@@ -42,9 +59,13 @@
         text-decoration: none;
     }
 
+    .category-card a li {
+        list-style: none;
+    }
+
     .category-card a li img {
-        max-width: 100%;
         height: 80px;
+        width: 100%;
     }
 
     .category-card a .card {
@@ -63,6 +84,11 @@
         color: #2a2f3b;
         font-size: 14px;
         font-weight: 500;
+    }
+
+    .product-container .product-content {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
     }
 
     /* FILTER CONTAINER */
@@ -150,7 +176,6 @@
     }
 
     .result-bar {
-        font-size: 14px;
         line-height: 40px;
         font-weight: 500;
         color: #41464b;
@@ -162,132 +187,6 @@
         justify-content: space-between;
         margin-bottom: 10px;
         border-bottom: 1px solid #d7d7d7;
-    }
-
-    /* Products container all css */
-    .main-product-container {
-        margin: 25px 0;
-        margin-bottom: 10px;
-    }
-
-    .main-product-container .type {
-        width: 100%;
-        padding: 5px 10px;
-    }
-
-    .main-product-container .type span {
-        font-size: 18px;
-        text-transform: capitalize;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        color: #444;
-    }
-
-    .product-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        column-gap: 5px;
-        row-gap: 15px;
-    }
-
-    .product-container a {
-        text-decoration: none;
-    }
-
-    .product-card {
-        width: 100%;
-        background: #fff;
-        padding-bottom: 2px;
-        overflow: hidden;
-    }
-
-    .product-card .image {
-        width: 100%;
-    }
-
-    .product-card .image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .product-card .name {
-        line-height: normal;
-        font-size: 14px;
-        color: #222;
-        padding: 2px 5px;
-        text-transform: capitalize;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        max-height: 2 * (14px + 4px);
-    }
-
-    .product-card .free-card {
-        padding: 2px 5px;
-    }
-
-    .product-card .free {
-        background: #02473e;
-        border-radius: 10px;
-        font-size: 11px;
-        text-transform: capitalize;
-        width: fit-content;
-        padding: 2px 8px;
-        padding-left: 5px;
-        color: #eee;
-        line-height: normal;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-    }
-
-    .product-card .free i {
-        font-size: 10px;
-    }
-
-    .product-card .price-card {
-        display: flex;
-        align-items: center;
-        padding: 3px 5px;
-        line-height: 1.1;
-        padding-bottom: 4px;
-        text-transform: uppercase;
-    }
-
-    .product-card .price-card .tk {
-        color: #96006d;
-        font-size: 16px;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-    }
-
-    .product-card .price-card .discount {
-        text-decoration: line-through;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        color: #333;
-        font-size: 14px;
-    }
-
-    .product-card .price-card .percent {
-        margin-left: 10px;
-        background: #af009c;
-        transform: skew(-18deg);
-        padding: 1px 10px;
-        color: #eee;
-        font-size: 12px;
-        line-height: normal;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
     }
 
     .product-container .massage {
@@ -320,6 +219,11 @@
     }
 
     @media (max-width: 640px) {
+        nav {
+            display: inline-flex;
+            padding: 7px 10px;
+        }
+
         .top-header {
             display: none;
         }
@@ -385,7 +289,7 @@
         }
 
         .category-container {
-            margin-top: 70px;
+            margin-top: 20px;
         }
 
         .category-card ul {
@@ -406,6 +310,13 @@
             margin: 0%;
         }
 
+        .product-container {
+            margin: 0;
+        }
+
+        .product-container .product-header {
+            padding: 10px 5px;
+        }
 
         header {
             display: none;
@@ -446,7 +357,7 @@
 
         .result-bar {
             line-height: 20px;
-            font-display: 13px;
+            font-size: 14px;
         }
 
         @media (max-width: 475px) {
@@ -454,12 +365,33 @@
                 padding: 0 4px;
             }
 
+            .product-content {
+                margin: 0 2px;
+            }
+
+            .product-container .product-header {
+                text-align: left;
+            }
+
+            .product-container .product-header span {
+                font-size: 13px;
+            }
+
             .product-container .massage {
                 font-size: 12px;
             }
 
+            .sort-content {
+                margin: 0;
+            }
+
             .filter-content {
                 width: 130px;
+            }
+
+            .product-container .product-content {
+                grid-template-columns: 1fr;
+                gap: 5px;
             }
         }
 
@@ -495,6 +427,15 @@
 </style>
 
 <body>
+    <nav>
+        <div class="button">
+            <i class="ri-arrow-left-s-line" onclick="history.back()" id="back-buttton" style="font-size: 32px;"></i>
+            <p style="margin:0;">Category By Product</p>
+        </div>
+        <div class="button">
+            <i class="ri-more-2-fill" style="font-size: 24px;"></i>
+        </div>
+    </nav>
     <div class="main-container">
         {{-- /* Category-container all html*/ --}}
         <div class="category-container">
@@ -671,50 +612,65 @@
                         <div class="result-bar">
                             <span>11,174 items found for</span>
                         </div>
-                        <select name="" id="">
-                            @php
-                                $categories = getCategoryData();
-                            @endphp
-                            <option disabled selected>Select Category</option>
-                            @foreach ($categories as $category)
-                                <option value="" style="text-transform: capitalize;">{{ $category->category_name }}</option>
-                            @endforeach
-                        </select>
                     </div>
                 </div>
-                {{-- top products container --}}
-                <div class="main-product-container">
-                    <div class="type">
-                        <span>category by products</span>
+                {{-- product section --}}
+                {{-- product html code --}}
+                <div class="product-container">
+                    <div class="product-header">
+                        <h4>new products</h4>
                     </div>
-                    <div class="product-container">
-                        @foreach ($priceProducts ?? ($products ?? $productSizes) as $product)
-                            <a href="{{ route('singleproduct', $product->id) }}">
-                                <div class="product-card">
-                                    <div class="image">
-                                        <img src="{{ asset('assets/ProductImg/' . $product->product_img) }}"
-                                            alt="">
-                                    </div>
-                                    <div class="name">
-                                        {{ $product->product_name }}
-                                    </div>
-                                    <div class="free-card">
-                                        <div class="free">
+                    <div class="product-content">
+                        @foreach ($products as $product)
+                            <div class="product-card">
+                                <a href="{{ route('viewproduct', $product->id) }}">
+                                    <div class="card">
+                                        <div class="card product-img">
+                                            <img src="{{ asset('ProductImg/' . $product->product_img) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="titel">
+                                            <span>{{ $product->product_name }}</span>
+                                        </div>
+                                        <div class="star">
                                             <i class="ri-star-fill"></i>
-                                            <span>cash delivery</span>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-half-line"></i>
                                         </div>
+                                        <div class="price">
+                                            @if ($product->regularPrice)
+                                                <div class="discount">
+                                                    <span>DKK {{ $product->regular_price }}.00</span>
+                                                </div>
+                                            @endif
+                                            <span>DKK {{ $product->product_price }}.00</span>
+                                        </div>
+                                        @if ($product->product_quantity > 0)
+                                            <a href="javascript:void(0);" class="btn btn-dark"
+                                                onclick="submitForm(this);">
+                                                <span class="ri-shopping-cart-line"></span>
+                                                addtocart
+                                            </a>
+                                        @else
+                                            <input type="submit" class="btn btn-dark" disabled value="out of stock">
+                                        @endif
+                                        <form action="{{ route('storecart') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="1" id="quantityHidden2"
+                                                name="productQuantity" class="form-control">
+                                            <input type="hidden" name="productImg"
+                                                value="{{ $product->product_img }}">
+                                            <input type="hidden" name="productName"
+                                                value="{{ $product->product_name }}">
+                                            <input type="hidden" name="productPrice"
+                                                value="{{ $product->product_price }}">
+                                            <input type="hidden" name="productId" value="{{ $product->id }}">
+                                        </form>
                                     </div>
-                                    <div class="price-card">
-                                        <div>
-                                            <span class="tk">৳{{ $product->product_price }}</span>
-                                            <span class="discount">৳{{ $product->regular_price }}</span>
-                                        </div>
-                                        <div class="percent">
-                                            <span>10%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>

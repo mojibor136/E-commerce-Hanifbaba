@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Shipping;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller {
     public function SandData( Request $request ) {
@@ -28,6 +30,17 @@ class CheckoutController extends Controller {
             'address' => 'required',
         ] );
 
-        dd( $request->all() );
+        $userId = Auth::id();
+
+        Shipping::create( [
+            'customer_id' => $userId,
+            'name' => $request->name,
+            'email' => $request->email,
+            'number' => $request->phone,
+            'address' => $request->address,
+            'city' => $request->city,
+            'division' => $request->division,
+        ] );
+
     }
 }

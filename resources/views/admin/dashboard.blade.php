@@ -279,7 +279,7 @@
                 @endif
             </div>
             <div>
-                <span>{{ !empty($admin->name) ? $admin->name : 'Name not available' }}</span>
+                <span>{{ !empty($admin->name) ? $admin->name : 'Hanifbaba.com' }}</span>
             </div>
         </div>
     </header>

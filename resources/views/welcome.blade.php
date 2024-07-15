@@ -131,100 +131,6 @@
         visibility: visible;
     }
 
-    /*------ Category-container all css */
-    .category-container {
-        margin: 10px 0;
-    }
-
-    .category-container .type {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding: 5px 10px;
-        background: #A60DE4;
-    }
-
-    .category-container .type span {
-        font-size: 18px;
-        text-transform: capitalize;
-        font-family: "Roboto", sans-serif;
-        font-weight: 600;
-        font-style: normal;
-        color: #fff;
-    }
-
-    .category-container .type a {
-        text-decoration: none;
-        text-transform: uppercase;
-        color: #fff;
-        font-family: "Roboto", sans-serif;
-        font-weight: 500;
-        font-style: normal;
-        font-size: 12px;
-    }
-
-    .category-container .category-card {
-        background-color: transparent;
-        border-radius: 0;
-    }
-
-    .category-card ul {
-        padding: 0;
-        margin: 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 5px;
-        height: 239px;
-        overflow: hidden;
-    }
-
-    .category-card a {
-        text-decoration: none;
-    }
-
-    .category-card a li img {
-        width: 100%;
-        height: 90px;
-        object-fit: cover;
-    }
-
-    .category-card a li:hover img {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-    }
-
-    .category-img-card {
-        padding: 5px;
-        padding-bottom: 0;
-    }
-
-    .category-card a li {
-        border-radius: 0;
-        overflow: hidden;
-        border: none;
-        background: #fff;
-    }
-
-    .category-card a li span {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        /* Limit the number of lines to 2 */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-        text-transform: lowercase;
-        padding: 2px 0;
-        font-size: 14px;
-        color: #2a2f3b;
-        font-weight: 600;
-        line-height: 1.1;
-        font-family: "Roboto", sans-serif;
-        font-style: normal;
-        margin: 0 8px;
-    }
-
     .product-container .product-header {
         text-align: center;
         padding: 10px 0;
@@ -393,7 +299,7 @@
 
     .shop-container .shop-content {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         gap: 20px;
     }
 
@@ -484,25 +390,12 @@
             display: none;
         }
 
-        .category-container {
-            display: none;
-        }
-
         .banner-container .banner-categories {
             height: 250px;
         }
 
         .banner-container .banner-categories .banner {
             border-radius: 0;
-        }
-
-        .category-card ul {
-            height: 210px;
-            overflow: hidden;
-        }
-
-        .category-card a li img {
-            height: 75px;
         }
 
         .home-icon-container {
@@ -602,7 +495,7 @@
         }
 
         .shop-container .shop-content {
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         }
     }
 
@@ -611,10 +504,6 @@
 
         .main-container {
             padding: 0;
-        }
-
-        .category-container {
-            margin: 10px 5px;
         }
 
         .banner-container .banner-categories {
@@ -628,12 +517,12 @@
         }
 
         .shop-container .shop-content {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             gap: 10px;
         }
 
         .shop-container .shop-content a .text span {
-            font-size: 14px;
+            font-size: 12px;
         }
 
     }
@@ -655,7 +544,7 @@
                         @else
                             @foreach ($sidecategory as $category)
                                 <a
-                                    href="{{ route('filterproduct', ['id' => ':id', 'slug' => ':slug']) }}">{{ $category->category_name }}</a>
+                                    href="{{ route('filterproduct', ['id' => $category->id, 'slug' => $category->category_name]) }}">{{ $category->category_name }}</a>
                             @endforeach
                         @endif
                     </div>
@@ -682,7 +571,7 @@
             </div>
             <div class="shop-content">
                 @foreach ($categories as $category)
-                    <a href="{{ route('viewproduct', ['id' => $category->id]) }}">
+                    <a href="{{ route('filterproduct', ['id' => $category->id, 'slug' => $category->category_name]) }}">
                         <div class="card">
                             <img src="{{ asset('CategoryImg/' . $category->category_img) }}" alt="">
                         </div>
@@ -840,33 +729,6 @@
         }
     </script>
 
-
-    <script>
-        let CategoryNames = '';
-        fetch('/GetCategoriesData')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(item => {
-                    let CategoryName = item.category_name.split(' ');
-                    let CategoryImg = item.category_img;
-                    let imageUrl = `/CategoryImg/${CategoryImg}`;
-                    let url = '{{ route('filterproduct', ['id' => ':id', 'slug' => ':slug']) }}';
-                    url = url.replace(':id', item.id).replace(':slug', item.slug);
-                    CategoryNames +=
-                        `<a href="${url}">
-                    <li class="card">
-                        <div class="category-img-card"> 
-                            <img src="${imageUrl}" alt="">
-                        </div>
-                        <span>${CategoryName.join(' ')}</span>
-                    </li>
-                </a>`;
-                });
-                let CategoryElement = document.querySelector('.category-card .category-list'); // Corrected selector
-                CategoryElement.innerHTML = CategoryNames;
-            })
-            .catch(error => console.error('Error:', error));
-    </script>
     <script>
         let cartIcon = document.querySelectorAll('.cart-icon')
         let slides = document.querySelectorAll('.slides-img');
