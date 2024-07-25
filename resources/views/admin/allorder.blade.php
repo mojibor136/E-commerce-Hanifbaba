@@ -118,7 +118,7 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>{{ $order->id }}</td>
-                                        <td>{{ $order->shipping->fullName }}</td>
+                                        <td>{{ $order->shipping->name }}</td>
                                         <td>{{ $order->payment->paymentStatus }}</td>
                                         <td>{{ $order->payment->amount }}</td>
                                         <td>{{ \Carbon\Carbon::parse($order->payment->paymentDate)->format('Y-m-d') }}</td>
@@ -144,13 +144,17 @@
                                                             onclick="viewOrder({{ $order->id }})">Order View</a>
                                                     </li>
                                                     <li><a class="dropdown-item" href="javascript:void(0);"
+                                                            onclick="deleteOrder({{ $order->id }}, 'deleteOrder')">Delete
+                                                            Order</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);"
                                                             onclick="processing({{ $order->id }}, 'processing')">processing</a>
                                                     </li>
                                                     <li><a class="dropdown-item" href="javascript:void(0);"
-                                                            onclick="completed({{ $order->id }}, 'completed')">completed</a>
+                                                            onclick="cancelled({{ $order->id }}, 'cancelled')">cancelled</a>
                                                     </li>
                                                     <li><a class="dropdown-item" href="javascript:void(0);"
-                                                            onclick="cancelled({{ $order->id }}, 'cancelled')">cancelled</a>
+                                                            onclick="completed({{ $order->id }}, 'completed')">completed</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -172,6 +176,11 @@
 
             function viewOrder(orderId) {
                 const url = `{{ url('/admin/view/order') }}/${orderId}`;
+                window.location.href = url;
+            }
+
+            function deleteOrder(orderId) {
+                const url = `{{ url('/admin/delete/order') }}/${orderId}`;
                 window.location.href = url;
             }
 

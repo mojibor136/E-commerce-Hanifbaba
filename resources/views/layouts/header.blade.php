@@ -375,7 +375,8 @@
                     @endphp
                     <div class="dropdown-category">
                         @foreach ($categories as $category)
-                            <a class="dropdown-item" href="{{ $category->id }}">{{ $category->category_name }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('filterproduct', ['id' => $category->id, 'slug' => $category->category_name]) }}">{{ $category->category_name }}</a>
                         @endforeach
                     </div>
                 </div>

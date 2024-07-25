@@ -30,7 +30,7 @@
     }
 
     nav {
-        background-color: #dc3545;
+        background-color: #A60DE4;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -263,6 +263,7 @@
 
         nav {
             display: inline-flex;
+            padding: 5px 10px;
         }
 
         .main-container {
@@ -355,6 +356,9 @@
                 <div class="cart-content">
                     <table class="table">
                         <tbody>
+                            @php
+                                $total = 0;
+                            @endphp
                             @foreach ($carts as $cart)
                                 <tr>
                                     <td class="align-middle">
@@ -364,12 +368,17 @@
                                     </td>
                                     <td class="align-middle"><input type="text" style="text-align: center;"
                                             class="form-control" disabled value="{{ $cart->product_quantity }}"></td>
-                                    <td class="align-middle">BDT{{ $cart->product_price }}</td>
+                                    <td class="align-middle">
+                                        BDT{{ $cart->product_quantity * $cart->product_price }}
+                                    </td>
                                     <td class="align-middle">
                                         <a href="{{ route('delete.cart', $cart->id) }}"
                                             class="ri-close-line btn btn-danger"></a>
                                     </td>
                                 </tr>
+                                @php
+                                    $total += $cart->product_quantity * $cart->product_price;
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>
@@ -384,12 +393,12 @@
                 </div>
                 <div class="summary-li">
                     <p>Shopping Fee Discount</p>
-                    <p style="text-transform: uppercase;">BDT{{ $carts->isEmpty() ? 0 : $carts->sum('product_price') }}
+                    <p style="text-transform: uppercase;">BDT{{ $total }}
                     </p>
                 </div>
                 <div class="summary-li">
                     <p>Total</p>
-                    <p style="text-transform: uppercase;">BDT{{ $carts->isEmpty() ? 0 : $carts->sum('product_price') }}
+                    <p style="text-transform: uppercase;">BDT{{ $total }}
                     </p>
                 </div>
                 <div class="button-content">

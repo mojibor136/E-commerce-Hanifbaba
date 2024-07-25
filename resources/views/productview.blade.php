@@ -1,4 +1,5 @@
 @include('layouts.header')
+@include('layouts.phoneHeader')
 @include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="en">

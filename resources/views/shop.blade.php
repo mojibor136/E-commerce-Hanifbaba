@@ -11,7 +11,7 @@
 </head>
 <style>
     nav {
-        background-color: #dc3545;
+        background-color: #A60DE4;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -204,7 +204,7 @@
     @media screen and (max-width: 640px) {
         nav {
             display: inline-flex;
-            padding: 0px 10px;
+            padding: 5px 10px;
         }
 
         .main-container {

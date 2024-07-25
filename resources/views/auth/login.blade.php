@@ -21,7 +21,7 @@
     }
 
     nav {
-        background-color: #dc3545;
+        background-color: #A60DE4;
         width: 100%;
         padding: 8px 30px 8px 30px;
         display: flex;

@@ -65,33 +65,30 @@
                                 <div class="form-group">
                                     <label for="">Name</label>
                                     <input type="text" class="form-control" placeholder="Enter Product Name"
-                                        name="name" value="{{ $product->productName }}">
+                                        name="name" value="{{ $product->product_name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Description</label>
                                     <input type="text" class="form-control" placeholder="Enter Product Description"
-                                        name="description" value="{{ $product->productDesc }}">
+                                        name="description" value="{{ $product->product_desc }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Prices</label>
                                     <input type="number" class="form-control" placeholder="Enter Product Prices"
-                                        name="price" value="{{ $product->productPrice }}">
+                                        name="price" value="{{ $product->product_price }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Regular Prices</label>
+                                    <input type="number" class="form-control" placeholder="Enter Product Prices"
+                                        name="regular_price" value="{{ $product->regular_price }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Quantity</label>
                                     <input type="number" class="form-control" placeholder="Enter Product Quantity"
-                                        name="quantity" value="{{ $product->quantity }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleSelect">Select Category</label>
-                                    <select class="form-control" id="exampleSelect" name="categoryId">
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->categoryName }}</option>
-                                        @endforeach
-                                    </select>
+                                        name="quantity" value="{{ $product->product_quantity }}">
                                 </div>
                                 <div class="form-group mt-1">
-                                    <img src="{{ asset('ProductImg/' . $product->productImg) }}" width="50">
+                                    <img src="{{ asset('ProductImg/' . $product->product_img) }}" width="50">
                                 </div>
                                 <div>
                                     <label for="formFileDisabled" class="form-label mb-1">Add Image</label>

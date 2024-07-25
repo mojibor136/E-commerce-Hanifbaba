@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('delivery_charges', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_id')->default(0);
-            $table->integer('shipping_id');
-            $table->integer('payment_id');
-            $table->string('status');
+            $table->string('charge')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('delivery_charges');
     }
 };

@@ -18,8 +18,10 @@ class ProductController extends Controller {
         $questions = Question::where( 'status', 1 )
         ->where( 'productId', $id )
         ->get();
-        $product = Product::findOrFail( $id );
+        $product = Product::where( 'id', $id )->first();
+
         $reviews = $product->reviews;
+
         return view( 'productview', compact( 'product', 'questions', 'reviews' ) );
     }
 
@@ -52,5 +54,10 @@ class ProductController extends Controller {
 
     public function Test() {
         return view( 'single-poduct' );
+    }
+
+    public function AllCategoryProduct() {
+        $categories = Category::get()->all();
+        return view( 'categorypage', compact( 'categories' ) );
     }
 }

@@ -150,7 +150,7 @@
                         </div>
                         <div class="name">
                             <label for="">Name :</label>
-                            <span>{{ $order->shipping->fullName }}</span>
+                            <span>{{ $order->shipping->name }}</span>
                         </div>
                         <div class="email">
                             <label for="">Email :</label>
@@ -180,7 +180,7 @@
                             <tr>
                                 <td>{{ $orderInfo->id }}</td>
                                 <td>
-                                    <img src="{{ asset('ProductImg/' . $orderInfo->productImg) }}" width="40"
+                                    <img src="{{ asset('ProductImg/' . $orderInfo->product_img) }}" width="40"
                                         alt="">
                                 </td>
                                 <td>{{ $orderInfo->productName }}</td>

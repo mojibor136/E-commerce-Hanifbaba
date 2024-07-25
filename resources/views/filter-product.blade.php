@@ -17,7 +17,7 @@
     }
 
     nav {
-        background-color: #dc3545;
+        background-color: #A60DE4;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -365,6 +365,14 @@
                 padding: 0 4px;
             }
 
+            .category-card ul {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .filter-box {
+                padding: 0 5px;
+            }
+
             .product-content {
                 margin: 0 2px;
             }
@@ -413,10 +421,6 @@
         @media (max-width: 320px) {
             .header-tow-ul .search-box input {
                 width: 250px;
-            }
-
-            .category-card ul {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
             }
 
             .filter-content {

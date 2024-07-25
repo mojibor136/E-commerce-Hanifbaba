@@ -26,7 +26,7 @@
     }
 
     nav {
-        background-color: #dc3545;
+        background-color: #A60DE4;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -413,6 +413,8 @@
                                 @endphp
 
                                 {{-- data pass and checkout product hidden input  --}}
+                                <input type="hidden" name="products[{{ $index }}][productId]"
+                                    value="{{ $items['productId'] }}">
                                 <input type="hidden" name="products[{{ $index }}][name]"
                                     value="{{ $items['productName'] }}">
                                 <input type="hidden" name="products[{{ $index }}][price]"
@@ -437,6 +439,10 @@
                     </table>
                 </div>
 
+                @php
+                    $charge = getCharge();
+                @endphp
+
                 <div class="summary-ul">
                     <h4>Total Summary</h4>
                     <div class="summary-li">
@@ -445,16 +451,22 @@
                     </div>
                     <div class="summary-li">
                         <p>Delivery Fee</p>
-                        <p style="text-transform: uppercase;">BDT 80</p>
+                        <p style="text-transform: uppercase;">BDT
+                            {{ $charge && $charge->charge ? $charge->charge : 0 }}</p>
                     </div>
+                    @php
+                        $chargeAmount = $charge && $charge->charge ? $charge->charge : 0;
+                        $total = $chargeAmount + $totalPrice;
+                    @endphp
                     <div class="summary-li">
                         <p>Total Payment</p>
-                        <p style="text-transform: uppercase;">BDT {{ $totalPrice }}</p>
+                        <p style="text-transform: uppercase;">BDT {{ $total }}</p>
                     </div>
                     <div class="summary-li" id="total-div">
                         <p>Total</p>
-                        <p style="text-transform: uppercase;">BDT {{ $totalPrice }}</p>
+                        <p style="text-transform: uppercase;">BDT {{ $total }}</p>
                     </div>
+                    <input type="hidden" value="{{ $total }}" name="total">
                     <button type="submit" class="btn btn-success">PLACE ORDER</button>
                 </div>
             </div>

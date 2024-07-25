@@ -27,7 +27,7 @@ class CartController extends Controller {
             'productQuantity' => 'required|min:1',
         ] );
 
-        $userId  = Auth::id();
+        $userId = Auth::id();
         $cartData = [
             'user_id' => $userId,
             'product_id' => $request->productId,
@@ -38,8 +38,8 @@ class CartController extends Controller {
         ];
 
         Cart::insert( $cartData );
-
-        return back()->with( 'success', 'Products Cart Added Successfully' );
+        session()->flash( 'success', 'Products Cart Added Successfully' );
+        return back();
     }
 
     public function DeleteCart( $id ) {

@@ -64,7 +64,7 @@
         color: #636464;
         font-size: 14px;
         font-family: "Roboto", sans-serif;
-        font-weight: 500;
+        font-weight: 600;
         font-style: normal;
     }
 
@@ -153,8 +153,8 @@
 
     .product-container .product-content {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px;
     }
 
     .product-card a {
@@ -183,15 +183,14 @@
     .product-card .titel {
         padding: 5px 7px;
         text-transform: capitalize;
-        line-height: normal;
+        line-height: ;
         padding-bottom: 0;
         color: #222;
         font-family: "Roboto", sans-serif;
-        font-weight: 400;
-        font-size: 16px;
+        font-size: 14px;
         font-style: normal;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -331,21 +330,19 @@
     .shop-container .shop-content a .text {
         padding: 5px 0;
         line-height: normal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 
     .shop-container .shop-content a .text span {
         color: #333;
-        text-transform: uppercase;
+        text-transform: capitalize;
         font-size: 14px;
         font-family: "Roboto", sans-serif;
         font-weight: 500;
         font-style: normal;
-    }
-
-    .shop-container .shop-content a .text span strong {
-        font-weight: 500;
-        font-size: 14px;
-        margin-left: 5px;
     }
 
     .shop-container .shop-content .card {
@@ -518,7 +515,7 @@
 
         .shop-container .shop-content {
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 10px;
+            gap: 5px;
         }
 
         .shop-container .shop-content a .text span {
@@ -576,7 +573,7 @@
                             <img src="{{ asset('CategoryImg/' . $category->category_img) }}" alt="">
                         </div>
                         <div class="text">
-                            <span>{{ $category->category_name }}<strong>({{ $category->product_count }})</strong></span>
+                            <span>{{ $category->category_name }} ({{$category->product_count}})</span>
                         </div>
                     </a>
                 @endforeach
@@ -648,7 +645,7 @@
                         <span>Home</span>
                     </div>
                 </a>
-                <a href="{{ route('categorypage') }}">
+                <a href="{{ route('all.category.product') }}">
                     <div class="icons">
                         <i class="ri-layout-grid-fill"></i> <span>categories</span>
                     </div>
@@ -790,6 +787,9 @@
             });
         </script>
     @endif
+    @php
+        session()->forget('success');
+    @endphp
     @if (session('error'))
         <script>
             Swal.fire({
@@ -817,6 +817,9 @@
             });
         </script>
     @endif
+    @php
+        session()->forget('success');
+    @endphp
 </body>
 
 </html>

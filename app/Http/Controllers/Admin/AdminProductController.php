@@ -89,4 +89,32 @@ class AdminProductController extends Controller {
         Product::findOrFail( $id )->delete();
         return redirect()->route( 'allproduct' )->with( 'massage', 'Delete your product Successful' );
     }
+
+    public function EditProduct( $id ) {
+        $products = Product::where( 'id', $id )->get();
+        return view( 'admin.edit.editproduct', compact( 'products' ) );
+    }
+
+    public function UpdateProduct( Request $request ) {
+
+        $id = $request->id;
+        $product = Product::findOrFail( $id );
+
+        if ( $image = $request->file( 'image' ) ) {
+            $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move( public_path( 'ProductImg' ), $imageName );
+            $product->product_img  = $imageName;
+            // Update product image if a new image is provided
+        }
+
+        $product->update( [
+            'product_name' => $request->name,
+            'product_desc' => $request->description,
+            'product_price' => $request->price,
+            'product_quantity' => $request->quantity,
+            'regular_price' => $request->regular_price,
+        ] );
+
+        return redirect()->route( 'allproduct' )->with( 'success', 'Products Updated Successfully' );
+    }
 }

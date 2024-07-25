@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model {
     use HasFactory;
-
     protected $fillable = [
         'customer_id',
         'name',
@@ -17,4 +16,8 @@ class Shipping extends Model {
         'division',
         'city',
     ];
+
+    public function customer() {
+        return $this->belongsTo( User::class, 'customer_id' );
+    }
 }

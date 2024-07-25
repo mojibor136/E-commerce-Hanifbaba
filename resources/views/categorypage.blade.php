@@ -22,7 +22,7 @@
     }
 
     nav {
-        background-color: #dc3545;
+        background-color: #A60DE4;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -37,105 +37,85 @@
         cursor: pointer;
     }
 
-    .main-category-container {
-        display: flex;
-        width: 100%;
+    /* shop-container html code */
+    .shop-container {
+        padding: 35px 0px;
+        padding-top: 0px;
     }
 
-    .category-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .category-container a {
-        cursor: pointer;
-        text-decoration: none;
-        color: #555;
-        font-family: "Roboto", sans-serif;
-        font-style: normal;
-        font-weight: 500;
-    }
-
-    .category-container .category-card {
-        background-color: #eee;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .category-card .category-img {
-        width: 75px;
-        height: 65px;
-        padding: 10px;
-        padding-bottom: 0px;
-    }
-
-    .category-card .category-img img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .category-card .name {
-        text-align: center;
-        padding: 5px;
-        line-height: normal;
-        text-transform: capitalize;
-        font-size: 13px;
-    }
-
-    .subcategory-container {}
-
-    .subcategory-container a {
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 10px;
-    }
-
-    .subcategory-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .subcategory-content {
+    .shop-container .shop-content {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        row-gap: 10px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        padding: 0 2px;
     }
 
-    .subcategory-content a {
+    .shop-container .shop-content a {
         text-decoration: none;
+    }
+
+    .shop-container .shop-hadding {
+        text-align: center;
+        line-height: normal;
+        padding: 10px 0;
+        padding-bottom: 15px;
+        color: #333;
+    }
+
+    .shop-container .shop-hadding h4 {
+        text-transform: uppercase;
+        margin: 10px 0;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .shop-container .shop-hadding span {
         font-family: "Roboto", sans-serif;
         font-style: normal;
-        font-weight: 500;
-        color: #111;
-
     }
 
-    .subcategory-card .subcategory-img {
-        width: 80px;
-        height: 70px;
-        padding: 10px;
-        padding-bottom: 5px
-    }
-
-    .subcategory-card .subcategory-img img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .subcategory-card .name {
-        text-align: center;
-        padding: 0 5px;
+    .shop-container .shop-content a .text {
+        padding: 5px 0;
         line-height: normal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .shop-container .shop-content a .text span {
+        color: #333;
         text-transform: capitalize;
-        font-size: 13px;
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .shop-container .shop-content .card {
+        box-shadow: 4px 2px 20px 0px #b4c9d3;
+        overflow: hidden;
+    }
+
+    .shop-container .shop-content .card img {
+        width: 100%;
     }
 
     @media (max-width: 640px) {
         nav {
             display: inline-flex;
-            padding: 0px 10px;
+            padding: 5px 10px;
+        }
+
+        .shop-container .shop-content {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 5px;
+            padding: 0 5px;
+        }
+
+        .shop-container .shop-content a .text span {
+            font-size: 12px;
         }
     }
 </style>
@@ -150,144 +130,23 @@
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>
         </div>
     </nav>
-    <div>
-        <div class="main-category-container">
-            <div class="category-container">
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
+    {{-- Shop By Department --}}
+    <div class="shop-container" id="shop">
+        <div class="shop-hadding">
+            <h4>Shop By Department</h4>
+            <span>Take A Look At Our Other Products</span>
+        </div>
+        <div class="shop-content">
+            @foreach ($categories as $category)
+                <a href="{{ route('filterproduct', ['id' => $category->id, 'slug' => $category->category_name]) }}">
+                    <div class="card">
+                        <img src="{{ asset('CategoryImg/' . $category->category_img) }}" alt="">
+                    </div>
+                    <div class="text">
+                        <span>{{ $category->category_name }} ({{ $category->product_count }})</span>
                     </div>
                 </a>
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="">
-                    <div class="category-card">
-                        <div class="category-img">
-                            <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                        </div>
-                        <div class="name">
-                            <span>health care</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="subcategory-container">
-                <div class="subcategory-content">
-                    <a href="">
-                        <div class="subcategory-card">
-                            <div class="subcategory-img">
-                                <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                            </div>
-                            <div class="name">
-                                <span>health care</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="subcategory-card">
-                            <div class="subcategory-img">
-                                <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                            </div>
-                            <div class="name">
-                                <span>electronic device</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="subcategory-card">
-                            <div class="subcategory-img">
-                                <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                            </div>
-                            <div class="name">
-                                <span>health care</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="subcategory-card">
-                            <div class="subcategory-img">
-                                <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                            </div>
-                            <div class="name">
-                                <span>health care</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="subcategory-card">
-                            <div class="subcategory-img">
-                                <img src="{{ asset('products/1711678828-6606256c475ea.jpg') }}" alt="">
-                            </div>
-                            <div class="name">
-                                <span>health care</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </body>
