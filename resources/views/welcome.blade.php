@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
 </head>
@@ -62,9 +62,9 @@
         text-transform: capitalize;
         text-decoration: none;
         color: #636464;
-        font-size: 14px;
+        font-size: 15px;
         font-family: "Roboto", sans-serif;
-        font-weight: 600;
+        font-weight: 500;
         font-style: normal;
     }
 
@@ -183,10 +183,11 @@
     .product-card .titel {
         padding: 5px 7px;
         text-transform: capitalize;
-        line-height: ;
+        line-height: initial;
         padding-bottom: 0;
         color: #222;
         font-family: "Roboto", sans-serif;
+        font-weight: 400;
         font-size: 14px;
         font-style: normal;
         display: -webkit-box;
@@ -358,6 +359,13 @@
         margin: 15px 0;
     }
 
+    /* see more button css code section */
+
+    .see-more {
+        text-align: center;
+        padding-bottom: 15px;
+    }
+
     /* Media query for screens between 1024px and 768px */
     @media screen and (max-width: 1024px) {
         .main-container {
@@ -397,6 +405,7 @@
 
         .home-icon-container {
             display: block;
+            z-index: 9999;
         }
 
         .nav-container {
@@ -494,6 +503,10 @@
         .shop-container .shop-content {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         }
+
+        footer {
+            margin-bottom: 45px;
+        }
     }
 
     /* Media query for screens between 480px and 380px */
@@ -511,11 +524,13 @@
         .product-container .product-content {
             grid-template-columns: 1fr 1fr;
             gap: 10px;
+            padding: 0 5px;
         }
 
         .shop-container .shop-content {
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 5px;
+            gap: 2px;
+            padding: 0 5px;
         }
 
         .shop-container .shop-content a .text span {
@@ -573,7 +588,7 @@
                             <img src="{{ asset('CategoryImg/' . $category->category_img) }}" alt="">
                         </div>
                         <div class="text">
-                            <span>{{ $category->category_name }} ({{$category->product_count}})</span>
+                            <span>{{ $category->category_name }} ({{ $category->product_count }})</span>
                         </div>
                     </a>
                 @endforeach
@@ -584,7 +599,7 @@
         <div class="product-container">
             <div class="product-header">
                 <h4>new products</h4>
-                <span>first-class quality products for appying eyelash extensions</span>
+                <span>first-class quality products for appying Premium Products</span>
             </div>
             <div class="product-content">
                 @foreach ($products as $product)
@@ -607,10 +622,10 @@
                                 <div class="price">
                                     @if ($product->regularPrice)
                                         <div class="discount">
-                                            <span>DKK {{ $product->regular_price }}.00</span>
+                                            <span>BDT {{ $product->regular_price }}.00</span>
                                         </div>
                                     @endif
-                                    <span>DKK {{ $product->product_price }}.00</span>
+                                    <span>BDT {{ $product->product_price }}.00</span>
                                 </div>
                                 @if ($product->product_quantity > 0)
                                     <a href="javascript:void(0);" class="btn btn-dark" onclick="submitForm(this);">
@@ -693,6 +708,13 @@
             </div>
         </div>
     </div>
+
+    {{-- see more button html code section see more to shop page return --}}
+
+    <div class="see-more">
+        <a href="{{ route('shop') }}" class="btn btn-success">See more</a>
+    </div>
+
     <script>
         let close = document.querySelector('.close');
         let navbar = document.querySelector('.nav-container');

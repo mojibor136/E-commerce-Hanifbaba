@@ -54,7 +54,6 @@
         font-size: 11px;
         font-family: "Roboto", sans-serif;
         font-weight: 500;
-        font-style: normal;
         color: #636464;
     }
 
@@ -136,11 +135,18 @@
         color: #333;
         font-size: 14px;
         transition: background-color 0.3s ease;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        text-transform: capitalize;
     }
 
     .dropdown-category a:hover {
         background-color: #f5f5f5;
-        /* Optional: Highlight on hover */
+        color: #A60DE4;
+    }
+
+    .search-container .search-content .h-category-container {
+        border-right: 1px solid #ddd;
     }
 
     .search-container .search-content .h-category-container .h-category-content {
@@ -155,12 +161,14 @@
         text-transform: uppercase;
         color: #333;
         font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
     }
 
     .search-container .search-content .search-card {
         display: flex;
         align-items: center;
-        margin: 0 10px;
+        margin-right: 7px;
     }
 
     .search-container .search-content .search-card input {
@@ -169,8 +177,9 @@
         font-size: 16px;
         padding: 0 5px;
         font-family: "Roboto", sans-serif;
-        font-weight: 400;
+        font-weight: 500;
         font-style: normal;
+        color: #333;
     }
 
     /* ICONS */
@@ -194,6 +203,29 @@
         text-decoration: none;
         font-size: 20px;
         color: #333;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+    }
+
+    .cart-content {
+        position: relative;
+    }
+
+    .count-cart {
+        position: absolute;
+        top: -2px;
+        right: -10px;
+        background: red;
+        color: white;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
     }
 
     /* ACCOUNT */
@@ -219,6 +251,7 @@
 
     .header-container .header-card .icons-container .account-card .user-icons span {
         color: #555;
+        font-family: "Roboto", sans-serif;
         font-weight: 500;
     }
 
@@ -260,9 +293,10 @@
         padding-right: 50px;
         text-transform: capitalize;
         text-decoration: none;
-        color: #333;
+        color: #555;
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 600;
+        font-family: "Roboto", sans-serif;
     }
 
     .header-container .profile-container .profile-card a:hover {
@@ -354,7 +388,8 @@
                     </a>
                 </div>
                 <div class="search-container">
-                    <form action="" class="form">
+                    <form class="form" action="{{ route('search') }}" method="post">
+                        @csrf
                         <div class="search-content">
                             <div class="dropdown h-category-container">
                                 <div class="h-category-content">
@@ -363,7 +398,7 @@
                                 </div>
                             </div>
                             <div class="search-card">
-                                <input type="text" placeholder="Search in hanifbaba" class="input" required>
+                                <input type="text" name="search" placeholder="Search in hanifbaba" class="input" required>
                                 <div class="search-icons">
                                     <i class="ri-search-line"></i>
                                 </div>
@@ -385,14 +420,23 @@
                     @if (Auth::check())
                         <div class="icons-card">
                             <a href="" class="ri-heart-line icons"></a>
-                            <a href="{{ route('addtocart') }}" class="ri-shopping-cart-line icons"></a>
+                            <div class="cart-content">
+                                <a href="{{ route('addtocart') }}" class="ri-shopping-cart-line icons"></a>
+                                <div class="count-cart">
+                                    {{ getCartCount() }}
+                                </div>
+                            </div>
                         </div>
                     @endif
                     <div class="account-card">
                         @if (Auth::check())
                             <div class="user-icons">
                                 <img src="{{ asset('icon/icon.jpg') }}" alt="">
-                                <span>Mojibor</span>
+                                @php
+                                    $nameParts = explode(' ', Auth::user()->name);
+                                    $shortName = isset($nameParts[1]) ? $nameParts[1] : $nameParts[0];
+                                @endphp
+                                <span>{{ $shortName }}</span>
                                 <div class="arrow"></div>
                             </div>
                         @else

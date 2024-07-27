@@ -406,10 +406,10 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>BDT {{ $items['productPrice'] }}</td>
+                                    <td>BDT {{ $items['productQuantity'] * $items['productPrice'] }}</td>
                                 </tr>
                                 @php
-                                    $totalPrice += $items['productPrice'];
+                                    $totalPrice += $items['productQuantity'] * $items['productPrice'];
                                 @endphp
 
                                 {{-- data pass and checkout product hidden input  --}}

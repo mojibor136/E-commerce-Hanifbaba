@@ -184,8 +184,8 @@
                                         alt="">
                                 </td>
                                 <td>{{ $orderInfo->productName }}</td>
-                                <td>DKK {{ $orderInfo->productQuantity * $orderInfo->productPrice }}.00</td>
-                                <td>{{ $orderInfo->productQuantity }}</td>
+                                <td>BDT {{ $orderInfo->quantity * $orderInfo->product_price }}.00</td>
+                                <td>{{ $orderInfo->quantity }}</td>
                             </tr>
                         @endforeach
                         <tr class="total">
@@ -193,7 +193,7 @@
                             <td></td>
                             <td></td>
                             <td>TOTAL</td>
-                            <td>DKK {{ $order->payment->amount }}.00</td>
+                            <td>BDT {{ $order->payment->amount }}.00</td>
                         </tr>
                     </table>
                 </div>

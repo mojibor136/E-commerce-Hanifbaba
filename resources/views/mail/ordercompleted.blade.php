@@ -16,7 +16,7 @@
         contact us at <strong>(+45) 7142 1852</strong>.</p>
     <p>We appreciate your business and look forward to serving you again.</p>
     <p>Best regards,</p>
-    <p>Beauty by Samanta Store Team</p>
+    <p>Hanifbaba.com Store Team</p>
 </body>
 
 </html>

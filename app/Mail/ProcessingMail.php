@@ -22,6 +22,7 @@ class ProcessingMail extends Mailable {
 
     public function build() {
         return $this->view( 'mail.orderprocessing' )
+        ->subject( 'Your Order is Being Processed' )
         ->with( [
             'customerName' => $this->customerName,
             'orderId' => $this->orderId,

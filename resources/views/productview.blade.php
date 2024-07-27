@@ -367,11 +367,16 @@
     }
 
     .ask-main-container .add-ask .form-control {
+        border: 1px solid #AF009C !important;
+        border-right: 0;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         font-family: "Roboto", sans-serif;
         font-style: normal;
+        box-shadow: none !important;
+        outline: none;
     }
+
 
     .ask-main-container .add-ask .btn {
         border-top-left-radius: 0;
@@ -684,6 +689,8 @@
         .phone-button {
             width: 100%;
             display: flex;
+            gap: 10px;
+            padding: 10px;
         }
 
         .phone-button form {
@@ -691,7 +698,6 @@
         }
 
         .phone-button .btn {
-            border-radius: 0;
             padding: 8px 15px;
             width: 100%;
             display: flex;
@@ -727,6 +733,7 @@
 
         .ask-main-container {
             padding: 0 7px 0 5px;
+            margin-bottom: 32px;
         }
 
         .ask-main-container .ask-card {

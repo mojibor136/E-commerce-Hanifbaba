@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AdminController;
@@ -77,11 +78,13 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/price/filter', 'PriceFilter')->name('pricefilter');
     Route::get('/size/filter', 'SizeFilter')->name('sizefilter');
     Route::get('/shop', 'Shop')->name('shop');
+    Route::post('/search' , 'Search')->name('search');
+    Route::get('/all/category','AllCategoryProduct')->name('all.category.product');
     Route::get('/GetCategoriesData', 'GetCategoriesData')->name('GetCategoriesData');
     Route::get('/test', 'Test')->name('test');
 });
 
-Route::controller(Controller::class)->group(function () {
+Route::controller(QuestionController::class)->group(function () {
     Route::post('/question', 'Question')->name('question');
     Route::get('/all/question', 'AllQuestion')->name('allquestion');
     Route::get('/answer/{id}', 'Answer')->name('answer');
@@ -114,7 +117,6 @@ Route::controller(SettingsController::class)->group(function () {
 Route::middleware(['auth', 'web'])->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('/shipping', 'Shipping')->name('shipping');
-        Route::get('/all/category','AllCategoryProduct')->name('all.category.product');
     });
 
     Route::controller(CommonController::class)->group(function () {

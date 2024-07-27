@@ -75,7 +75,7 @@
                             <a href="{{ route('charge') }}">Delivery Charge</a>
                         </div>
                         <div class="form-group">
-                            <a href="{{ route('shopaddress') }}">Shop Address</a>
+                            <a href="">Shop Address</a>
                         </div>
                     </div>
                 </div>

@@ -43,8 +43,9 @@ class ProductController extends Controller {
 
     public function FilterProduct( $id, $slug ) {
         $products = Product::where( 'product_category_id', $id )->get();
+        $productCount = $products->count();
         $categories = Category::get();
-        return view( 'filter-product', compact( 'products' ) );
+        return view( 'filter-product', compact( 'products', 'productCount' ) );
     }
 
     public function Shop() {
@@ -59,5 +60,15 @@ class ProductController extends Controller {
     public function AllCategoryProduct() {
         $categories = Category::get()->all();
         return view( 'categorypage', compact( 'categories' ) );
+    }
+
+    public function Search( Request $request ) {
+        $request->validate( [
+            'search' => 'required|string|min:1',
+        ] );
+
+        $products = Product::where( 'product_name', 'like', '%'.$request->input( 'search' ).'%' )->get();
+
+        return view( 'search', compact( 'products' ) );
     }
 }

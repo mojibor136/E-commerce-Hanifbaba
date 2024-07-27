@@ -21,9 +21,11 @@ class OrderCancelledMail extends Mailable {
 
     public function build() {
         return $this->view( 'mail.ordercancelled' )
+        ->subject( 'Your Order Has Been Cancelled' )
         ->with( [
             'customerName' => $this->customerName,
             'orderId' => $this->orderId,
         ] );
     }
+
 }

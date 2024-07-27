@@ -199,40 +199,41 @@
             <form action="{{ route('register.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="name form-control">
                         <i class="ri-user-fill"></i>
                         <input type="text" name="name" placeholder="Name" value="{{ old('name') }}">
                     </div>
-                    @error('name')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
                 <div class="form-group">
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="email form-control">
                         <i class="ri-mail-line"></i>
                         <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
                     </div>
-                    @error('email')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
                 <div class="form-group">
-                    <div class="number form-control">
-                        <i class="ri-lock-line"></i>
-                        <input type="number" name="phone" placeholder="Phone Number" value="{{ old('phone') }}">
-                    </div>
                     @error('phone')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
+                    <div class="number form-control">
+                        <i class="ri-phone-fill"></i>
+                        <input type="number" name="phone" placeholder="Phone Number" value="{{ old('phone') }}">
+                    </div>
                 </div>
                 <div class="form-danger">
+                    @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                     <div class="password form-control">
                         <i class="ri-lock-line"></i>
                         <input type="password" name="password" placeholder="Password" value="{{ old('password') }}">
                     </div>
-                    @error('password')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+
                 </div>
                 <div class="remember">
                     <input type="checkbox">

@@ -423,7 +423,8 @@
                                 name="cart[{{ $index }}][productSize]">
                         @endforeach
                         <input type="hidden" value="{{ $carts->sum('product_price') }}" name="totalPrice">
-                        <input type="submit" class="btn btn-danger" value="CHECKOUT">
+                        <input type="submit" class="btn btn-danger" value="CHECKOUT"
+                            {{ $carts->isEmpty() ? 'disabled' : '' }}>
                     </form>
                 </div>
             </div>

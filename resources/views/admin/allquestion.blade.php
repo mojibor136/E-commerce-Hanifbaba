@@ -97,7 +97,8 @@
                                     @if ($question->status == 1)
                                         <tr>
                                             <td>{{ $question->id }}</td>
-                                            <td>{{ $question->product->productName }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($question->product->product_name, 20) }}
+                                            </td>
                                             <td>{{ \Illuminate\Support\Str::limit($question->question, 10, '...') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($question->created_at)->format('Y-m-d') }}</td>
                                             <td>{{ \Illuminate\Support\Str::limit($question->answered, 10, '...') }}</td>
@@ -110,7 +111,8 @@
                                     @else
                                         <tr style="background: #eee">
                                             <td>{{ $question->id }}</td>
-                                            <td>{{ $question->product->productName }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($question->product->product_name, 20) }}
+                                            </td>
                                             <td>{{ \Illuminate\Support\Str::limit($question->question, 10, '...') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($question->created_at)->diffForHumans() }}</td>
                                             <td>{{ \Illuminate\Support\Str::limit($question->answered, 10, '...') }}</td>

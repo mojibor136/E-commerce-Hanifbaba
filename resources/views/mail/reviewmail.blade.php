@@ -52,7 +52,7 @@
         <p>If you have any questions or concerns, please don't hesitate to contact us. Thank you for being a valued
             customer!</p>
 
-        <p>Sincerely,<br>The Beauty by Samanta Team</p>
+        <p>Sincerely,<br>The Hanifbaba.com Team</p>
     </div>
 </body>
 

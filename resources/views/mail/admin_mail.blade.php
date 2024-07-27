@@ -9,9 +9,9 @@
     <h1>New Order Notification</h1>
     <p>A new order has been placed. Here are the details:</p>
 
-    <h2>Customer Details</h2>
+    <h2>Shipping Details</h2>
     <ul>
-        <li>Name: {{ $shipping->fullName }}</li>
+        <li>Name: {{ $shipping->name }}</li>
         <li>Email: {{ $shipping->email }}</li>
         <li>Phone: {{ $shipping->number }}</li>
         <li>Address: {{ $shipping->address }}, {{ $shipping->city }}, {{ $shipping->country }} - {{ $shipping->postal }}

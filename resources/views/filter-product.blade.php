@@ -614,7 +614,7 @@
                 <div class="filter-box">
                     <div class="sort-content">
                         <div class="result-bar">
-                            <span>11,174 items found for</span>
+                            <span>{{ $productCount }} items found for</span>
                         </div>
                     </div>
                 </div>
@@ -622,7 +622,10 @@
                 {{-- product html code --}}
                 <div class="product-container">
                     <div class="product-header">
-                        <h4>new products</h4>
+                        @if ($products->isEmpty())
+                            <h4>Product not found.</h4>
+                        @else
+                            <h4>new products</h4>
                     </div>
                     <div class="product-content">
                         @foreach ($products as $product)
@@ -644,12 +647,12 @@
                                             <i class="ri-star-half-line"></i>
                                         </div>
                                         <div class="price">
-                                            @if ($product->regularPrice)
+                                            @if ($product->regular_price)
                                                 <div class="discount">
-                                                    <span>DKK {{ $product->regular_price }}.00</span>
+                                                    <span>BDT {{ $product->regular_price }}.00</span>
                                                 </div>
                                             @endif
-                                            <span>DKK {{ $product->product_price }}.00</span>
+                                            <span>BDT {{ $product->product_price }}.00</span>
                                         </div>
                                         @if ($product->product_quantity > 0)
                                             <a href="javascript:void(0);" class="btn btn-dark"
@@ -676,8 +679,10 @@
                                 </a>
                             </div>
                         @endforeach
+                        @endif
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

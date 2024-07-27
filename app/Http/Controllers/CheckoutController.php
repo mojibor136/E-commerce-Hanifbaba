@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderDetails;
 use App\Models\Cart;
+use App\Models\Admin as Admins;
 use App\Jobs\Admin;
 
 class CheckoutController extends Controller {
@@ -96,7 +97,9 @@ class CheckoutController extends Controller {
         OrderDetails::insert( $productItems );
         Cart::where( 'user_id', $customerId )->delete();
 
-        $recipientEmail = 'beautybysamantaa@gmail.com';
+        $adminEmail = Admins::first();
+        $recipientEmail = $adminEmail->email;
+
         Admin::dispatch( $order, $shipping, $payment, $recipientEmail );
 
         return redirect()->route( 'home' )->with( 'success', 'Congratulations! Thank you for your order. Your order has been successfully confirmed.' );

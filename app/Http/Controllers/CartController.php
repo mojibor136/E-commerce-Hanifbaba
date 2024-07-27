@@ -22,24 +22,27 @@ class CartController extends Controller {
     }
 
     public function StoreCart( Request $request ) {
-        $request->validate( [
-            'productId' => 'required',
-            'productQuantity' => 'required|min:1',
-        ] );
-
+        $productId = $request->productId;
         $userId = Auth::id();
-        $cartData = [
-            'user_id' => $userId,
-            'product_id' => $request->productId,
-            'product_img' => $request->productImg,
-            'product_name' => $request->productName,
-            'product_price' => $request->productPrice,
-            'product_quantity' => $request->productQuantity,
-        ];
-
-        Cart::insert( $cartData );
-        session()->flash( 'success', 'Products Cart Added Successfully' );
-        return back();
+        $cartId = Cart::where( 'product_id', $productId )->where( 'user_id', $userId )->value( 'product_id' );
+        if ( $productId == $cartId ) {
+            return back()->with( 'error', 'Already addtocarta a products' );
+        } else {
+            // Check the product stock
+            $product = Product::find( $productId );
+            if ( $product->product_quantity < $request->productQuantity ) {
+                return back()->with( 'error', 'Not enough stock available.' );
+            }
+            Cart::create( [
+                'user_id' => $userId,
+                'product_id' => $request->productId,
+                'product_img' => $request->productImg,
+                'product_name' => $request->productName,
+                'product_price' => $request->productPrice,
+                'product_quantity' => $request->productQuantity,
+            ] );
+            return back()->with( 'success', 'Successfully Addtocart Thanks..' );
+        }
     }
 
     public function DeleteCart( $id ) {

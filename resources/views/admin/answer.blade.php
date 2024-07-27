@@ -112,14 +112,14 @@
                 <div class="content">
                     <div class="product-content">
                         <div class="product-img">
-                            <img src="{{ asset('ProductImg/' . $question->product->productImg) }}" alt="">
+                            <img src="{{ asset('ProductImg/' . $question->product->product_img) }}" alt="">
                         </div>
                     </div>
                     <div>
                         <div class="product-info">
                             <div class="group">
                                 <label for="">PRODUCT NAME</label>
-                                <span>{{ $question->product->productName }}</span>
+                                <span>{{ $question->product->product_name }}</span>
                             </div>
                             <div class="group">
                                 <label for="">QUESTION</label>

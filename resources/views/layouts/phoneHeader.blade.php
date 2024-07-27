@@ -30,7 +30,7 @@
         border-radius: 2px;
         width: 100%;
         background: #fff;
-        padding-right: 10px;
+        padding: 0;
     }
 
     .searchBox input {
@@ -52,6 +52,8 @@
     .searchBox i {
         color: #555;
         font-size: 20px;
+        cursor: pointer;
+        margin: 0 10px;
     }
 
     @media screen and (max-width: 640px) {
@@ -74,10 +76,13 @@
 
 <body>
     <header class="phoneHeader">
-        <div class="searchBox">
-            <input type="text" placeholder="Search in Hanifbaba">
-            <i class="ri-search-line"></i>
-        </div>
+        <form action="{{ route('search') }}" method="post" class="form">
+            @csrf
+            <div class="searchBox">
+                <input name="search" type="text" placeholder="Search in Hanifbaba">
+                <i class="ri-search-line"></i>
+            </div>
+        </form>
     </header>
 </body>
 

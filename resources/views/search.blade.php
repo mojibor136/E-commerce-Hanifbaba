@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shop</title>
+    <title>Search</title>
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
 </head>
 <style>
@@ -37,6 +37,12 @@
         gap: 10px;
     }
 
+    .not {
+        margin: 80px 0;
+        text-transform: uppercase;
+        font-size: 24px;
+    }
+
     @media screen and (max-width: 640px) {
         nav {
             display: inline-flex;
@@ -46,6 +52,13 @@
         .main-container {
             padding: 0;
         }
+
+        .not {
+            margin: 130px 0;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
 
         .product-container .product-content {
             display: grid;
@@ -59,7 +72,7 @@
     <nav>
         <div class="button">
             <i class="ri-arrow-left-s-line" onclick="history.back()" id="back-buttton" style="font-size: 32px;"></i>
-            <p style="margin:0;">All Products</p>
+            <p style="margin:0;">Search Products</p>
         </div>
         <div class="button">
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>
@@ -69,8 +82,11 @@
         {{-- product html code --}}
         <div class="product-container">
             <div class="product-header">
-                <h4>new products</h4>
-                <span>first-class quality products for appying Premium Products</span>
+                @if ($products->isEmpty())
+                    <h3 class="not">Product not found.</h3>
+                @else
+                    <h4>search products</h4>
+                    <span>first-class quality products for appying Premium Products</span>
             </div>
             <div class="product-content">
                 @foreach ($products as $product)
@@ -119,6 +135,7 @@
                         </a>
                     </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>

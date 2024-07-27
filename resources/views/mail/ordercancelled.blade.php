@@ -13,7 +13,7 @@
         at <strong>(+45) 7142 1852</strong>.</p>
     <p>Thank you for your understanding.</p>
     <p>Best regards,</p>
-    <p>Beauty by Samanta Store Team</p>
+    <p>BHanifbaba.com Store Team</p>
 </body>
 
 </html>

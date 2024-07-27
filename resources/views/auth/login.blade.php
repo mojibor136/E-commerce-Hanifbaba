@@ -105,7 +105,6 @@
     }
 
     .login-bar form .alert {
-        text-transform: capitalize;
         padding: 7px 5px;
         margin: 0;
         list-style: none;
