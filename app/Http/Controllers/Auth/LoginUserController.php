@@ -24,6 +24,6 @@ class LoginUserController extends Controller {
             return redirect()->route( 'login' )->with( 'error', 'not match our records.please try again later' );
         }
 
-        return redirect()->route( 'home' );
+        return redirect()->intended();
     }
 }

@@ -315,7 +315,8 @@
                 <div class="navbar-heading">ADVANCE SYSTEM</div>
             </div>
             <div class="nav-item">
-                <a href="" class="nav-link"><i class="ri-briefcase-line nav-icon"></i>managemet</a>
+                <a href="{{ route('management') }}" class="nav-link">
+                    <i class="ri-briefcase-line nav-icon"></i>managemet</a>
             </div>
             <div class="nav-item">
                 <a href="{{ route('alluser') }}" class="nav-link"><i class="ri-user-line nav-icon"></i>user
@@ -355,7 +356,7 @@
                 <div class="navbar-heading">ADVANCE SYSTEM</div>
             </div>
             <div class="nav-item">
-                <a href="" class="nav-link"><i class="ri-briefcase-line nav-icon"></i>managemet</a>
+                <a href="{{route('management')}}" class="nav-link"><i class="ri-briefcase-line nav-icon"></i>managemet</a>
             </div>
             <div class="nav-item">
                 <a href="{{ route('alluser') }}" class="nav-link"><i class="ri-user-line nav-icon"></i>user

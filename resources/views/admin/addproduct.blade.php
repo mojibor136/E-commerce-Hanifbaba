@@ -41,11 +41,37 @@
         }
 
         label {
-            margin-top: 6px;
-            font-size: 14px;
-            margin-bottom: 4px;
-            font-family: 'Poppins', sans-serif;
+            margin-top: 8px;
+            font-size: 15px;
+            margin-bottom: 6px;
+            font-family: "Roboto", sans-serif;
             font-weight: 500;
+            color: #333;
+        }
+
+        .button {
+            cursor: pointer;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .size-show,
+        .color-show {
+            cursor: pointer;
+        }
+
+        .size-content,
+        .color-content {
+            display: none;
+        }
+
+        .size,
+        .color {
+            font-size: 14px;
+            display: flex;
+            gap: 5px;
+            align-items: center;
         }
     </style>
 
@@ -89,6 +115,56 @@
                                     name="quantity" value="{{ old('quantity') }}">
                             </div>
                             <div class="form-group">
+                                <label for="">Products Size</label>
+                                <div class="content form-control">
+                                    <div class="button">
+                                        <input type="checkbox" id="size-show">
+                                        <label>Products Size</label>
+                                    </div>
+                                    <div class="size-content" id="size-content">
+                                        <div class="flex">
+                                            <div class="size">
+                                                <input type="checkbox">
+                                                <label>44</label>
+                                            </div>
+                                            <div class="size">
+                                                <input type="checkbox">
+                                                <label>42</label>
+                                            </div>
+                                            <div class="size">
+                                                <input type="checkbox">
+                                                <label>39</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Products Color</label>
+                                <div class="content form-control">
+                                    <div class="button">
+                                        <input type="checkbox" id="color-show">
+                                        <label>Products Color</label>
+                                    </div>
+                                    <div class="color-content" id="color-content">
+                                        <div class="flex">
+                                            <div class="color">
+                                                <input type="checkbox">
+                                                <label>Red</label>
+                                            </div>
+                                            <div class="color">
+                                                <input type="checkbox">
+                                                <label>Blue</label>
+                                            </div>
+                                            <div class="color">
+                                                <input type="checkbox">
+                                                <label>Green</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="exampleSelect">Select Category</label>
                                 <select class="form-control" id="exampleSelect" name="category_id">
                                     @foreach ($categories as $category)
@@ -115,6 +191,25 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.getElementById('size-show').addEventListener('change', function() {
+                var sizeContent = document.getElementById('size-content');
+                if (this.checked) {
+                    sizeContent.style.display = 'block';
+                } else {
+                    sizeContent.style.display = 'none';
+                }
+            });
+
+            document.getElementById('color-show').addEventListener('change', function() {
+                var colorContent = document.getElementById('color-content');
+                if (this.checked) {
+                    colorContent.style.display = 'block';
+                } else {
+                    colorContent.style.display = 'none';
+                }
+            });
+        </script>
     </body>
 
     </html>

@@ -17,7 +17,8 @@
     }
 
     body {
-        background-color: #eeeeee;
+        --tw-bg-opacity: 1;
+        background-color: rgb(243 244 246 / var(--tw-bg-opacity));
     }
 
     nav {

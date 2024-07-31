@@ -25,7 +25,8 @@
 
     body {
         font-family: 'Noto Sans Bengali', Arial, sans-serif;
-        background: #e9ecef;
+        --tw-bg-opacity: 1;
+        background-color: rgb(243 244 246 / var(--tw-bg-opacity));
     }
 
     .main-container {
@@ -269,7 +270,6 @@
         font-weight: 400;
         font-style: normal;
     }
-
     /* Default styles */
     /* Your default CSS styles go here */
 
@@ -364,6 +364,7 @@
     .see-more {
         text-align: center;
         padding-bottom: 15px;
+        font-family: 'Roboto';
     }
 
     /* Media query for screens between 1024px and 768px */
@@ -406,75 +407,6 @@
         .home-icon-container {
             display: block;
             z-index: 9999;
-        }
-
-        .nav-container {
-            width: 100%;
-            height: 100vh;
-            background: #eee;
-            position: relative;
-            z-index: 999999;
-            display: none;
-        }
-
-        .side-nav-container {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 200px;
-            height: 100%;
-            background: #fff;
-            padding: 50px 0;
-        }
-
-        .close {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            color: red;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .side-nav-container .side-nav-content a {
-            display: flex;
-            flex-direction: columns;
-            color: #333;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-bottom: 1px solid #eee;
-            font-family: "Roboto", sans-serif;
-            font-style: normal;
-        }
-
-        .phone-profile-content {
-            padding: 10px 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid #999;
-        }
-
-        .phone-profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .phone-profile-img img {
-            width: 100%;
-            height: 100%;
-        }
-
-        .phone-profile-name {
-            text-transform: uppercase;
-            padding-top: 5px;
-            font-family: "Roboto", sans-serif;
-            font-weight: 400;
-            font-style: normal;
         }
 
         .form-control {
@@ -677,36 +609,6 @@
                 </div>
             </div>
         </div>
-        <div class="nav-container">
-            <div class="side-nav-container">
-                <div style="position: relative; padding:10px;">
-                    <div class="close">
-                        <i class="ri-close-large-fill"></i>
-                    </div>
-                    <div class="phone-profile-content">
-                        <div class="phone-profile-img">
-                            <img src="{{ asset('banner/images.png') }}" alt="">
-                        </div>
-                        <div class="phone-profile-name">
-                            <span>md ariful islam</span>
-                        </div>
-                    </div>
-                    <div class="side-nav-content">
-                        <a href="">Order Tracking</a>
-                        <a href="">Cancel Order</a>
-                        <select name="" id="" class="form-control">
-                            <option selected disabled>Language</option>
-                            <option value="">Bangla</option>
-                            <option value="">English </option>
-                            <option value="">Hindi</option>
-                        </select>
-                        <a href="">Registration</a>
-                        <a href="">Login</a>
-                        <a href="">Settings</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     {{-- see more button html code section see more to shop page return --}}
@@ -714,39 +616,6 @@
     <div class="see-more">
         <a href="{{ route('shop') }}" class="btn btn-success">See more</a>
     </div>
-
-    <script>
-        let close = document.querySelector('.close');
-        let navbar = document.querySelector('.nav-container');
-        let profile = document.querySelector('#user-profile');
-        let body = document.querySelector('body');
-
-        profile.addEventListener('click', function() {
-            navbar.style.display = 'block';
-            body.style.overflow = 'hidden'; // Disable scrolling when navbar is open
-            resetScrollPosition(); // Reset scroll position to top when navbar is opened
-        });
-
-        function closeNavbar() {
-            navbar.style.display = 'none';
-            body.style.overflow = 'auto'; // Enable scrolling when navbar is closed
-        }
-
-        close.addEventListener('click', function() {
-            closeNavbar();
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target === navbar) {
-                closeNavbar();
-            }
-        });
-
-        // Function to reset scroll position to top
-        function resetScrollPosition() {
-            window.scrollTo(0, 0);
-        }
-    </script>
 
     <script>
         let cartIcon = document.querySelectorAll('.cart-icon')
@@ -799,19 +668,7 @@
             element.nextElementSibling.submit();
         }
     </script>
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                title: 'Success!',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    @endif
-    @php
-        session()->forget('success');
-    @endphp
+
     @if (session('error'))
         <script>
             Swal.fire({
@@ -839,9 +696,6 @@
             });
         </script>
     @endif
-    @php
-        session()->forget('success');
-    @endphp
 </body>
 
 </html>

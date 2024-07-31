@@ -124,7 +124,7 @@
     <nav>
         <div class="button">
             <i class="ri-arrow-left-s-line" onclick="history.back()" id="back-buttton" style="font-size: 32px;"></i>
-            <p style="margin:0;">Just for you</p>
+            <p style="margin:0;">All Category</p>
         </div>
         <div class="button">
             <i class="ri-more-2-fill" style="font-size: 24px;"></i>
@@ -152,3 +152,4 @@
 </body>
 
 </html>
+@include('layouts.footer')

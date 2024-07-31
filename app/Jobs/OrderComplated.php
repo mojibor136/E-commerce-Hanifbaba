@@ -28,7 +28,6 @@ class OrderComplated implements ShouldQueue {
     }
 
     public function handle() {
-        Mail::to( $this->customerEmail )->send( new OrderComplatedMail( $this->customerName, $this->orderId ) );
         foreach ( $this->products as $product ) {
             Mail::to( $this->customerEmail )->send( new ReviewMail( $this->customerName, $this->orderId, $product ) );
         }

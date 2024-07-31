@@ -46,7 +46,7 @@ class OrderController extends Controller {
         $order->update( [
             'status' => 'cancelled',
         ] );
-        $orderId = $order;
+        $orderId =  $order->id;
         $customerEmail = $order->customer->email;
         $customerName = $order->customer->name;
         OrderCancelled::dispatch( $customerEmail, $customerName, $orderId );

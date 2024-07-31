@@ -31,4 +31,5 @@ class ReviewMail extends Mailable {
             'product' => $this->product,
         ] );
     }
+
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ManageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -68,6 +69,46 @@ Route::middleware(['admin'])->group(function () {
             Route::get('/all/user', 'AllUser')->name('alluser');
             Route::get('/delete/user/{id}', 'DeleteUser')->name('deleteuser');
         });
+        
+        Route::controller(QuestionController::class)->group(function () {
+            Route::post('/question', 'Question')->name('question');
+            Route::get('/all/question', 'AllQuestion')->name('allquestion');
+            Route::get('/answer/{id}', 'Answer')->name('answer');
+            Route::post('/answer/update', 'AnswerUpdate')->name('answerupdate');
+        });
+        
+        Route::controller(ManageController::class)->group(function () {
+            Route::get('/management', 'Management')->name('management');
+            Route::get('/size' , 'Size')->name('size');
+            Route::get('color' , 'Color')->name('color');
+            Route::post('/store/size' , 'StoreSize')->name('store.size');
+            Route::post('/store/color' , 'StoreColor')->name('store.color');
+            Route::get('/delete/color/{id}' , 'DeleteColor')->name('delete.color');
+            Route::get('/delete/size/{id}' , 'DeleteSize')->name('delete.size');
+        });
+    
+        Route::controller(SettingsController::class)->group(function () {
+            Route::get('/setting', 'Setting')->name('setting');
+        
+            Route::prefix('settings')->group(function () {
+                Route::get('/banner/change', 'BannerChange')->name('bannerchange');
+                Route::post('/banner/upload', 'BannerUpload')->name('bannerupload');
+                Route::get('banner/delete/{id}', 'BannerDelete')->name('bannerdelete');
+                Route::get('/delivery/charge', 'Charge')->name('charge');
+                Route::post('/delivery/charge', 'StoreCharge')->name('storecharge');
+                Route::get('/logo/change', 'LogoChange')->name('logochange');
+                Route::post('/logo/upload', 'LogoUpload')->name('logoupload');
+                Route::get('/account/settings', 'AccountSettings')->name('accountsettings');
+        
+                Route::prefix('account/settings')->group(function () {
+                    Route::get('/password/change', 'PasswordChange')->name('passwordchange');
+                    Route::post('/password/upload', 'PasswordUpload')->name('passwordupload');
+                });
+        
+                Route::post('/admin/update', 'AdminUpdate')->name('adminupdate');
+                Route::get('/shop/address', 'ShopAddress')->name('shopaddress');
+            });
+        });
     });
 });
 
@@ -82,36 +123,6 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/all/category','AllCategoryProduct')->name('all.category.product');
     Route::get('/GetCategoriesData', 'GetCategoriesData')->name('GetCategoriesData');
     Route::get('/test', 'Test')->name('test');
-});
-
-Route::controller(QuestionController::class)->group(function () {
-    Route::post('/question', 'Question')->name('question');
-    Route::get('/all/question', 'AllQuestion')->name('allquestion');
-    Route::get('/answer/{id}', 'Answer')->name('answer');
-    Route::post('/answer/update', 'AnswerUpdate')->name('answerupdate');
-});
-
-Route::controller(SettingsController::class)->group(function () {
-    Route::get('/setting', 'Setting')->name('setting');
-
-    Route::prefix('settings')->group(function () {
-        Route::get('/banner/change', 'BannerChange')->name('bannerchange');
-        Route::post('/banner/upload', 'BannerUpload')->name('bannerupload');
-        Route::get('banner/delete/{id}', 'BannerDelete')->name('bannerdelete');
-        Route::get('/delivery/charge', 'Charge')->name('charge');
-        Route::post('/delivery/charge', 'StoreCharge')->name('storecharge');
-        Route::get('/logo/change', 'LogoChange')->name('logochange');
-        Route::post('/logo/upload', 'LogoUpload')->name('logoupload');
-        Route::get('/account/settings', 'AccountSettings')->name('accountsettings');
-
-        Route::prefix('account/settings')->group(function () {
-            Route::get('/password/change', 'PasswordChange')->name('passwordchange');
-            Route::post('/password/upload', 'PasswordUpload')->name('passwordupload');
-        });
-
-        Route::post('/admin/update', 'AdminUpdate')->name('adminupdate');
-        Route::get('/shop/address', 'ShopAddress')->name('shopaddress');
-    });
 });
 
 Route::middleware(['auth', 'web'])->group(function () {
