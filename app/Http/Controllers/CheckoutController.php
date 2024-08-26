@@ -84,6 +84,8 @@ class CheckoutController extends Controller {
                 'product_price' => $product[ 'price' ],
                 'quantity' => $product[ 'quantity' ],
                 'product_img' => $product[ 'image' ],
+                'color' => $product[ 'color' ],
+                'size' => $product[ 'size' ],
             ];
 
             // Update product quantity in stock

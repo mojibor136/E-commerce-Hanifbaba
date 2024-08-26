@@ -33,4 +33,12 @@ class Product extends Model {
     public function reviews() {
         return $this->hasMany( Review::class, 'productId' );
     }
+
+    public function sizes() {
+        return $this->hasMany( ProductSize::class );
+    }
+
+    public function colors() {
+        return $this->hasMany( ProductColor::class );
+    }
 }

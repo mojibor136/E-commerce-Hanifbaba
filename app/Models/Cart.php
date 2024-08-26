@@ -16,5 +16,7 @@ class Cart extends Model
         'product_name',
         'product_price',
         'product_quantity',
+        'color',
+        'size',
     ];
 }

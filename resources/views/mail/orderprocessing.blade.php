@@ -68,7 +68,7 @@
             </table>
         </div>
         <p>We will update you once your order has been shipped. If you have any questions or need further assistance,
-            please feel free to contact us at <strong>(+45) 7142 1852</strong>.</p>
+            please feel free to contact us at <strong>01880-117714</strong>.</p>
         <p>Thank you for choosing our store. We appreciate your business and look forward to serving you again.</p>
         <p>Best regards,</p>
         <p>Hanifbaba.com</p>

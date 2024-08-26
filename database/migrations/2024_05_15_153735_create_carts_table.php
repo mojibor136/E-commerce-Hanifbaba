@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('product_name')->default(0);
             $table->integer('product_price')->default(0);
             $table->string('product_quantity')->default(0);
+            $table->string('size')->default(0);
+            $table->string('color')->default(0);
             $table->timestamps();
         });
     }

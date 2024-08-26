@@ -24,6 +24,8 @@ class CartController extends Controller {
     public function StoreCart( Request $request ) {
         $productId = $request->productId;
         $userId = Auth::id();
+        $count = Cart::where( 'user_id', $userId )->count();
+
         $cartId = Cart::where( 'product_id', $productId )->where( 'user_id', $userId )->value( 'product_id' );
         if ( $productId == $cartId ) {
             return back()->with( 'error', 'Already addtocarta a products' );
@@ -33,15 +35,21 @@ class CartController extends Controller {
             if ( $product->product_quantity < $request->productQuantity ) {
                 return back()->with( 'error', 'Not enough stock available.' );
             }
-            Cart::create( [
-                'user_id' => $userId,
-                'product_id' => $request->productId,
-                'product_img' => $request->productImg,
-                'product_name' => $request->productName,
-                'product_price' => $request->productPrice,
-                'product_quantity' => $request->productQuantity,
-            ] );
-            return back()->with( 'success', 'Successfully Addtocart Thanks..' );
+            if ( $count >= 3 ) {
+                return back()->with( 'error', 'Cart limit reached. You cannot add more than 3 items.' );
+            } else {
+                Cart::create( [
+                    'user_id' => $userId,
+                    'product_id' => $request->productId,
+                    'product_img' => $request->productImg,
+                    'product_name' => $request->productName,
+                    'product_price' => $request->productPrice,
+                    'product_quantity' => $request->productQuantity,
+                    'size' => $request->productSize,
+                    'color' => $request->productColor,
+                ] );
+                return back()->with( 'success', 'Successfully Addtocart Thanks..' );
+            }
         }
     }
 

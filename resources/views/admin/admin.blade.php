@@ -1,5 +1,4 @@
 @extends('admin.dashboard')
-@include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All Orders</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 </head>
@@ -21,9 +20,11 @@
 
         .all-product-container {
             background: #fff;
-            padding: 30px;
+            padding: 30px 15px;
             width: 100%;
-            position: relative;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-header {
@@ -32,6 +33,13 @@
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             padding: 10px 0;
+        }
+
+        .status-btn {
+            padding: 3px 6px !important;
+            font-size: 14px !important;
+            border: none;
+            border-radius: 3px;
         }
 
         .table> :not(caption)>*>* {
@@ -43,10 +51,6 @@
             box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
         }
 
-        .product-content table tr td {
-            text-transform: capitalize;
-        }
-
         .table-wrapper {
             white-space: nowrap;
         }
@@ -55,11 +59,16 @@
             width: 100%;
         }
 
-        .product-content table tr td .btn {
-            padding: 3px 6px;
-            font-size: 14px;
-            border: none;
-            border-radius: 3px;
+        tr .status a {
+            text-transform: capitalize;
+            text-decoration: none;
+        }
+
+        tr .button a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #ff0000;
+            margin: 0 2px;
         }
 
         .status-pending {
@@ -82,6 +91,10 @@
             font-size: 14px;
         }
 
+        .main .card h3 {
+            font-size: 15px;
+        }
+
         @media (max-width: 768px) {
             .all-product-container {
                 background: transparent;
@@ -98,19 +111,19 @@
         <div class="card">
             <div class="content">
                 <div class="icons">
-                    <h1>{{ $products->count() }}</h1>
+                    <h1>{{ $orderCount }}</h1>
                     <i class="ri-shopping-bag-line"></i>
                 </div>
-                <h3>PRODUCT</h3>
+                <h3>TOTAL ORDER</h3>
             </div>
         </div>
         <div class="card">
             <div class="content">
                 <div class="icons">
-                    <h1>{{ $orders->total() }}</h1>
+                    <h1>{{ $productCount }}</h1>
                     <i class="ri-file-list-line"></i>
                 </div>
-                <h3>ORDER</h3>
+                <h3>TOTAL PRODUCTS</h3>
             </div>
         </div>
         <div class="card">
@@ -125,80 +138,81 @@
                     <div class="product-content">
                         <div class="table-wrapper">
                             <table class="table">
-                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Payment Status</th>
+                                    <th>Total Price</th>
+                                    <th>Order Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                @foreach ($orders as $order)
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Customer Name</th>
-                                        <th>Payment Status</th>
-                                        <th>Total Price</th>
-                                        <th>Order Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->shipping->name }}</td>
+                                        <td>{{ $order->payment->paymentStatus }}</td>
+                                        <td>{{ $order->payment->amount }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($order->payment->paymentDate)->format('Y-m-d') }}</td>
+                                        <td>
+                                            @if ($order->status == 'pending')
+                                                <span class="btn btn-warning status-btn status-pending">Pending</span>
+                                            @elseif ($order->status == 'processing')
+                                                <span class="btn btn-info status-btn status-processing">Processing</span>
+                                            @elseif ($order->status == 'completed')
+                                                <span class="btn btn-success status-btn status-completed">Completed</span>
+                                            @elseif ($order->status == 'cancelled')
+                                                <span class="btn btn-danger status-btn status-cancelled">Cancelled</span>
+                                            @endif
+                                        </td>
+                                        <td style="text-align: center">
+                                            <div class="dropdown">
+                                                <i class="ri-more-2-fill" id="dropdownMenuButton{{ $order->id }}"
+                                                    data-bs-toggle="dropdown" aria-expanded="false"
+                                                    style="cursor: pointer;"></i>
+                                                <ul class="dropdown-menu"
+                                                    aria-labelledby="dropdownMenuButton{{ $order->id }}">
+                                                    <li><a class="dropdown-item" href="javascript:void(0);"
+                                                            onclick="viewOrder({{ $order->id }})">Order View</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);"
+                                                            onclick="deleteOrder({{ $order->id }}, 'deleteOrder')">Delete
+                                                            Order</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);"
+                                                            onclick="processing({{ $order->id }}, 'processing')">processing</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);"
+                                                            onclick="cancelled({{ $order->id }}, 'cancelled')">cancelled</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" href="javascript:void(0);"
+                                                            onclick="completed({{ $order->id }}, 'completed')">completed</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($orders as $order)
-                                        <tr>
-                                            <td>{{ $order->id }}</td>
-                                            <td>{{ $order->shipping->fullName }}</td>
-                                            <td>{{ $order->payment->paymentStatus }}</td>
-                                            <td>{{ $order->payment->amount }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($order->payment->paymentDate)->format('Y-m-d') }}
-                                            </td>
-                                            <td>
-                                                @if ($order->status == 'pending')
-                                                    <span class="btn btn-warning status-btn status-pending">Pending</span>
-                                                @elseif ($order->status == 'processing')
-                                                    <span
-                                                        class="btn btn-info status-btn status-processing">Processing</span>
-                                                @elseif ($order->status == 'completed')
-                                                    <span
-                                                        class="btn btn-success status-btn status-completed">Completed</span>
-                                                @elseif ($order->status == 'cancelled')
-                                                    <span
-                                                        class="btn btn-danger status-btn status-cancelled">Cancelled</span>
-                                                @endif
-                                            </td>
-                                            <td style="text-align: center">
-                                                <div class="dropdown">
-                                                    <i class="ri-more-2-fill" id="dropdownMenuButton{{ $order->id }}"
-                                                        data-bs-toggle="dropdown" aria-expanded="false"
-                                                        style="cursor: pointer;"></i>
-                                                    <ul class="dropdown-menu"
-                                                        aria-labelledby="dropdownMenuButton{{ $order->id }}">
-                                                        <li><a class="dropdown-item" href="javascript:void(0);"
-                                                                onclick="viewOrder({{ $order->id }})">Order View</a>
-                                                        </li>
-                                                        <li><a class="dropdown-item" href="javascript:void(0);"
-                                                                onclick="processing({{ $order->id }}, 'processing')">processing</a>
-                                                        </li>
-                                                        <li><a class="dropdown-item" href="javascript:void(0);"
-                                                                onclick="completed({{ $order->id }}, 'completed')">completed</a>
-                                                        </li>
-                                                        <li><a class="dropdown-item" href="javascript:void(0);"
-                                                                onclick="cancelled({{ $order->id }}, 'cancelled')">cancelled</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
+                                @endforeach
                             </table>
                             <div class="d-flex justify-content-end text-end">
-                                {{ $orders->links('pagination::bootstrap-4') }}
+                                {{ $orders->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <script>
             let currentOrderId;
 
             function viewOrder(orderId) {
                 const url = `{{ url('/admin/view/order') }}/${orderId}`;
+                window.location.href = url;
+            }
+
+            function deleteOrder(orderId) {
+                const url = `{{ url('/admin/delete/order') }}/${orderId}`;
                 window.location.href = url;
             }
 
@@ -220,8 +234,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-    @endsection
+    </body>
 
-</body>
-
-</html>
+    </html>
+@endsection

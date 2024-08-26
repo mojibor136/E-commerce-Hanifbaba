@@ -13,7 +13,7 @@
     </p>
     <p>Thank you for choosing our services. If you have any further questions or need assistance, please don't hesitate
         to
-        contact us at <strong>(+45) 7142 1852</strong>.</p>
+        contact us at <strong>01880-117714</strong>.</p>
     <p>We appreciate your business and look forward to serving you again.</p>
     <p>Best regards,</p>
     <p>Hanifbaba.com Store Team</p>

@@ -158,7 +158,7 @@
                         </div>
                         <div class="Address">
                             <label for="">Address :</label>
-                            <span>{{ $order->shipping->country }} {{ $order->shipping->city }}
+                            <span>{{ $order->shipping->division }}, {{ $order->shipping->city }}
                                 {{ $order->shipping->address }}</span>
                         </div>
                         <div class="phone">
@@ -175,6 +175,8 @@
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Size</th>
+                            <th>Color</th>
                         </tr>
                         @foreach ($products as $orderInfo)
                             <tr>
@@ -183,12 +185,15 @@
                                     <img src="{{ asset('ProductImg/' . $orderInfo->product_img) }}" width="40"
                                         alt="">
                                 </td>
-                                <td>{{ $orderInfo->productName }}</td>
+                                <td>{{ $orderInfo->product_name }}</td>
                                 <td>BDT {{ $orderInfo->quantity * $orderInfo->product_price }}.00</td>
                                 <td>{{ $orderInfo->quantity }}</td>
+                                <td>{{ $orderInfo->size }}</td>
+                                <td>{{ $orderInfo->color }}</td>
                             </tr>
                         @endforeach
                         <tr class="total">
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

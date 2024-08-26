@@ -43,9 +43,7 @@ class OrderController extends Controller {
 
     public function cancelled( $id ) {
         $order = Order::find( $id );
-        $order->update( [
-            'status' => 'cancelled',
-        ] );
+        $order->update( [ 'status' => 'cancelled' ] );
         $orderId =  $order->id;
         $customerEmail = $order->customer->email;
         $customerName = $order->customer->name;
@@ -60,15 +58,13 @@ class OrderController extends Controller {
             return back()->with( 'error', 'Order not found.' );
         }
 
-        $order->update( [
-            'status' => 'completed',
-        ] );
+        $order->update( [ 'status' => 'completed' ] );
 
         $customerEmail = $order->customer->email;
         $customerName = $order->customer->name;
 
         $orderDetails = OrderDetails::where( 'order_id', $order->id )->get();
-        $productIds = $orderDetails->pluck( 'productId' );
+        $productIds = $orderDetails->pluck( 'product_id' );
         $products = Product::whereIn( 'id', $productIds )->get();
         $orderId = $order->id;
         OrderComplated::dispatch( $customerEmail, $customerName, $orderId, $products );

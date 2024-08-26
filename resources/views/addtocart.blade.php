@@ -409,7 +409,7 @@
                             <input type="submit" class="btn btn-success" value="APPLY">
                         </div>
                         @foreach ($carts as $index => $cart)
-                            <input type="hidden" value="{{ $cart->id }}"
+                            <input type="hidden" value="{{ $cart->product_id }}"
                                 name="cart[{{ $index }}][productId]">
                             <input type="hidden" value="{{ $cart->product_img }}"
                                 name="cart[{{ $index }}][productImg]">
@@ -419,8 +419,10 @@
                                 name="cart[{{ $index }}][productQuantity]">
                             <input type="hidden" value="{{ $cart->product_price }}"
                                 name="cart[{{ $index }}][productPrice]">
-                            <input type="hidden" value="{{ $cart->product_size }}"
+                            <input type="hidden" value="{{ $cart->size }}"
                                 name="cart[{{ $index }}][productSize]">
+                            <input type="hidden" value="{{ $cart->color }}"
+                                name="cart[{{ $index }}][productColor]">
                         @endforeach
                         <input type="hidden" value="{{ $carts->sum('product_price') }}" name="totalPrice">
                         <input type="submit" class="btn btn-danger" value="CHECKOUT"

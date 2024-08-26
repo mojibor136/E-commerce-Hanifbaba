@@ -8,13 +8,18 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\ProductSize;
+use App\Models\ProductColor;
 use App\Models\ProductImg;
+use App\Models\Size;
+use App\Models\Color;
 
 class AdminProductController extends Controller {
     public function AddProduct() {
         $categories = Category::all();
         $subcategories = SubCategory::all();
-        return view( 'admin.addproduct', compact( 'categories', 'subcategories' ) );
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view( 'admin.addproduct', compact( 'colors', 'sizes', 'categories', 'subcategories' ) );
     }
 
     public function AllProduct() {
@@ -63,7 +68,6 @@ class AdminProductController extends Controller {
 
         if ( $request->hasFile( 'multipleImg' ) ) {
             $uploadedFiles = [];
-
             foreach ( $request->file( 'multipleImg' ) as $multipleImg ) {
                 $multipleImgName = time() . '-' . uniqid() . '.' . $multipleImg->getClientOriginalExtension();
                 $multipleImg->move( public_path( 'ProductImg' ), $multipleImgName );
@@ -72,8 +76,33 @@ class AdminProductController extends Controller {
                     'product_img' => $multipleImgName,
                 ];
             }
-
             ProductImg::insert( $uploadedFiles );
+        }
+
+        if ( $request->has( 'size' ) ) {
+            foreach ( $request->input( 'size' ) as $size ) {
+                $sizeModel = Size::find( $size[ 'sizeId' ] );
+                if ( $sizeModel ) {
+                    ProductSize::create( [
+                        'product_id' => $product->id,
+                        'size_id' => $sizeModel->id,
+                        'product_size' => $sizeModel->size,
+                    ] );
+                }
+            }
+        }
+
+        if ( $request->has( 'color' ) ) {
+            foreach ( $request->input( 'color' ) as $color ) {
+                $colorModel = Color::find( $color[ 'colorId' ] );
+                if ( $colorModel ) {
+                    ProductColor::create( [
+                        'product_id' => $product->id,
+                        'color_id' => $colorModel->id,
+                        'product_color' => $colorModel->color,
+                    ] );
+                }
+            }
         }
 
         $subCategory = SubCategory::find( $subcategoryId );

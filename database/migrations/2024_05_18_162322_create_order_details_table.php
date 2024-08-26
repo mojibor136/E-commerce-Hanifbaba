@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('product_id');
             $table->string('product_name');
             $table->integer('product_price');
+            $table->string('color')->NULL;
+            $table->string('size')->NULL;
             $table->string('quantity');
             $table->string('product_img');
             $table->timestamps();

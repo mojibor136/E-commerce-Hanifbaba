@@ -2,7 +2,7 @@
 @include('layouts.phoneHeader')
 @include('admin.logo.logo')
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 
 <head>
     <meta charset="UTF-8">
@@ -10,11 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hanif-Baba</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
 </head>
 <style>
     * {
@@ -270,6 +268,7 @@
         font-weight: 400;
         font-style: normal;
     }
+
     /* Default styles */
     /* Your default CSS styles go here */
 
@@ -359,6 +358,10 @@
         margin: 15px 0;
     }
 
+    .sidebar {
+        display: none;
+    }
+
     /* see more button css code section */
 
     .see-more {
@@ -436,6 +439,70 @@
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         }
 
+        .sidebar {
+            display: block;
+            background-color: #333;
+            width: 220px;
+            height: 100vh;
+            position: fixed;
+            right: -220px;
+            top: 0;
+            color: #fff;
+            z-index: 99999;
+            transition: right 0.5s ease;
+        }
+
+        .close {
+            width: 100%;
+            padding: 10px;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .sidebar .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar .profile h4 {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 20px 0;
+            margin: 0;
+            padding-bottom: 5px;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #444;
+        }
+
+        .language-selector {
+            padding: 10px;
+        }
+
         footer {
             margin-bottom: 45px;
         }
@@ -461,7 +528,7 @@
 
         .shop-container .shop-content {
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 2px;
+            gap: 5px;
             padding: 0 5px;
         }
 
@@ -493,9 +560,13 @@
                         @endif
                     </div>
                 </div>
+                @php
+                    $banners = getBanner();
+                @endphp
                 <div class="banner">
-                    <img class="slides-img" src="{{ asset('banner/banner1.png') }}" alt="">
-                    <img class="slides-img" src="{{ asset('banner/banner2.png') }}" alt="">
+                    @foreach ($banners as $banner)
+                        <img class="slides-img" src="{{ asset('BannerImg/' . $banner->banner) }}" alt="">
+                    @endforeach
                     <div class="slider-btn">
                         <div class="slider-card" id="prev">
                             <div class="prev"></div>
@@ -520,7 +591,7 @@
                             <img src="{{ asset('CategoryImg/' . $category->category_img) }}" alt="">
                         </div>
                         <div class="text">
-                            <span>{{ $category->category_name }} ({{ $category->product_count }})</span>
+                            <span>{{ $category->category_name }}</span>
                         </div>
                     </a>
                 @endforeach
@@ -583,8 +654,9 @@
             </div>
         </div>
     </div>
+
     <div class="home-icon-container">
-        <div style="padding: 7px 15px;">
+        <div style="padding: 12px 15px;">
             <div class="home-icon-card">
                 <a href="{{ route('home') }}">
                     <div class="icons">
@@ -611,14 +683,53 @@
         </div>
     </div>
 
+    <div class="sidebar">
+        <div class="close">
+            <i class="ri-close-line"></i>
+        </div>
+        <div class="profile">
+            <img src="https://via.placeholder.com/100" alt="User Image">
+            <h4>John Doe</h4>
+        </div>
+        <ul>
+            <li><a href="#"><i class="ri-account-circle-line"></i> My Account</a></li>
+            <li><a href="{{route('shop')}}"><i class="ri-store-line"></i> My Shop</a></li>
+            <li><a href="#"><i class="ri-shopping-cart-line"></i> My Orders</a></li>
+            @auth
+                <li><a href="{{ route('logout') }}"><i class="ri-logout-circle-line"></i> Logout</a></li>
+            @else
+                <li><a href="{{ route('login') }}"><i class="ri-login-circle-line"></i> Login</a></li>
+            @endauth
+        </ul>
+        <div class="language-selector">
+            <select class="form-select">
+                <option value="bn">বাংলা</option>
+            </select>
+        </div>
+    </div>
+
     {{-- see more button html code section see more to shop page return --}}
 
     <div class="see-more">
         <a href="{{ route('shop') }}" class="btn btn-success">See more</a>
     </div>
 
+
     <script>
-        let cartIcon = document.querySelectorAll('.cart-icon')
+        let profileBtn = document.querySelector('#user-profile');
+        let sidebar = document.querySelector('.sidebar');
+        let close = document.querySelector('.close');
+
+        profileBtn.addEventListener('click', function() {
+            sidebar.style.right = '0px';
+        });
+
+        close.addEventListener('click', function() {
+            sidebar.style.right = '-220px';
+        });
+    </script>
+
+    <script>
         let slides = document.querySelectorAll('.slides-img');
         let next = document.querySelector('#next');
         let prev = document.querySelector('#prev');
@@ -656,12 +767,6 @@
             }, 3000);
         }
         changeSlide(count);
-
-        cartIcon.forEach(Icon => {
-            Icon.addEventListener('click', function() {
-                alert('hello icons');
-            });
-        });
     </script>
     <script>
         function submitForm(element) {
@@ -670,15 +775,23 @@
     </script>
 
     @if (session('error'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
-            Swal.fire({
-                title: 'error!',
-                text: '{{ session('error') }}',
-                icon: 'error',
-                confirmButtonText: 'OK'
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Error!',
+                    text: '{{ session('error') }}',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        title: 'swal-title',
+                        content: 'swal-text'
+                    }
+                });
             });
         </script>
     @endif
+
     @if (session('success'))
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>

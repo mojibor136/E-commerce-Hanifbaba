@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Question;
+use App\Models\Divison;
 
 class ProductController extends Controller {
     public function Index() {
@@ -18,7 +19,7 @@ class ProductController extends Controller {
         $questions = Question::where( 'status', 1 )
         ->where( 'productId', $id )
         ->get();
-        $product = Product::where( 'id', $id )->first();
+        $product = Product::with( 'sizes', 'colors' )->where( 'id', $id )->first();
 
         $reviews = $product->reviews;
 
@@ -31,13 +32,14 @@ class ProductController extends Controller {
     }
 
     public function shipping( Request $request ) {
+        $divisions = Divison::all();
         $buynowItem = $request->query( 'buynowItem' );
         $cartItem = $request->query( 'cartItem' );
 
         if ( $buynowItem === null && $cartItem === null ) {
             return redirect()->route( 'home' )->with( 'error', 'Please provide either buynowItem or cartItem.' );
         }
-        return view( 'shipping', compact( 'buynowItem', 'cartItem' ) );
+        return view( 'shipping', compact( 'buynowItem', 'divisions', 'cartItem' ) );
 
     }
 

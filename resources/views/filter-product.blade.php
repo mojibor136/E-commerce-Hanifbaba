@@ -489,7 +489,6 @@
                             <input type="radio" name="price" value="3000-3500">
                             <span>3000-3500</span>
                         </li>
-                        <input type="submit" class="mt-2 mb-2">
                     </ul>
                 </form>
 
@@ -540,7 +539,6 @@
                             <span>44</span>
                         </li>
                     </ul>
-                    <input type="submit">
                 </form>
                 <ul>
                     <span class="type">Color Family</span>

@@ -3,13 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommonController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\ManageController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -71,7 +74,6 @@ Route::middleware(['admin'])->group(function () {
         });
         
         Route::controller(QuestionController::class)->group(function () {
-            Route::post('/question', 'Question')->name('question');
             Route::get('/all/question', 'AllQuestion')->name('allquestion');
             Route::get('/answer/{id}', 'Answer')->name('answer');
             Route::post('/answer/update', 'AnswerUpdate')->name('answerupdate');
@@ -85,6 +87,18 @@ Route::middleware(['admin'])->group(function () {
             Route::post('/store/color' , 'StoreColor')->name('store.color');
             Route::get('/delete/color/{id}' , 'DeleteColor')->name('delete.color');
             Route::get('/delete/size/{id}' , 'DeleteSize')->name('delete.size');
+        });
+
+        Route::controller(DivisionController::class)->group(function(){
+            Route::get('/division' , 'Division')->name('division');
+            Route::post('/store/division' , 'StoreDivision')->name('store.division');
+            Route::get('/delete/division/{id}' , 'DeleteDivision')->name('delete.division');
+        });
+
+        Route::controller(CityController::class)->group(function(){
+            Route::get('/city', 'index')->name('city');
+            Route::post('/store/city', 'storeCity')->name('store.city');
+            Route::get('/delete/city/{id}' , 'DeleteCity')->name('delete.city');
         });
     
         Route::controller(SettingsController::class)->group(function () {
@@ -125,6 +139,10 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/test', 'Test')->name('test');
 });
 
+Route::controller(QuestionController::class)->group(function () {
+    Route::post('/question', 'Question')->name('question');
+});
+
 Route::middleware(['auth', 'web'])->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('/shipping', 'Shipping')->name('shipping');
@@ -147,6 +165,16 @@ Route::middleware(['auth', 'web'])->group(function () {
         Route::post('/buynow', 'StoreBuyNow')->name('storebuynow');
         Route::get('/delete/cart/{id}', 'DeleteCart')->name('delete.cart');
     });
+
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('/review/{productId}/{orderId}' , 'Review')->name('review');
+        Route::post('/create/review' , 'CreateReview')->name('createreview');
+    });
+});
+
+Route::controller(Controller::class)->group(function(){
+    Route::get('/test/data' , 'TestData')->name('test');
+    Route::post('/test/data' , 'Data')->name('data');
 });
 
 require __DIR__.'/auth.php';

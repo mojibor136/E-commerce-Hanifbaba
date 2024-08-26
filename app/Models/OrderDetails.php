@@ -14,6 +14,8 @@ class OrderDetails extends Model {
         'product_name',
         'product_price',
         'quantity',
+        'color',
+        'size',
         'product_img',
     ];
 

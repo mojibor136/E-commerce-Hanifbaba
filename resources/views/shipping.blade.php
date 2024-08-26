@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
-    <title>Document</title>
+    <title>Billing & Shipping</title>
+    @livewireStyles
 </head>
 <style>
     * {
@@ -324,8 +325,7 @@
                     @error('email')
                         <div class="alert text-danger">{{ $message }}</div>
                     @enderror
-                    <label for="email">Email Address
-                    </label>
+                    <label for="email">Email Address</label>
                     <input type="email" class="form-control" placeholder="Enter your email" name="email">
                 </div>
                 <div class="form-group">
@@ -335,30 +335,7 @@
                     <label for="phone">Mobile Number</label>
                     <input type="phone" class="form-control" placeholder="Enter your phone number" name="phone">
                 </div>
-                <div class="form-group">
-                    @error('division')
-                        <div class="alert text-danger">{{ $message }}</div>
-                    @enderror
-                    <label for="">Division</label>
-                    <select name="division" id="" class="form-control">
-                        <option value="" selected disabled>Select division</option>
-                        <option value="Barishal">Barishal</option>
-                        <option value="Rajshahi">Rajshahi</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    @error('city')
-                        <div class="alert text-danger">{{ $message }}</div>
-                    @enderror
-                    <label for="">City</label>
-                    <select name="city" id="" class="form-control">
-                        <option value="" selected disabled>Select City</option>
-                        <option value="Rangpur">Rangpur</option>
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Barishal">Barishal</option>
-                        <option value="Rajshahi">Rajshahi</option>
-                    </select>
-                </div>
+                @livewire('city-selector')
                 <div class="form-group">
                     @error('address')
                         <div class="alert text-danger">{{ $message }}</div>
@@ -388,9 +365,17 @@
                                 $totalPrice = 0;
                             @endphp
                             @foreach ($cartItem ?? [$buynowItem] as $index => $items)
+                                @if ($buynowItem)
+                                    @php
+                                        $color = $items['productColor'] ?? 'Not Specified';
+                                        $size = $items['productSize'] ?? 'Not Specified';
+                                    @endphp
+                                @endif
                                 @if ($cartItem)
                                     @php
                                         $totalProducts = count($cartItem);
+                                        $color = $items['productColor'] ?? 'Not Specified';
+                                        $size = $items['productSize'] ?? 'Not Specified';
                                     @endphp
                                 @else
                                     @php
@@ -419,6 +404,10 @@
                                     value="{{ $items['productName'] }}">
                                 <input type="hidden" name="products[{{ $index }}][price]"
                                     value="{{ $items['productPrice'] }}">
+                                <input type="hidden" name="products[{{ $index }}][color]"
+                                    value="{{ $color }}">
+                                <input type="hidden" name="products[{{ $index }}][size]"
+                                    value="{{ $size }}">
                                 <input type="hidden" name="products[{{ $index }}][quantity]"
                                     value="{{ $items['productQuantity'] }}">
                                 <input type="hidden" name="products[{{ $index }}][image]"
@@ -488,6 +477,7 @@
             </div>
         </div>
     </form>
+    @livewireScripts
 </body>
 
 </html>

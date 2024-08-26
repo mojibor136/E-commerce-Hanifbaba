@@ -130,6 +130,68 @@
         font-weight: 600;
     }
 
+    /* color css code */
+    .color-content .color-card {
+        display: flex;
+    }
+
+    .color-content .color-type {
+        padding: 5px;
+        color: #333;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+    }
+
+    .color-content .color-card .color {
+        padding: 4px 7px;
+        border-radius: 5px;
+        background: #f1f1f1;
+        color: #444;
+        margin: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+    }
+
+    .color-content .color .color:hover {
+        background: #800097;
+        color: #fff;
+    }
+
+    .size-content .size-card {
+        display: flex;
+    }
+
+    .size-content .size-type {
+        padding: 5px;
+        color: #555;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+    }
+
+    .size-content .size-card .size {
+        width: 50px;
+        height: 30px;
+        border-radius: 5px;
+        background: #f1f1f1;
+        color: #444;
+        margin: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+    }
+
+    .size-content .size .size:hover {
+        background: #800097;
+        color: #fff;
+    }
+
     .info-product-container .product-quantity {
         padding: 5px 5px;
         font-family: "Lato", sans-serif;
@@ -613,6 +675,37 @@
             color: #fff;
         }
 
+        /* color css code */
+        .phone-color-card .phone-color {
+            display: flex;
+        }
+
+        .phone-color-card .phone-color-type {
+            padding: 0 5px;
+            color: #555;
+            font-family: "Roboto", sans-serif;
+            font-style: normal;
+        }
+
+        .phone-color-card .phone-color .color {
+            padding: 4px 7px;
+            border-radius: 5px;
+            background: #f1f1f1;
+            color: #444;
+            margin: 0 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-family: "Roboto", sans-serif;
+            font-style: normal;
+        }
+
+        .phone-color-card .phone-color .color:hover {
+            background: #800097;
+            color: #fff;
+        }
+
         .phone-quantity-container {
             display: flex;
             justify-content: space-between;
@@ -821,6 +914,31 @@
                     <div class="product-price">
                         <span>BDT {{ $product->product_price }}</span>
                     </div>
+                    @if ($product->sizes->isNotEmpty())
+                        <div class="size-content">
+                            <div class="size-type">
+                                <span>Size</span>
+                            </div>
+                            <div class="size-card" id="selectSize">
+                                @foreach ($product->sizes as $size)
+                                    <div class="size">{{ $size->product_size }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                    {{-- color check product --}}
+                    @if ($product->colors->isNotEmpty())
+                        <div class="color-content">
+                            <div class="color-type">
+                                <span>Color</span>
+                            </div>
+                            <div class="color-card" id="selectColor">
+                                @foreach ($product->colors as $color)
+                                    <div class="color">{{ $color->product_color }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                     <div class="product-quantity">
                         <span class="quantity">Quantity</span>
                         @if ($product->product_quantity > 0)
@@ -845,7 +963,9 @@
                             <input type="hidden" name="buynow[productPrice]" value="{{ $product->product_price }}">
                             <input type="hidden" value="1" id="quantityHidden1" name="buynow[productQuantity]"
                                 class="form-control">
-                            <input type="submit" class="btn btn-success" value="Buy Now">
+                            <input type="hidden" name="buynow[productSize]" id="sizebox">
+                            <input type="hidden" name="buynow[productColor]" id="colorbox"> <input type="submit"
+                                class="btn btn-success" value="Buy Now">
                         @else
                         @endif
                     </form>
@@ -858,6 +978,8 @@
                             <input type="hidden" name="productName" value="{{ $product->product_name }}">
                             <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
                             <input type="hidden" name="productId" value="{{ $product->id }}">
+                            <input type="hidden" name="productSize" id="sizebox">
+                            <input type="hidden" name="productColor" id="colorbox">
                             <input type="submit" class="btn btn-danger" value="Add to Cart">
                         @else
                             <button class="btn btn-danger" disabled>Out of Stock</button>
@@ -869,7 +991,6 @@
     </div>
     {{-- phone-size-container --}}
     <div class="phone-size-container">
-        <input type="hidden" name="size" class="form-control" id="phonesizebox" placeholder="Size">
         <div class="phone-product-image-container">
             <div class="phone-product-images">
                 <div class="phone-product-img">
@@ -915,14 +1036,31 @@
             </div>
         </div>
         <div class="phone-size-quantity-container ">
-            <div class="phone-size-card">
-                <div class="phone-size-type">
-                    <span>Size</span>
+            @if ($product->sizes->isNotEmpty())
+                <div class="phone-size-card">
+                    <div class="phone-size-type">
+                        <span>Size</span>
+                    </div>
+                    <div class="phone-size" id="selectSize">
+                        @foreach ($product->sizes as $size)
+                            <div class="size">{{ $size->product_size }}</div>
+                        @endforeach
+                    </div>
                 </div>
-                <div class="phone-size">
-                    <div class="size">50</div>
+            @endif
+            {{-- color check product --}}
+            @if ($product->colors->isNotEmpty())
+                <div class="phone-color-card">
+                    <div class="phone-color-type">
+                        <span>Color</span>
+                    </div>
+                    <div class="phone-color" id="selectColor">
+                        @foreach ($product->colors as $color)
+                            <div class="color">{{ $color->product_color }}</div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="phone-quantity-container">
                 <div class="quantity-type">
                     <span>Quantity</span>
@@ -952,7 +1090,8 @@
                         <input type="hidden" name="buynow[productPrice]" value="{{ $product->product_price }}">
                         <input type="hidden" id="quantityHidden3" name="buynow[productQuantity]"
                             class="form-control" value="1">
-                        <input type="hidden" name="buynow[productSize]" id="sizebox1">
+                        <input type="hidden" name="buynow[productSize]" id="sizebox">
+                        <input type="hidden" name="buynow[productColor]" id="colorbox">
                         <input type="submit" class="btn btn-success" value="Buy Now">
                     @else
                     @endif
@@ -967,6 +1106,8 @@
                         <input type="hidden" name="productName" value="{{ $product->product_name }}">
                         <input type="hidden" name="productPrice" value="{{ $product->product_price }}">
                         <input type="hidden" name="productId" value="{{ $product->id }}">
+                        <input type="hidden" name="productSize" id="sizebox">
+                        <input type="hidden" name="productColor" id="colorbox">
                         <input type="submit" class="btn btn-danger" value="Add to Cart">
                     @else
                         <button class="btn btn-danger" disabled>Out of Stock</button>
@@ -1190,25 +1331,57 @@
                 });
             });
 
-            let phoneproductsize = document.querySelectorAll('.phone-size .size');
-            let phonesizebox = document.querySelector('#phonesizebox');
+            // Handling size selection
+            let phoneproductsize = document.querySelectorAll('#selectSize .size');
+            let sizeboxes = document.querySelectorAll('#sizebox');
 
-            let selectedSizeElement = null;
+            let selectedSizeElement = null; // Keep track of the currently selected size element
             phoneproductsize.forEach(productsize => {
                 productsize.addEventListener('click', function() {
                     if (selectedSizeElement) {
                         selectedSizeElement.style.background = '';
                         selectedSizeElement.style.color = '';
                     }
+
+                    // Set the new selection
                     this.style.background = '#800097';
                     this.style.color = '#fff';
-
-                    selectedSize = this.textContent;
-                    phonesizebox.value = selectedSize;
-
                     selectedSizeElement = this;
+
+                    // Update sizeboxes with the selected size
+                    let selectedSize = this.textContent;
+                    sizeboxes.forEach(sizebox => {
+                        sizebox.value = selectedSize;
+                    });
                 });
             });
+
+            // Handling color selection
+            let phoneproductcolor = document.querySelectorAll('#selectColor .color');
+            let colorboxes = document.querySelectorAll('#colorbox');
+
+            let selectedColorElement = null; // Keep track of the currently selected color element
+            phoneproductcolor.forEach(productcolor => {
+                productcolor.addEventListener('click', function() {
+                    if (selectedColorElement) {
+                        selectedColorElement.style.background = '';
+                        selectedColorElement.style.color = '';
+                    }
+
+                    // Set the new selection
+                    this.style.background = '#800097';
+                    this.style.color = '#fff';
+                    selectedColorElement = this;
+
+                    // Update colorboxes with the selected color
+                    let selectedColor = this.textContent;
+                    colorboxes.forEach(colorbox => {
+                        colorbox.value = selectedColor;
+                    });
+                });
+            });
+
+
             var questionInput = document.getElementById('questionInput');
 
             questionInput.addEventListener('focus', function() {

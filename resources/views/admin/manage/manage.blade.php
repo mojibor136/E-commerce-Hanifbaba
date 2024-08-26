@@ -68,6 +68,12 @@
                         <div class="form-group">
                             <a href="{{ route('color') }}">Color</a>
                         </div>
+                        <div class="form-group">
+                            <a href="{{ route('division') }}">Division</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="{{ route('city') }}">City</a>
+                        </div>
                     </div>
                 </div>
             </div>

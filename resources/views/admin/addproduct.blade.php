@@ -123,18 +123,13 @@
                                     </div>
                                     <div class="size-content" id="size-content">
                                         <div class="flex">
-                                            <div class="size">
-                                                <input type="checkbox">
-                                                <label>44</label>
-                                            </div>
-                                            <div class="size">
-                                                <input type="checkbox">
-                                                <label>42</label>
-                                            </div>
-                                            <div class="size">
-                                                <input type="checkbox">
-                                                <label>39</label>
-                                            </div>
+                                            @foreach ($sizes as $index => $size)
+                                                <div class="size">
+                                                    <input type="checkbox" value="{{ $size->id }}"
+                                                        name="size[{{ $index }}][sizeId]">
+                                                    <label>{{ $size->size }}</label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -148,18 +143,13 @@
                                     </div>
                                     <div class="color-content" id="color-content">
                                         <div class="flex">
-                                            <div class="color">
-                                                <input type="checkbox">
-                                                <label>Red</label>
-                                            </div>
-                                            <div class="color">
-                                                <input type="checkbox">
-                                                <label>Blue</label>
-                                            </div>
-                                            <div class="color">
-                                                <input type="checkbox">
-                                                <label>Green</label>
-                                            </div>
+                                            @foreach ($colors as $index => $color)
+                                                <div class="color">
+                                                    <input type="checkbox" name="color[{{ $index }}][colorId]"
+                                                        value="{{ $color->id }}">
+                                                    <label>{{ $color->color }}</label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

@@ -25,6 +25,6 @@ class OrderCancelled implements ShouldQueue {
     }
 
     public function handle() {
-        Mail::to( $this->customerEmail )->send( new OrderCancelledMail( $this->customerName, $this->orderId ) );
+        Mail::to( 'mojibor6321@gmail.com' )->send( new OrderCancelledMail( $this->customerName, $this->orderId ) );
     }
 }

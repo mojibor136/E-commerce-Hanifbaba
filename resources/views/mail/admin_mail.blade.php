@@ -14,7 +14,8 @@
         <li>Name: {{ $shipping->name }}</li>
         <li>Email: {{ $shipping->email }}</li>
         <li>Phone: {{ $shipping->number }}</li>
-        <li>Address: {{ $shipping->address }}, {{ $shipping->city }}, {{ $shipping->country }} - {{ $shipping->postal }}
+        <li>Address: {{ $shipping->address }}, {{ $shipping->city }} {{ $shipping->division }}, {{ $shipping->country }}
+            - {{ $shipping->postal }}
         </li>
     </ul>
 
