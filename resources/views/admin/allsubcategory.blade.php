@@ -76,7 +76,7 @@
     <body>
         <div class="all-product-container">
             <div class="product-header">
-                <span>all service subcategories</span>
+                <span>all subcategories</span>
             </div>
             <div class="all-product-content">
                 <div class="product-link-content">

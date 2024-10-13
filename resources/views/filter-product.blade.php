@@ -1,5 +1,4 @@
 @include('layouts.header')
-@include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +13,7 @@
 <style>
     body {
         background: #fbf7f5;
+        padding: 0!important;
     }
 
     nav {

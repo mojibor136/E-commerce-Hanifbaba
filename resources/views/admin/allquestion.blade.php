@@ -42,6 +42,10 @@
             box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
         }
 
+        .table-wrapper {
+            white-space: nowrap;
+        }
+
         .product-content table tr td {
             text-transform: capitalize;
         }
@@ -62,6 +66,7 @@
         @media (max-width: 768px) {
             .all-product-container {
                 padding: 20px 10px;
+                overflow: auto;
             }
 
             .product-content table tr td .btn {

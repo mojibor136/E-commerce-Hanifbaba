@@ -83,6 +83,7 @@
         @media (max-width: 768px) {
             .all-product-container {
                 padding: 20px 10px;
+                overflow: auto;
             }
 
             .product-content table tr td .btn {

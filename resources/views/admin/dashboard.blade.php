@@ -301,7 +301,8 @@
                         class="ri-shopping-bag-line nav-icon"></i>products</a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('allcategory') }}" class="nav-link"><i class="ri-apps-line nav-icon"></i>category</a>
+                <a href="{{ route('allcategory') }}" class="nav-link"><i
+                        class="ri-layout-grid-fill nav-icon"></i>category</a>
             </div>
             <div class="nav-item">
                 <a href="{{ route('allsubcategory') }}" class="nav-link"><i
@@ -346,7 +347,12 @@
                         class="ri-shopping-bag-line nav-icon"></i>products</a>
             </div>
             <div class="nav-item">
-                <a href="{{ route('allcategory') }}" class="nav-link"><i class="ri-apps-line nav-icon"></i>category</a>
+                <a href="{{ route('allcategory') }}" class="nav-link"><i
+                        class="ri-layout-grid-fill nav-icon"></i>category</a>
+            </div>
+            <div class="nav-item">
+                <a href="{{ route('allsubcategory') }}" class="nav-link"><i
+                        class="ri-apps-line nav-icon"></i>subcategory</a>
             </div>
             <div class="nav-item">
                 <a href="{{ route('allorder') }}" class="nav-link"><i class="ri-file-list-line nav-icon"></i>order

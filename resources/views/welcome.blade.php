@@ -1,6 +1,5 @@
 @include('layouts.header')
 @include('layouts.phoneHeader')
-@include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="bn">
 
@@ -25,6 +24,7 @@
         font-family: 'Noto Sans Bengali', Arial, sans-serif;
         --tw-bg-opacity: 1;
         background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+        padding: 0!important;
     }
 
     .main-container {

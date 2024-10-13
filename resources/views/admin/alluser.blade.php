@@ -48,6 +48,10 @@
             box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
         }
 
+        .table-wrapper {
+            white-space: nowrap;
+        }
+
         .product-content table tr td .btn {
             padding: 2px 6px;
             font-size: 14px;
@@ -56,6 +60,7 @@
         @media (max-width: 768px) {
             .all-product-container {
                 padding: 20px 10px;
+                overflow: auto;
             }
 
             .product-content table tr td .btn {
@@ -81,32 +86,34 @@
                     </div>
                 @endif
                 <div class="product-content">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Number</th>
-                                <th>Email</th>
-                                <th>Join Date</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->number }}</td>
-                                    <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-                                    <td>{{ $user->created_at }}</td>
-                                    <td>
-                                        <a href="{{ route('deleteuser', $user->id) }}" class="btn btn-danger">Delete</a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Number</th>
+                                    <th>Email</th>
+                                    <th>Join Date</th>
+                                    <th>Status</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->number }}</td>
+                                        <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
+                                        <td>{{ $user->created_at }}</td>
+                                        <td>
+                                            <a href="{{ route('deleteuser', $user->id) }}" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

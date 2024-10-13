@@ -47,6 +47,10 @@
             box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
         }
 
+        .table-wrapper {
+            white-space: nowrap;
+        }
+
         .product-content table tr td {
             text-transform: capitalize;
         }
@@ -55,13 +59,12 @@
             padding: 4px 7px;
         }
 
-        .alert-success {
-            margin: 5px 0;
-        }
-
         @media (max-width: 768px) {
             .all-product-container {
-                padding: 20px 5px;
+                padding: 20px 10px;
+                overflow: auto;
+                display: flex;
+                flex-direction: column;
             }
 
             .product-content table tr td .btn {
@@ -75,47 +78,47 @@
             <div class="product-header">
                 <span>all categories</span>
             </div>
-            @if (session()->has('success'))
-                <li class="alert alert-success">{{ session()->get('success') }}</li>
-            @endif
             <div class="all-product-content">
                 <div class="product-link-content">
                     <div class="add">
                         <a href="{{ route('addcategory') }}" class="btn btn-success">Add Categories</a>
                     </div>
                 </div>
+                @if (session()->has('success'))
+                    <li class="alert alert-success">{{ session()->get('success') }}</li>
+                @endif
                 <div class="product-content">
-                    <table class="table">
-                        <tr>
-                            <th>ID</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>SubCategory Count</th>
-                            <th>Action</th>
-                        </tr>
-                        @php
-                            use Illuminate\Support\Str;
-                        @endphp
-                        @foreach ($Categoires as $category)
+                    <div class="table-wrapper">
+                        <table class="table">
                             <tr>
-                                <td>{{ $category->id }}</td>
-                                <td>
-                                    <img src="{{ asset('CategoryImg/' . $category->category_img) }}" width="50"
-                                        alt="">
-                                </td>
-                                <td>{{ $category->category_name }}</td>
-                                <td>{{ $category->subcategory_count }}</td>
-                                <td>
-                                    <a href="{{ route('editcategory', $category->id) }}" class="btn btn-warning">
-                                        <i class="ri-pencil-line"></i>
-                                    </a>
-                                    <a href="" class="btn btn-danger">
-                                        <i class="ri-close-line"></i>
-                                    </a>
-                                </td>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Category Name</th>
+                                <th>Action</th>
                             </tr>
-                        @endforeach
-                    </table>
+                            @php
+                                use Illuminate\Support\Str;
+                            @endphp
+                            @foreach ($categoires as $category)
+                                <tr>
+                                    <td>{{ $category->id }}</td>
+                                    <td>
+                                        <img src="{{ asset('CategoryImg/' . $category->category_img) }}" width="45"
+                                            alt="{{ $category->category_name }}">
+                                    </td>
+                                    <td>{{ Str::limit($category->category_name, 15) }}</td>
+                                    <td>
+                                        <a href="{{ route('editcategory', $category->id) }}" class="btn btn-warning">
+                                            <i class="ri-pencil-line"></i>
+                                        </a>
+                                        <a href="{{ route('deletecategory', $category->id) }}" class="btn btn-danger">
+                                            <i class="ri-close-line"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

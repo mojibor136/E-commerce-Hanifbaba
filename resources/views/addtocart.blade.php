@@ -1,5 +1,4 @@
 @include('layouts.header')
-@include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +26,7 @@
     body {
         font-family: 'Noto Sans Bengali', Arial, sans-serif;
         background: #e9ecef;
+        padding: 0 !important;
     }
 
     nav {

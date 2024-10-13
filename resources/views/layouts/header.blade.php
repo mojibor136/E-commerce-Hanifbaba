@@ -1,3 +1,4 @@
+@include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -398,7 +399,8 @@
                                 </div>
                             </div>
                             <div class="search-card">
-                                <input type="text" name="search" placeholder="Search in hanifbaba" class="input" required>
+                                <input type="text" name="search" placeholder="Search in hanifbaba" class="input"
+                                    required>
                                 <div class="search-icons">
                                     <i class="ri-search-line"></i>
                                 </div>

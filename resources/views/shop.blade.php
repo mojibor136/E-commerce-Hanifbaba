@@ -1,5 +1,4 @@
 @include('layouts.header')
-@include('admin.logo.logo')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +10,10 @@
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
 </head>
 <style>
+    body {
+        padding: 0 !important;
+    }
+
     nav {
         background-color: #A60DE4;
         width: 100%;

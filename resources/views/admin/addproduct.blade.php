@@ -163,7 +163,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelect">Select Category</label>
+                                <label for="exampleSelect">Select SubCategory</label>
                                 <select class="form-control" id="exampleSelect" name="subcategory_id">
                                     @foreach ($subcategories as $subcategory)
                                         <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}

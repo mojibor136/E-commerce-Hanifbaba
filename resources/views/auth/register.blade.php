@@ -17,7 +17,7 @@
     }
 
     body {
-        background-color: #eeeeee;
+        background-color: #eeeeee!important;
     }
 
 

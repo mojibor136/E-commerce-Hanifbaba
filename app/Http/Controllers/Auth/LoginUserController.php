@@ -21,7 +21,7 @@ class LoginUserController extends Controller {
         $reseller = $request->only( 'email', 'password' );
 
         if ( !Auth::guard( 'web' )->attempt( $reseller ) ) {
-            return redirect()->route( 'login' )->with( 'error', 'not match our records.please try again later' );
+            return redirect()->route( 'login' )->with( 'error', 'Invalid email or password.' );
         }
 
         return redirect()->intended();

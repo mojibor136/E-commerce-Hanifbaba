@@ -35,8 +35,8 @@ class CategoryController extends Controller {
     }
 
     public function AllCategory() {
-        $Categoires = Category::get()->all();
-        return view( 'admin.allcategory', compact( 'Categoires' ) );
+        $categoires = Category::get()->all();
+        return view( 'admin.allcategory', compact( 'categoires' ) );
     }
 
     public function DeleteCategory( $id ) {

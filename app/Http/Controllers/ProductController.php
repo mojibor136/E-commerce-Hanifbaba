@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Question;
 use App\Models\Divison;
+use App\Models\City;
 
 class ProductController extends Controller {
     public function Index() {
@@ -33,13 +34,14 @@ class ProductController extends Controller {
 
     public function shipping( Request $request ) {
         $divisions = Divison::all();
+        $cities = City::all();
         $buynowItem = $request->query( 'buynowItem' );
         $cartItem = $request->query( 'cartItem' );
 
         if ( $buynowItem === null && $cartItem === null ) {
             return redirect()->route( 'home' )->with( 'error', 'Please provide either buynowItem or cartItem.' );
         }
-        return view( 'shipping', compact( 'buynowItem', 'divisions', 'cartItem' ) );
+        return view( 'shipping', compact( 'buynowItem', 'divisions', 'cities', 'cartItem' ) );
 
     }
 
